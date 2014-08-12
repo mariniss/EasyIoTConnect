@@ -7,7 +7,13 @@ class UrlMappings {
             }
         }
 
-        "/"(view:"/index")
-        "500"(view:'/error')
+		//Devel
+        "/devel"(view:"/devel")
+		
+		//Portal
+		"/"(view:"/portal/index")
+		
+		//General
+		"500"(view:'/error')
 	}
 }
