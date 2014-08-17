@@ -7,15 +7,21 @@ class BootStrap {
 
     def init = { servletContext ->
 
+		createBaseRoles()
+		createDevelUser()
+    }
+    def destroy = {
+    }
+	
+	
+	/**************************************************************************
+	 * 			Utility methods
+	 **************************************************************************/
+	
+	def createDevelUser(){
 		//Creating admin and devel roles to work
 		if(User.findByUsername('fabio') == null)
-		{
-			def develRole = new Role(authority: 'ROLE_DEVEL', description : "Role for the developments")
-			def adminRole = new Role(authority: 'ROLE_ADMIN', description : "Administration role")
-
-			develRole.save(flush: true)
-			adminRole.save(flush: true)
-			
+		{			
 			User fabioUser = createMyUser()
 			fabioUser.save(flush: true)
 	  
@@ -26,16 +32,10 @@ class BootStrap {
 			fabioAdminRole.save(flush: true)
 			
 			assert User.count() == 1
-			assert Role.count() == 2
 			assert UserRole.count() == 2
 		}
-    }
-    def destroy = {
-    }
-	
-	/**
-	 * Create the "Fabio" user
-	 */
+	}
+
 	def createMyUser = {
 
 		def fabio = new User()
@@ -55,5 +55,22 @@ class BootStrap {
 		fabio.enabled			= true
 		
 		return fabio
+	}
+
+	def createBaseRoles(){
+		if(Role.findByAuthority("ROLE_DEVEL") == null){
+			def develRole = new Role(authority: 'ROLE_DEVEL', description : "Role for the developments")
+			develRole.save(flush: true)
+		}
+		
+		if(Role.findByAuthority("ROLE_ADMIN") == null){
+			def adminRole = new Role(authority: 'ROLE_ADMIN', description : "Administration role")
+			adminRole.save(flush: true)
+		}
+		
+		if(Role.findByAuthority("ROLE_BASE") == null){
+			def baseRole = new Role(authority: 'ROLE_BASE', description : "Basic user role")
+			baseRole.save(flush: true)
+		}
 	}
 }

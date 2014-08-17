@@ -13,6 +13,9 @@ class UrlMappings {
 		//Portal
 		"/"(view:"/portal/index")
 		
+		//Dashboard
+		"/dashboard"(view:"/dashboard/index")
+		
 		//General
 		"500"(view:'/error')
 	}

@@ -29,13 +29,13 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="#">Easy IoT Connect</a>
+					<a class="navbar-brand" href="#">EIoTC - Dashboard</a>
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
+						<li><a href="#devices">Devices</a></li>
+						<li><a href="#help">Help</a></li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->

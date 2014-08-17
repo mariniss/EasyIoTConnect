@@ -130,17 +130,20 @@ grails.plugin.springsecurity.useRoleGroups = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	//Resources
 	'/assets/**':                     ['permitAll'],
-	
-	//Portal
-	'/':                              ['permitAll'],
-	'/portal/**':                     ['permitAll'],
-	// '/portal/index.gsp':              ['permitAll'],
 
 	//General
 	'/500':                           ['permitAll'],
 	
-	//Devel
+	//Portal
+	'/':                              ['permitAll'],
+	'/portal/**':                     ['permitAll'],
+
+	//Dashboard
+	'/dashboard':                     ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
+	'/dashboard/**':                  ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
+	
+	//** Devel **
 	'/devel':                         ['ROLE_DEVEL'],
-	'/devel.gsp':                     ['ROLE_DEVEL']
+	'/devel/**':                      ['ROLE_DEVEL']
 ]
 
