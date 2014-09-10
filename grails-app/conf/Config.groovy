@@ -142,8 +142,16 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/dashboard':                     ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/dashboard/**':                  ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	
+	// -- Controllers --
+	'/MQServer':					  ['ROLE_DEVEL', 'ROLE_ADMIN'],
+	'/MQServer/**':					  ['ROLE_DEVEL', 'ROLE_ADMIN'],
+	
 	//** Devel **
 	'/devel':                         ['ROLE_DEVEL'],
-	'/devel/**':                      ['ROLE_DEVEL']
+	'/devel/**':                      ['ROLE_DEVEL'],
+	
+	//REST Api
+	'/security':                      ['permitAll'],
+	'/security/**':                   ['permitAll']
 ]
 
