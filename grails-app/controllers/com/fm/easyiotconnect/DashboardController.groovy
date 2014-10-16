@@ -1,11 +1,17 @@
 package com.fm.easyiotconnect
 
+import com.fm.easyiotconnect.mq.Jack
+
 class DashboardController {
 
+	def springSecurityService
+	
     def index() {
-		flash.message = "test Message"
+		def currentUser = springSecurityService.currentUser
+		def userJaks = Jack.findAllByUser(currentUser)
 		
-		render view:"index"
+		render view:"index", 
+			   model:[jaks : userJaks]
 	}
 	
 	def createJack() {

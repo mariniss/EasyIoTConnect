@@ -2,6 +2,7 @@ package com.fm.easyiotconnect
 
 import java.util.Date;
 import java.util.Set;
+import com.fm.easyiotconnect.mq.Jack;
 
 class User {
 
@@ -23,6 +24,8 @@ class User {
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
+	
+	static hasMany = [jacks: Jack]
 
 	static transients = ['springSecurityService']
 
@@ -59,6 +62,8 @@ class User {
 		email 			( nullable 	: false,
 						  email	   	: true,
 						  blank	   	: false)
+		
+		jacks			( nullable  : true)
 	}
 
 	static mapping = { password column: '`password`' }
@@ -82,6 +87,6 @@ class User {
 	}
 
 	String toString() {
-		return "${this.name} ${this.lastname} (${this.email})"
+		return "${this.name} ${this.lastname} (${this.username})"
 	}
 }

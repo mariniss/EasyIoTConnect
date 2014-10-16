@@ -14,7 +14,11 @@ class UrlMappings {
 		"/"(view:"/portal/index")
 		
 		//Dashboard
-		"/dashboard"(view:"/dashboard/index")
+		"/dashboard"(controller:"dashboard", action:"index")
+		
+		//REST Api
+		"/security/connection" (controller:"security", action:"connectionSecurityCheck")
+		"/security/session" (controller:"security", action:"sessionSecurityCheck")
 		
 		//General
 		"500"(view:'/error')
