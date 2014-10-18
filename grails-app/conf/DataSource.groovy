@@ -30,9 +30,11 @@ environments {
     }
     production {
         dataSource {
-			driverClassName = "org.h2.Driver"
-            dbCreate = "update"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
+			driverClassName = "com.mysql.jdbc.Driver"
+			username = "adminazHlNKr"
+			password = "YLBxehGaKgU3"
+			url = "jdbc:mysql://localhost:3306/easyiotconnect?autoreconnect=true"
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
