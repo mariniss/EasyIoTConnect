@@ -25,8 +25,8 @@ class BootStrap {
 			User fabioUser = createMyUser()
 			fabioUser.save(flush: true)
 	  
-			UserRole fabioDevelRole = new UserRole(user: fabioUser, role : develRole)
-			UserRole fabioAdminRole = new UserRole(user: fabioUser, role : adminRole)
+			UserRole fabioDevelRole = new UserRole(user: fabioUser, role : Role.findByAuthority("ROLE_DEVEL"))
+			UserRole fabioAdminRole = new UserRole(user: fabioUser, role : Role.findByAuthority("ROLE_ADMIN"))
 			
 			fabioDevelRole.save(flush: true)
 			fabioAdminRole.save(flush: true)

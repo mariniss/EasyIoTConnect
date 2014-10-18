@@ -34,7 +34,8 @@ environments {
 			driverClassName = "com.mysql.jdbc.Driver"
 			username = "adminazHlNKr"
 			password = "YLBxehGaKgU3"
-			url = "jdbc:mysql://localhost:3306/easyiotconnect?autoreconnect=true"
+			url = "jdbc:mysql://127.11.55.2:3306/easyiotconnect?autoreconnect=true"
+			/*
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
                jmxEnabled = true
@@ -55,6 +56,7 @@ environments {
                jdbcInterceptors = "ConnectionState"
                defaultTransactionIsolation = java.sql.Connection.TRANSACTION_READ_COMMITTED
             }
+            */
         }
     }
 }
