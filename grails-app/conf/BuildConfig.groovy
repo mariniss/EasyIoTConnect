@@ -52,6 +52,9 @@ grails.project.dependency.resolution = {
 		runtime 'mysql:mysql-connector-java:5.1.29'
 		
 		test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
+
+        // Heroku dependencies
+        runtime 'org.postgresql:postgresql:9.3-1101-jdbc41' 
     }
 
     plugins {
@@ -76,6 +79,9 @@ grails.project.dependency.resolution = {
 		
 		compile ":spring-security-core:2.0-RC4"
 		
-		runtime 'postgresql:postgresql:8.4-702.jdbc3'
+        // Heroku dependencies
+        compile ':heroku:1.0.1'
+        compile ':cloud-support:1.0.8'
+        compile ':webxml:1.4.1'
     }
 }
