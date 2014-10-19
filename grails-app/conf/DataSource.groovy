@@ -32,7 +32,7 @@ environments {
         dataSource {
 			dbCreate = "update"
 	        driverClassName = "org.postgresql.Driver"
-	        dialect = org.hibernate.dialect.PostgreSQLDialect
+			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
 	        url = "jdbc:postgresql://ec2-79-125-17-195.eu-west-1.compute.amazonaws.com:5432/ddhkqlf5vd5e99"
 			username = "dxcskcoeewdehg"
 			password = "Ok7c26ZGET7BI-M7oz6xobeF3n"
