@@ -159,5 +159,3 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/security/**':                   ['permitAll']
 ]
 
-grails.plugin.databasesession.enabled = false
-grails.plugins.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
