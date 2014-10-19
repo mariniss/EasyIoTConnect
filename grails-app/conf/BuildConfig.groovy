@@ -75,7 +75,5 @@ grails.project.dependency.resolution = {
         //compile ":handlebars-asset-pipeline:1.3.0.3"
 		
 		compile ":spring-security-core:2.0-RC4"
-		
-		runtime 'postgresql:postgresql:8.4-702.jdbc3'
     }
 }
