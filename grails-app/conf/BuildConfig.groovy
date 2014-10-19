@@ -52,10 +52,6 @@ grails.project.dependency.resolution = {
 		//runtime 'mysql:mysql-connector-java:5.1.29'
 		
 		test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
-		
-		compile ":postgresql-extensions:3.3.0" {
-			excludes "hibernate"
-		}
     }
 
     plugins {
@@ -84,5 +80,6 @@ grails.project.dependency.resolution = {
 		compile ':heroku:1.0.1'
 		compile ':cloud-support:1.0.8'
 		compile ':webxml:1.4.1'
+		compile ":postgresql-extensions:3.3.0"
     }
 }
