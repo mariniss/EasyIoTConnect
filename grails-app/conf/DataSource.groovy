@@ -30,11 +30,15 @@ environments {
     }
     production {
         dataSource {
-			dbCreate = "update" // one of 'create', 'create-drop', 'update', 'validate', ''
-			driverClassName = "com.mysql.jdbc.Driver"
-			username = "adminazHlNKr"
-			password = "YLBxehGaKgU3"
-			url = "jdbc:mysql://127.11.55.2:3306/easyiotconnect?autoreconnect=true"
+			dbCreate = "update"
+			driverClassName = "org.postgresql.Driver"
+			dialect = org.hibernate.dialect.PostgreSQLDialect
+	
+			uri = new URI(System.env.DATABASE_URL?:"postgres://test:test@localhost/test")
+	
+			url = "jdbc:postgresql://"+uri.host+uri.path
+			username = uri.userInfo.split(":")[0]
+			password = uri.userInfo.split(":")[1]
 			/*
             properties {
                // See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
