@@ -116,11 +116,6 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 }
 
-//TODO : move to the DB, in this case we can manage dynamic instance creation
-easyiotconnect{
-	mqservers.instances=['amqsrvone', 'amqsrvtwo']
-}
-
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.fm.easyiotconnect.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fm.easyiotconnect.UserRole'
@@ -160,4 +155,4 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 ]
 
 grails.plugin.databasesession.enabled = false
-grails.plugins.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
+grails.plugin.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true

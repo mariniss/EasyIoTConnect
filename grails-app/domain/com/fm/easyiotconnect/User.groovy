@@ -66,8 +66,9 @@ class User {
 		jacks			( nullable  : true)
 	}
 
-	static mapping = { password column: '`password`' }
-
+	static mapping = { table 'ss_user';
+						password column: '`password`' }
+	
 	Set<Role> getAuthorities() {
 		UserRole.findAllByUser(this).collect { it.role } as Set
 	}
