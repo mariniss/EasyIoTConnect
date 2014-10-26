@@ -125,6 +125,7 @@ grails.plugin.springsecurity.useRoleGroups = false
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	//Resources
 	'/assets/**':                     ['permitAll'],
+	'/favicon.ico':					  ['permitAll'],
 
 	//General
 	'/500':                           ['permitAll'],
