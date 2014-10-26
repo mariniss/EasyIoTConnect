@@ -22,5 +22,8 @@ class UrlMappings {
 		
 		//General
 		"500"(view:'/error')
+		
+		//Support
+		"/support/keepmeawake" (controller:"support", action:"keepMeAwake")
 	}
 }
