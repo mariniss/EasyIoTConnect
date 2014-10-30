@@ -137,6 +137,7 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	//Dashboard
 	'/dashboard':                     ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/dashboard/**':                  ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
+	'/device/sendCommand':            ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	
 	//** Devel **
 	 '/devel':                         ['ROLE_DEVEL'],

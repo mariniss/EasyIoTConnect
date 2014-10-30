@@ -17,6 +17,18 @@
 				 <p>${jack}</p><br/>
 				</g:each>
 			</g:else>
+			<p>And then link to a device...</p>
+			
+			<!--  DEBUG -->
+			<p>Add the link to the device and a link to switch the pin status. We need to think abount the connection
+			of jeck to a specific device (app domamin), actually only raspberry</p>
+			<br /><br />
+			
+			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [pin: 1, status: 1])}" 
+			   class="btn btn-lg btn-primary"> Send On </a>
+			
+			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [pin: 1, status: 0])}" 
+			   class="btn btn-lg btn-primary"> Send Off </a>
 		</div>
 	</body>
 </html>
