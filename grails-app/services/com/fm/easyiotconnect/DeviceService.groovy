@@ -58,7 +58,7 @@ class DeviceService {
 			connection.start()
 	
 			Session amqSession = connection.createSession(false, Session.AUTO_ACKNOWLEDGE)
-			Destination destination = amqSession.createQueue(jack.producerQueueName)
+			Destination destination = amqSession.createQueue(jack.queueName)
 			MessageProducer producer = amqSession.createProducer(destination)
 	
 			ObjectMessage message = amqSession.createObjectMessage(command)
