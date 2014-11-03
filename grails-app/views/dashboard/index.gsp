@@ -25,10 +25,10 @@
          <g:else>
             <p>${device}</p><br/>
     
-			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device?.id, pin: 1, status: 1])}" 
+			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [idDevice: device?.id, pin: 1, status: 1])}" 
 			      class="btn btn-lg btn-primary"> Send On </a>
 			
-			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device?.id, pin: 1, status: 0])}" 
+			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [idDevice: device?.id, pin: 1, status: 0])}" 
 			      class="btn btn-lg btn-primary"> Send Off </a>
 			</g:else>
 		</div>

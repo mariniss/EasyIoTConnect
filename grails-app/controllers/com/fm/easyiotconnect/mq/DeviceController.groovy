@@ -21,9 +21,9 @@ class DeviceController {
 	def sendCommand() {
 		def currentUser = springSecurityService.currentUser
 		
-		def device = Device.get(params.id)
-		int pin    = params.pin
-		int status = params.status
+		def device = Device.get(params.int('idDevice'))
+		int pin    = params.int('pin')
+		int status = params.int('status')
 
 		assert device.user == currentUser
 		
