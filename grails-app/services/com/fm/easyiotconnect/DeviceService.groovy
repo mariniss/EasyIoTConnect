@@ -37,7 +37,7 @@ class DeviceService {
 	 */
     def sendCommand(Device device, IPinCommand command) {
 		assert device != null
-		assert device.jack != null
+		assert device.jackProducer != null
 		assert device.user != null
 		assert command != null
 		
