@@ -24,13 +24,13 @@
          </g:if>
          <g:else>
             <p>${device}</p><br/>
-         </g:else>
+    
+			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device?.id, pin: 1, status: 1])}" 
+			      class="btn btn-lg btn-primary"> Send On </a>
 			
-			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device.id, pin: 1, status: 1])}" 
-			   class="btn btn-lg btn-primary"> Send On </a>
-			
-			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device.id, pin: 1, status: 0])}" 
-			   class="btn btn-lg btn-primary"> Send Off </a>
+			   <a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device?.id, pin: 1, status: 0])}" 
+			      class="btn btn-lg btn-primary"> Send Off </a>
+			</g:else>
 		</div>
 	</body>
 </html>

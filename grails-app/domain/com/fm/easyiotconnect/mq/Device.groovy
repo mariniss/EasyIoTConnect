@@ -12,7 +12,10 @@ class Device {
 	static String TYPE_RASPBERRY = "Raspberry"
 	
 	String type
-	Jack jack
+	
+	Jack jackProducer
+	Jack jackConsumer
+	Jack jackStatus
 	
 	static belongsTo = [user: User]
 	

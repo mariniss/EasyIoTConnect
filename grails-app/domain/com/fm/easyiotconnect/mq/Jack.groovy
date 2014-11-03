@@ -9,34 +9,31 @@ import com.fm.easyiotconnect.mq.MQServer
  *
  */
 class Jack {
-
-	String producerQueueName
-	String consumerQueueName
-	String statusQueueName
 	
-	static belongsTo = [user: User]
-
+	static String TYPE_PRODUCER = "producer"
+	static String TYPE_CONSUMER = "consumer"
+	static String TYPE_STATUS	= "status"
+	
+	String queueName
+	String type
 	MQServer serverContainer
 	
+	static belongsTo = [user: User]
+	
     static constraints = {
-		producerQueueName	( nullable  : false,
-							  blank		: false,
-							  unique	: true)
+		queueName		( nullable  : false,
+						  blank		: false,
+						  unique	: true)
 		
-		consumerQueueName	( nullable  : false,
-							  blank		: false,
-							  unique	: true)
+		user			( nullable	: false)
 		
-		statusQueueName		( nullable  : false,
-							  blank		: false,
-							  unique	: true)
+		type			( nullable: false,
+					  	  inList: [TYPE_PRODUCER, TYPE_CONSUMER, TYPE_STATUS])
 		
-		user				( nullable	: false)
-
-		serverContainer		( nullable  : false)
+		serverContainer	( nullable  : false)
     }
 
 	String toString() {
-		return "${user} (${consumerQueueName})"
+		return "${user} (${type} : ${queueName})"
 	}
 }

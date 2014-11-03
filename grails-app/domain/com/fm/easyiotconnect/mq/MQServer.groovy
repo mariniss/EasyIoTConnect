@@ -40,4 +40,8 @@ class MQServer {
 					 blank		: false,
 					 inList		: [PROVIDER_AWS, PROVIDER_RACKSPACE, PROVIDER_HEROKU, PROVIDER_OPENSHIFT])
     }
+	
+	String toString(){
+		return "${name} (${type} on ${provider})"
+	}
 }
