@@ -1,6 +1,7 @@
 package com.fm.easyiotconnect
 
 import com.fm.easyiotconnect.mq.Jack
+import com.fm.easyiotconnect.mq.Device
 
 class DashboardController {
 
@@ -8,10 +9,12 @@ class DashboardController {
 	
     def index() {
 		def currentUser = springSecurityService.currentUser
+
 		def userJaks = Jack.findAllByUser(currentUser)
+		def device = Device.findByUser(currentUser)
 		
 		render view:"index", 
-			   model:[jaks : userJaks]
+			   model:[jaks : userJaks, device : device]
 	}
 	
 	def createJack() {

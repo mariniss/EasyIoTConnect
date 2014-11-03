@@ -7,9 +7,10 @@
 	
 	<body>
 		<div class="container">
-	        <h2>Your Dashboard</h2>
-	        <br />
-	        <g:if test="${jaks == null || jaks.size == 0}">
+         <h2>Your Dashboard</h2>
+         <br />
+	      
+	      <g:if test="${jaks == null || jaks.size == 0}">
 	        	<p>To start is necessary... <a href="${createLink(controller: 'dashboard', action: 'createJack')}" class="btn btn-lg btn-primary">Create your Jack</a></p>
 			</g:if>
 			<g:else>
@@ -17,17 +18,18 @@
 				 <p>${jack}</p><br/>
 				</g:each>
 			</g:else>
-			<p>And then link to a device...</p>
 			
-			<!--  DEBUG -->
-			<p>Add the link to the device and a link to switch the pin status. We need to think abount the connection
-			of jeck to a specific device (app domamin), actually only raspberry</p>
-			<br /><br />
+			<g:if test="${device == null}">
+            <p>And then link to a device...</p>
+         </g:if>
+         <g:else>
+            <p>${device}</p><br/>
+         </g:else>
 			
-			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [pin: 1, status: 1])}" 
+			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device.id, pin: 1, status: 1])}" 
 			   class="btn btn-lg btn-primary"> Send On </a>
 			
-			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [pin: 1, status: 0])}" 
+			<a href="${createLink(controller: 'device', action: 'sendCommand', params: [id: device.id, pin: 1, status: 0])}" 
 			   class="btn btn-lg btn-primary"> Send Off </a>
 		</div>
 	</body>

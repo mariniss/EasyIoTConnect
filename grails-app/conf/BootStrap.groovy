@@ -2,6 +2,7 @@ import com.fm.easyiotconnect.Role
 import com.fm.easyiotconnect.User
 import com.fm.easyiotconnect.UserRole
 import com.fm.easyiotconnect.DateUtils
+import com.fm.easyiotconnect.mq.MQServer
 
 class BootStrap {
 
@@ -9,6 +10,8 @@ class BootStrap {
 
 		createBaseRoles()
 		createDevelUser()
+		
+		addMQServers()
     }
     def destroy = {
     }
@@ -71,6 +74,18 @@ class BootStrap {
 		if(Role.findByAuthority("ROLE_BASE") == null){
 			def baseRole = new Role(authority: 'ROLE_BASE', description : "Basic user role")
 			baseRole.save(flush: true)
+		}
+	}
+	
+	def addMQServers() {
+		if(MQServer.count() == 0) {
+			MQServer awsServerOne = 
+				new MQServer(name: "AWS Srv One",
+							 type: MQServer.TYPE_ACTIVE_MQ,
+							 url: "http://ec2-54-77-129-207.eu-west-1.compute.amazonaws.com:61516",
+							 provider: MQServer.PROVIDER_AWS)
+
+			awsServerOne.save(flush: true)
 		}
 	}
 }

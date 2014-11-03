@@ -7,6 +7,7 @@ hibernate {
 	cache.use_query_cache = false
 	cache.region.factory_class = 'org.hibernate.cache.ehcache.EhCacheRegionFactory' // Hibernate 4
 	singleSession = true // configure OSIV singleSession mode
+	fetchType=EAGER
 }
 
 // environment specific settings
