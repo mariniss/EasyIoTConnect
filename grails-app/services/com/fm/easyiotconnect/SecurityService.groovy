@@ -24,11 +24,7 @@ class SecurityService {
 	 * @return
 	 */
 	def createBaseUser(User user) {
-
 		//FIXME:it is a simple implementation
-
-		user.validate()
-		
 		user.save()
 
 		UserRole userRole = new UserRole(user : user, role : Role.findByAuthority("ROLE_BASE"))
@@ -62,8 +58,12 @@ class SecurityService {
 	def authenticateSession (String username, String queueName) {
 		User user = User.findByUsername(username)
 		if(user != null){
+			def query = Jack.where {
+				queueName == queueName &&
+				device.user == user
+			}
 
-			def jack = Jack.findByUserAndQueueName(user, queueName)
+			def jack = query.find()
 			if(jack != null){
 				return true
 			}
