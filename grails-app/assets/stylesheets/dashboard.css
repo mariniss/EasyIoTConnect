@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+.page-body {
+    margin: 0 auto;
+    background-color: white;
+}
+
+.main-content {
+	margin-top: 40px;
+   margin-left: 100px;
+}
+
+.main-action {
+	width: 180px;
+	margin-right: 80px;
+}
+
+.device-section {
+   width: 970px;
+   height: 180px;
+   background-image: -webkit-linear-gradient(top, #777 0%, #333333 100%);
+}
+
+.device-name {
+	width: 970px;
+	padding-top: 10px;
+	padding-left: 30px;
+	background-image: -webkit-linear-gradient(top, #428bca 0%, #2d6ca2 100%);
+	color: white;
+}
+
+.device {
+	float: left; 
+	margin-left: 200px;
+	padding-top: 20px;
+}
+
+.jack {
+	float: left;
+	margin-left: 100px;
+	padding-top: 20px;
+}
+
+.world {
+   float: left;
+   margin-left: 120px;
+}

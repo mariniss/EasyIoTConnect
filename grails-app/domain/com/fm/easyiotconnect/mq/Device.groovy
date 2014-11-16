@@ -17,10 +17,27 @@ class Device {
 	Jack jackConsumer
 	Jack jackStatus
 	
+	DeviceInfos infos
+	
+	Boolean toConfigure = true
+	
 	static belongsTo = [user: User]
 	
     static constraints = {
 		type (nullable: false, 
 			  inList: [TYPE_RASPBERRY])
     }
+	
+	def beforeValidate() {
+		if(infos == null) {
+			infos = new DeviceInfos()
+		}
+	}
+	
+	def beforeInsert() {
+		if(infos == null) {
+			infos = new DeviceInfos()
+		}
+	}
+
 }

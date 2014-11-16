@@ -10,7 +10,6 @@ class BootStrap {
 
 		createBaseRoles()
 		createDevelUser()
-		
 		addMQServers()
     }
     def destroy = {
@@ -23,16 +22,16 @@ class BootStrap {
 	
 	def createDevelUser(){
 		//Creating admin and devel roles to work
-		if(User.findByUsername('fabio') == null)
+		if(User.findByUsername('fabio.mariniss@gmail.com') == null)
 		{			
 			User fabioUser = createMyUser()
-			fabioUser.save(flush: true)
+			fabioUser.save(flush: true, failOnError: true)
 	  
 			UserRole fabioDevelRole = new UserRole(user: fabioUser, role : Role.findByAuthority("ROLE_DEVEL"))
 			UserRole fabioAdminRole = new UserRole(user: fabioUser, role : Role.findByAuthority("ROLE_ADMIN"))
 			
-			fabioDevelRole.save(flush: true)
-			fabioAdminRole.save(flush: true)
+			fabioDevelRole.save(flush: true, failOnError: true)
+			fabioAdminRole.save(flush: true, failOnError: true)
 			
 			assert User.count() == 1
 			assert UserRole.count() == 2
@@ -43,19 +42,12 @@ class BootStrap {
 
 		def fabio = new User()
 
-		fabio.name 		= "Fabio"
-		fabio.lastname 	= "Marini"
-		fabio.bornDate 	= DateUtils.createDate(18, 10, 1986)
-		fabio.email		= "fabio.mariniSS@gmail.com"
-		fabio.adress	= "Via delle vie, 7, Bel Paese"
-		fabio.gender 	= "M"
-		fabio.phone		= "0011223344"
+		fabio.name 		= "Fabio Marini"
+		fabio.state		= "Italy"
+		fabio.email		= 'fabio.mariniss@gmail.com'
 
-		fabio.username	= 'fabio'
-		fabio.password 	= 'fabio'
-
-		fabio.passwordExpired	= false
-		fabio.enabled			= true
+		fabio.username	= 'fabio.mariniss@gmail.com'
+		fabio.password 	= 'eiotc636x'
 		
 		return fabio
 	}
@@ -63,17 +55,17 @@ class BootStrap {
 	def createBaseRoles(){
 		if(Role.findByAuthority("ROLE_DEVEL") == null){
 			def develRole = new Role(authority: 'ROLE_DEVEL', description : "Role for the developments")
-			develRole.save(flush: true)
+			develRole.save(flush: true, failOnError: true)
 		}
 		
 		if(Role.findByAuthority("ROLE_ADMIN") == null){
 			def adminRole = new Role(authority: 'ROLE_ADMIN', description : "Administration role")
-			adminRole.save(flush: true)
+			adminRole.save(flush: true, failOnError: true)
 		}
 		
 		if(Role.findByAuthority("ROLE_BASE") == null){
 			def baseRole = new Role(authority: 'ROLE_BASE', description : "Basic user role")
-			baseRole.save(flush: true)
+			baseRole.save(flush: true, failOnError: true)
 		}
 	}
 	
@@ -85,7 +77,7 @@ class BootStrap {
 							 url: "http://ec2-54-77-129-207.eu-west-1.compute.amazonaws.com:61516",
 							 provider: MQServer.PROVIDER_AWS)
 
-			awsServerOne.save(flush: true)
+			awsServerOne.save(flush: true, failOnError: true)
 		}
 	}
 }

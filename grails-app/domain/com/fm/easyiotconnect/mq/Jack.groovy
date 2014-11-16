@@ -18,14 +18,13 @@ class Jack {
 	String type
 	MQServer serverContainer
 	
-	static belongsTo = [user: User]
+	static belongsTo = [device: Device]
 	
     static constraints = {
 		queueName		( nullable  : false,
 						  blank		: false,
 						  unique	: true)
-		
-		user			( nullable	: false)
+
 		
 		type			( nullable: false,
 					  	  inList: [TYPE_PRODUCER, TYPE_CONSUMER, TYPE_STATUS])
@@ -34,6 +33,6 @@ class Jack {
     }
 
 	String toString() {
-		return "${user} (${type} : ${queueName})"
+		return "${device} (${type} : ${queueName})"
 	}
 }

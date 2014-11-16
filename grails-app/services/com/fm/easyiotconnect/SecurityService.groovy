@@ -28,10 +28,11 @@ class SecurityService {
 		//FIXME:it is a simple implementation
 
 		user.validate()
-		user.save(flush:true)
+		
+		user.save()
 
 		UserRole userRole = new UserRole(user : user, role : Role.findByAuthority("ROLE_BASE"))
-		userRole.save(flush:true)
+		userRole.save()
 
 		return "PTSCOO"
 	}

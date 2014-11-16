@@ -28,14 +28,15 @@ import javax.jms.*
 class DeviceService {
 
 	/**
-	 * 
-	 * @param device
-	 * @param pin
-	 * @param status
-	 * @param user
-	 * @return
+	 * Sends the given command to the specified device
+	 * @param device the device to send the command
+	 * @param command the command to send
+	 * @return true if the command has been sent without problems, or false otherwise
+	 * @throws AssertError if the given arguments are not valid
 	 */
-    def sendCommand(Device device, IPinCommand command) {
+    public Boolean sendCommand(Device device, IPinCommand command) {
+		log.debug "Sending command ${command} for Device ${device}"
+		
 		assert device != null
 		assert device.jackProducer != null
 		assert device.user != null
@@ -45,6 +46,7 @@ class DeviceService {
 		Jack jack = device.jackProducer
 		MQServer server = jack.serverContainer
 		
+		Boolean result = false
 		try {
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(server.url)
 					
@@ -64,13 +66,19 @@ class DeviceService {
 			ObjectMessage message = amqSession.createObjectMessage(command)
 			producer.send(message)
 
-			log.debug "Sent command ${command} for jack ${jack}"
+			log.debug "Command ${command} for Device ${device} has been sent"
 			
 			amqSession.close()
 			connection.close()
+			
+			result = true
 		} catch (Exception e) {
-			log.error"Caught: ${e}"
-			e.printStackTrace();
+			log.error"Caught: ${e} when sending command ${command} for Device ${device}"
+			e.printStackTrace()
+			
+			result = false
 		}
+		
+		return result
 	}
 }
