@@ -14,6 +14,7 @@ class MQServer {
 	static String PROVIDER_RACKSPACE = "RackSpace"
 	static String PROVIDER_HEROKU    = "Heroku"
 	static String PROVIDER_OPENSHIFT = "OpenShift"
+	static String PROVIDER_LOCALHOST = "Localhost"
 	
 	String name
 	String type
@@ -38,7 +39,7 @@ class MQServer {
 		
 		provider	(nullable 	: false,
 					 blank		: false,
-					 inList		: [PROVIDER_AWS, PROVIDER_RACKSPACE, PROVIDER_HEROKU, PROVIDER_OPENSHIFT])
+					 inList		: [PROVIDER_AWS, PROVIDER_RACKSPACE, PROVIDER_HEROKU, PROVIDER_OPENSHIFT, PROVIDER_LOCALHOST])
     }
 	
 	String toString(){

@@ -11,6 +11,7 @@ class Device {
 	
 	static String TYPE_RASPBERRY = "Raspberry"
 	
+	User user
 	String type
 	
 	Jack jackProducer
@@ -20,8 +21,6 @@ class Device {
 	DeviceInfos infos
 	
 	Boolean toConfigure = true
-	
-	static belongsTo = [user: User]
 	
     static constraints = {
 		type (nullable: false, 
@@ -40,4 +39,7 @@ class Device {
 		}
 	}
 
+	String toString() {
+		return "${infos.name}: ${type} - ${user}"
+	}
 }

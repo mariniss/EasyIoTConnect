@@ -57,7 +57,14 @@ class ConnectionService {
 								   user		   : user)
 		
 		Device.withTransaction { st ->
-			if (device.save()) {
+			boolean childernSaved = false
+			
+			childernSaved = infos.save()    &&
+						    producer.save() &&  
+							consumer.save() &&
+							status.save()
+			
+			if (childernSaved && device.save()) {
 				okCreate = true
 			}
 			else {

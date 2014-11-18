@@ -71,13 +71,24 @@ class BootStrap {
 	
 	def addMQServers() {
 		if(MQServer.count() == 0) {
-			MQServer awsServerOne = 
-				new MQServer(name: "AWS Srv One",
+			if(Environment.current == Environment.DEVELOPMENT) {
+				MQServer local =
+				new MQServer(name: "Local test server",
 							 type: MQServer.TYPE_ACTIVE_MQ,
-							 url: "http://ec2-54-77-129-207.eu-west-1.compute.amazonaws.com:61516",
-							 provider: MQServer.PROVIDER_AWS)
+							 url: "http://localhost:61616",
+							 provider: MQServer.PROVIDER_LOCALHOST)
 
-			awsServerOne.save(flush: true, failOnError: true)
+				local.save(flush: true, failOnError: true)
+			}
+			else {
+				MQServer awsServerOne = 
+					new MQServer(name: "AWS Srv One",
+								 type: MQServer.TYPE_ACTIVE_MQ,
+								 url: "http://ec2-54-77-129-207.eu-west-1.compute.amazonaws.com:61516",
+								 provider: MQServer.PROVIDER_AWS)
+	
+				awsServerOne.save(flush: true, failOnError: true)
+			}
 		}
 	}
 }

@@ -180,6 +180,6 @@ class DashboardController {
 			}
 		}
 		
-		redirect action:"remote", model: [id: deviceId]
+		redirect action:"remote", params: [id: deviceId]
 	}
 }

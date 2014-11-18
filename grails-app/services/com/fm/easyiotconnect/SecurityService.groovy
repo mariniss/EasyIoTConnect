@@ -58,14 +58,9 @@ class SecurityService {
 	def authenticateSession (String username, String queueName) {
 		User user = User.findByUsername(username)
 		if(user != null){
-			def query = Jack.where {
-				queueName == queueName &&
-				device.user == user
-			}
-
-			def jack = query.find()
-			if(jack != null){
-				return true
+			def jack = Jack.findByQueueName(queueName)
+			if(jack != null) {
+				return jack.device?.user == user
 			}
 		}
 

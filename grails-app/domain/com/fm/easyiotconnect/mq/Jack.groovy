@@ -17,8 +17,8 @@ class Jack {
 	String queueName
 	String type
 	MQServer serverContainer
-	
-	static belongsTo = [device: Device]
+
+	Device device
 	
     static constraints = {
 		queueName		( nullable  : false,
