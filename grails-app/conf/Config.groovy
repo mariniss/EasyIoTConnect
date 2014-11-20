@@ -164,3 +164,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 
 grails.plugin.databasesession.enabled = false
 grails.plugin.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
+
+/******************************************************************************
+ * Custom configurations
+ ******************************************************************************/
+
+eiotc.device.configure.pimqUrl = "https://github.com/mariniss/PiMQ/blob/master/EIoTC/org.fm.pimq.client-0.1-SNAPSHOT.jar?raw=true" 

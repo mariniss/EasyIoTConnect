@@ -17,7 +17,7 @@ class DashboardController {
 	def springSecurityService
 	def connectionService
 	def deviceService
-	
+	def grailsApplication
 	
     def index() {
 		def currentUser = springSecurityService.currentUser
@@ -53,7 +53,18 @@ class DashboardController {
 	}
 	
 	def configure() {
-		[id: params.id]
+		def deviceId = params.id
+		
+		def currentUser = springSecurityService.currentUser
+		
+		Device device = Device.findByIdAndUser(deviceId, currentUser)
+		if(device == null) {
+			flash.message = "Error, device not found!"
+		}
+		
+		[ user: currentUser,
+		  device: device,
+		  pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
 	}
 	
 	def manage() {
