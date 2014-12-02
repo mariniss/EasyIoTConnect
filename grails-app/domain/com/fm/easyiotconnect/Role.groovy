@@ -11,4 +11,8 @@ class Role {
 	static constraints = {
 		authority blank: false, unique: true
 	}
+	
+	public static Role getBaseRole() {
+		return Role.findByAuthority("ROLE_BASE")
+	}
 }

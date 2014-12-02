@@ -1,122 +1,65 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="portal" />
-		<title>Sing-Up</title>
-	</head>
+<head>
+<meta name="layout" content="portal" />
+<title>Sing-Up</title>
+</head>
 
-	<body>
-		<div class="container">
-			<g:form controller="portal" action="singUpCheck" class="form-horizontal" method='POST'>
-				<fieldset>
+<body>
+	<div class="container-fluid">
+		<br />
+		<h2 class="big-message">Great! We need only few informations</h2>
+		<br /> <br />
 
-					<!-- Form Name -->
-					<legend>Sing-Up</legend>
+		<div class="panel panel-default">
+			<div class="panel-body">
 
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="name">Name</label>
-						<div class="controls">
+				<g:form controller="portal" action="singUpCheck" method='POST'
+					class="form-horizontal" role="form">
+
+					<legend class="text-center">Sing-Up</legend>
+
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="name">Name</label>
+						<div class="col-sm-10">
 							<input id="name" name="name" type="text"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your first name</p>
+								placeholder="Your complete name" class="form-control">
 						</div>
 					</div>
 
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="lastName">Last Name</label>
-						<div class="controls">
-							<input id="lastName" name="lastName" type="text"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your last name</p>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="country">Country</label>
+						<div class="col-sm-10">
+							<input id="country" name="country" type="text"
+								placeholder="Country where you live" class="form-control">
 						</div>
 					</div>
 
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="borndate">Bird Date</label>
-						<div class="controls">
-							<input id="borndate" name="borndate" type="text"
-								placeholder="placeholder" class="input-xlarge">
-							<p class="help-block">Your bird date</p>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="email">Email</label>
+						<div class="col-sm-10">
+							<input id="email" name="email" type="email"
+								placeholder="Email to identify you" class="form-control">
 						</div>
 					</div>
 
-					<!-- Multiple Radios -->
-					<div class="control-group">
-						<label class="control-label" for="gender">Gender</label>
-						<div class="controls">
-							<label class="radio" for="gender-0"> <input type="radio"
-								name="gender" id="gender-0" value="M" checked="checked">
-								Male
-							</label> <label class="radio" for="gender-1"> <input
-								type="radio" name="gender" id="gender-1" value="F">
-								Female
-							</label>
-						</div>
-					</div>
-
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="adress">Adress</label>
-						<div class="controls">
-							<input id="adress" name="adress" type="text"
-								placeholder="placeholder" class="input-xlarge">
-							<p class="help-block">Your Adress</p>
-						</div>
-					</div>
-
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="phone">Phone</label>
-						<div class="controls">
-							<input id="phone" name="phone" type="text"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your phone or mobile</p>
-						</div>
-					</div>
-
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="email">Email</label>
-						<div class="controls">
-							<input id="email" name="email" type="text"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your Email</p>
-						</div>
-					</div>
-
-					<!-- Text input-->
-					<div class="control-group">
-						<label class="control-label" for="username">Username</label>
-						<div class="controls">
-							<input id="username" name="username" type="text"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your Easy IoT Connect username</p>
-						</div>
-					</div>
-
-					<!-- Password input-->
-					<div class="control-group">
-						<label class="control-label" for="password">Password</label>
-						<div class="controls">
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="password">Password</label>
+						<div class="col-sm-10">
 							<input id="password" name="password" type="password"
-								placeholder="placeholder" class="input-xlarge" required="">
-							<p class="help-block">Your Easy IoT Connect password</p>
+								placeholder="Insert a good password" class="form-control">
 						</div>
 					</div>
-
-					<!-- Button (Double) -->
-					<div class="control-group">
-						<label class="control-label" for="singup"></label>
-						<div class="controls">
-							<input type="submit" value="Sing-Up" class="btn btn-success">
-							<button id="cancel" name="cancel" class="btn btn-danger">Cancel</button>
-						</div>
+					
+					
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary btn-lg">Sign in</button>
+						<a href="${createLink(controller: 'portal', action: 'index')}"
+                     id="cancel" name="cancel" class="btn btn-danger btn-lg">Cancel</a>
 					</div>
-				</fieldset>
-			</g:form>
+				</g:form>
+			</div>
 		</div>
-	</body>
+	</div>
+</body>
 </html>

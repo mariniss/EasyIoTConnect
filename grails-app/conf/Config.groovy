@@ -122,6 +122,12 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.fm.easyiot
 grails.plugin.springsecurity.authority.className = 'com.fm.easyiotconnect.Role'
 grails.plugin.springsecurity.authority.groupAuthorityNameField = 'authorities'
 grails.plugin.springsecurity.useRoleGroups = false
+
+grails.plugin.springsecurity.auth.loginFormUrl = '/portal/login'
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = false
+grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard/index'
+
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	//Resources
 	'/assets/**':                     ['permitAll'],

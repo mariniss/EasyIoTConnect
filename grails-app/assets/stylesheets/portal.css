@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+body {
+   font-family: 'Merriweather', serif;
+   background-image: url('../images/background.png');
+   background-color: #333333;
+   color: black;
+   opacity: 0.70;
+   filter: alpha(opacity=70);
+}
+
+.big-message {
+	color: white;
+}

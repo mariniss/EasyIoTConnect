@@ -18,27 +18,25 @@ class SecurityService {
 
 	def springSecurityService
 
-	/**
-	 * 
-	 * @param user
-	 * @return
-	 */
-	def createBaseUser(User user) {
-		//FIXME:it is a simple implementation
-		user.save()
+	
+	public ServiceCodes.Infos createBaseUser(User user) {
+		if(user == null) {
+			throw ServiceError.build(ServiceError.Codes.NULL_ARGUMENT)
+		}
 
-		UserRole userRole = new UserRole(user : user, role : Role.findByAuthority("ROLE_BASE"))
-		userRole.save()
+		if(!user.save()) {
+			throw ServiceError.build(ServiceError.Codes.USER_NOT_SAVED)
+		}
 
-		return "PTSCOO"
+		UserRole userRole = new UserRole(user : user, role : Role.getBaseRole())
+		if(!userRole.save()) {
+			throw ServiceError.build(ServiceError.Codes.USER_ROLE_NOT_SAVED)
+		}
+
+		return ServiceCodes.Infos.USER_CREATED
 	}
 
-	/**
-	 * 
-	 * @param username
-	 * @param password
-	 * @return
-	 */
+	
 	def authenticateConnection (String username, String password) {
 		User user = User.findByUsernameAndPassword(username, password)
 		if(user != null){
@@ -48,13 +46,7 @@ class SecurityService {
 		return false
 	}
 
-	/**
-	 *
-	 * @param username
-	 * @param password
-	 * @param queueName
-	 * @return
-	 */
+
 	def authenticateSession (String username, String queueName) {
 		User user = User.findByUsername(username)
 		if(user != null){

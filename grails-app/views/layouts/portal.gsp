@@ -13,21 +13,17 @@
 		<!-- <link rel="apple-touch-icon" href="${assetPath(src: 'apple-touch-icon.png')}">
 		<link rel="apple-touch-icon" sizes="114x114" href="${assetPath(src: 'apple-touch-icon-retina.png')}">  -->
   		
+  		<link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
+  		    
   		<asset:stylesheet src="bootstrap.css"/>
   		<asset:stylesheet src="bootstrap-theme.css"/>
+		
+		<asset:stylesheet src="portal.css"/>
 		
 		<asset:javascript src="bootstrap.js"/>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
       
       <!-- font -->
-      <link href='http://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet' type='text/css'>
-      <style TYPE="text/css">
-         body {
-            color:black;
-            background-color:black;
-            font-family: 'Merriweather', serif;
-         }
-      </style>
 		<g:layoutHead/>
 	</head>
 	<body>
@@ -45,10 +41,24 @@
 				</div>
 				<div class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">How it works</a></li>
-						<li><a href="#about">About us</a></li>
-						<li><a href="#contact">Contact</a></li>
+					   
+						<li class="${params.action=='index'?'active':''}">
+						   <a href="${createLink(controller:'portal', action: 'index')}">Home</a>
+						</li>
+						
+						<li class="${params.action=='howItWorks'?'active':''}">
+						   <a href="${createLink(controller:'portal', action: 'howItWorks')}">How works</a>
+						</li>
+						
+						<li class="${params.action=='contact'?'active':''}">
+						   <a href="${createLink(controller:'portal', action: 'contact')}">Contact</a>
+					   </li>
 					</ul>
+					<ul class="nav navbar-nav navbar-right">
+                  <li>
+                     <a href="${createLink(controller:'dashboard', action: 'index')}">Login</a>
+                  </li>
+               </ul>
 				</div>
 				<!--/.nav-collapse -->
 			</div>

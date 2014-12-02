@@ -17,9 +17,9 @@ class User {
 	String 	name
 	String 	state
 
-	boolean accountExpired
-	boolean accountLocked
-	boolean passwordExpired
+	boolean accountExpired  = false
+	boolean accountLocked   = false
+	boolean passwordExpired = false
 	
 	static hasMany = [devices: Device]
 
@@ -36,7 +36,8 @@ class User {
 	
 		email 			( nullable 	: false,
 						  email	   	: true,
-						  blank	   	: false)
+						  blank	   	: false,
+						  unique	: true )
 
 		name			( nullable  : false,
 						  blank	    : false)

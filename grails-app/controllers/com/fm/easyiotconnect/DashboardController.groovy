@@ -14,25 +14,29 @@ import org.fm.pimq.impl.PinMessageImpl
  */
 class DashboardController {
 
+	
 	def springSecurityService
 	def connectionService
 	def deviceService
 	def grailsApplication
+
 	
     def index() {
 		def currentUser = springSecurityService.currentUser
 
 		def devices = Device.findAllByUser(currentUser)
-		def toConfigure = devices.any { it.toConfigure == true } != null
+		def toConfigure = devices.any { it.toConfigure == true }
 		
 		render view:"index", 
 			   model:[ devices 	  : devices, 
 				   	   toConfigure: devices.size() == 0? false : toConfigure]
 	}
 	
+	
 	def createDevice() {
 		render view:"createDevice"
 	}
+	
 	
 	def saveDevice() {
 		String deviceName = params.name
@@ -52,7 +56,27 @@ class DashboardController {
 		redirect action:"index"
 	}
 	
+	
 	def configure() {
+		def deviceId = params.id
+		def currentUser = springSecurityService.currentUser
+		
+		List<Device> devices = []
+	
+		if(deviceId != null) {
+			devices << Device.findByIdAndUser(deviceId, currentUser)	
+		}
+		else {
+			devices = Device.findAllByUser(currentUser)
+		}
+
+		[ user: currentUser,
+		  devices: devices,
+		  pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
+	}
+	
+	
+	def configured() {
 		def deviceId = params.id
 		
 		def currentUser = springSecurityService.currentUser
@@ -60,31 +84,31 @@ class DashboardController {
 		Device device = Device.findByIdAndUser(deviceId, currentUser)
 		if(device == null) {
 			flash.message = "Error, device not found!"
+		} else {
+			device.toConfigure = false
+			device.save(flush:true)
 		}
 		
-		[ user: currentUser,
-		  device: device,
-		  pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
+		redirect view:"index"
 	}
+	
 	
 	def manage() {
 		def deviceId = params.id
-		
 		def currentUser = springSecurityService.currentUser
 		
-		Device device = null
 		List<Device> devices = []
 	
 		if(deviceId != null) {
-			device = Device.findByIdAndUser(deviceId, currentUser)	
+			devices << Device.findByIdAndUser(deviceId, currentUser)	
 		}
-		
-		if(device == null) {
+		else {
 			devices = Device.findAllByUser(currentUser)
 		}
 		
-		[ device: device, devices: devices ]
+		[ devices: devices ]
 	}
+	
 	
 	def updateDeviceInfo() {
 		def deviceId = params.id
@@ -147,6 +171,7 @@ class DashboardController {
 		redirect action:"index"
 	}
 	
+	
 	def remote() {
 		def deviceId = params.id
 		
@@ -156,15 +181,15 @@ class DashboardController {
 		List<Device> devices = []
 	
 		if(deviceId != null) {
-			device = Device.findByIdAndUser(deviceId, currentUser)	
+			devices << Device.findByIdAndUser(deviceId, currentUser)	
 		}
-		
-		if(device == null) {
+		else {
 			devices = Device.findAllByUser(currentUser)
 		}
 		
-		[ device: device, devices: devices ]
+		[ devices: devices ]
 	}
+	
 	
 	def sendCommand() {
 		def deviceId = params.id
@@ -192,5 +217,44 @@ class DashboardController {
 		}
 		
 		redirect action:"remote", params: [id: deviceId]
+	}
+	
+	
+	def personal() {
+		def currentUser = springSecurityService.currentUser
+
+		render view:"personal", model:[user : currentUser]
+	}
+	
+	
+	def updatePersonal() {
+		def currentUser = springSecurityService.currentUser
+		
+		User userToUpdate = User.get(params.id)
+		if(userToUpdate == null || currentUser.id != userToUpdate.id) {
+			flash.message = "Sorry! You cannot change these data"
+		}
+		else {
+			String name = params.name
+			userToUpdate.name = name
+ 
+ 			String password = params.password
+			String repeatPassword = params.repeatPassword
+			String okPassword = password == params.repeatPassword
+			if(password.size() > 0) {
+				userToUpdate.password = password
+			}
+
+			boolean saved = userToUpdate.save(flush: true)
+
+			if(saved) {
+				flash.message = "Data updated successfully"
+			}
+			else {
+				flash.message = "Sorry! There were problems during the update"
+			}
+		}
+		
+		redirect action:"index"
 	}
 }
