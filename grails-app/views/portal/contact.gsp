@@ -11,7 +11,14 @@
  
          <form method="POST" action="askQuestion"
                id='askQuestion'  autocomplete='off' class="form-horizontal" role="form">
-
+           
+               <div class="form-group">
+                  <label class="col-sm-2 control-label" for="name">Name</label>
+                  <div class="col-sm-10">
+                     <input name='name' id='name' type="text" class="form-control">
+                  </div>
+               </div>
+               
                <div class="form-group">
                   <label class="col-sm-2 control-label" for="email">Email</label>
                   <div class="col-sm-10">
@@ -20,9 +27,9 @@
                </div>
 
                <div class="form-group">
-                  <label class="col-sm-2 control-label" for="password">Text</label>
+                  <label class="col-sm-2 control-label" for="question">Question</label>
                   <div class="col-sm-10">
-                     <textarea class="form-control" rows="10" id="text" class="form-control">
+                     <textarea name="question"  id="question" class="form-control" rows="10" class="form-control">
                      </textarea>
                   </div>
                </div>

@@ -14,7 +14,9 @@ class SecurityController {
 	
 	def securityService
 	
-	static allowedMethods = [baseSecurityCheck: ["PUT", "POST"]]
+	static allowedMethods = [connectionSecurityCheck: ["PUT", "POST"],
+									 sessionSecurityCheck: ["PUT", "POST"]]
+
 	static responseFormats = ['json']
 	
 	/**

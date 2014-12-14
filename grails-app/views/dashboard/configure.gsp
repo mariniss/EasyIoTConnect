@@ -36,10 +36,10 @@
 						               <span>Example...</span>
 						            </li>
 						            <li>
-						               <p>TODO: create the gsp that is the template of configuration file with the data</p>
-						               Copy and paste this configuration: <br />
-						               <span> ${device.jackConsumer.queueName} </span><br />
-						               <span>${user.username} - ${user.password} </span>
+                                 <p>Insert 
+                                    <a href="${createLink(action: 'downloadConfiguration', 
+                                                          params: [id: device.id])}">this file</a>  
+                                    on client folder</p>
 						            </li>
 						            
 						             <li>

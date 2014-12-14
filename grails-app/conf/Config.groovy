@@ -171,6 +171,19 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 grails.plugin.databasesession.enabled = false
 grails.plugin.springsecurity.secureChannel.useHeaderCheckChannelSecurity = true
 
+grails {
+	mail {
+	  host = "smtp.gmail.com"
+	  port = 465
+	  username = "easyiotconnect@gmail.com"
+	  password = "eiotc636x"
+	  props = ["mail.smtp.auth":"true",
+			   "mail.smtp.socketFactory.port":"465",
+			   "mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+			   "mail.smtp.socketFactory.fallback":"false"]
+	}
+ }
+
 /******************************************************************************
  * Custom configurations
  ******************************************************************************/

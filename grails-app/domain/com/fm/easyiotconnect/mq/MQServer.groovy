@@ -7,8 +7,8 @@ package com.fm.easyiotconnect.mq
  */
 class MQServer {
 
-	static String TYPE_AMQ 		  	 = "A-MQ"
-	static String TYPE_ACTIVE_MQ  	 = "Active MQ"
+	static String TYPE_AMQ 		  	 = "amq"
+	static String TYPE_ACTIVE_MQ  	 = "activemq"
 	
 	static String PROVIDER_AWS 	 	 = "AWS"
 	static String PROVIDER_RACKSPACE = "RackSpace"

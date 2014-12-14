@@ -9,7 +9,7 @@ class PortalController {
 
 	def securityService
 	def messageCodeResolverService
-
+	def mailService
 	
 	def index() {
 		render view:"index"
@@ -59,5 +59,20 @@ class PortalController {
 			flash.message = messageCodeResolverService.getMessageByCode(resultCode)
 			render view:"index"
 		}
+	}
+	
+	
+	def askQuestion() {
+		//TODO: add params validation
+
+		mailService.sendMail {
+		   to "easyiotconnect@gmail.com"
+		   from "${params.email}"
+		   cc "fabio.mariniss@gmail.com"
+		   subject "Question form ${params.name}"
+		   body "${params.question}"
+		 }
+		
+		render view:"index"
 	}
 }
