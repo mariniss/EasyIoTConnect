@@ -17,7 +17,8 @@ class ServiceCodes {
 		NULL_ARGUMENT,
 		
 		USER_NOT_SAVED,
-		ROLE_NOT_SAVED
+		ROLE_NOT_SAVED,
+		USER_ROLE_NOT_SAVED
 	}
 	
 	/**************************************************************************

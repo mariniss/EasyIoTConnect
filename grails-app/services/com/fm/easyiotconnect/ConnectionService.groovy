@@ -1,12 +1,6 @@
 package com.fm.easyiotconnect
-
-import com.fm.easyiotconnect.mq.Device
-import com.fm.easyiotconnect.mq.DeviceInfos
-import com.fm.easyiotconnect.mq.Jack
-
+import com.fm.easyiotconnect.mq.*
 import grails.transaction.Transactional
-import com.fm.easyiotconnect.MqServerService
-import com.fm.easyiotconnect.mq.MQServer
 
 /**
  * 
@@ -17,7 +11,8 @@ import com.fm.easyiotconnect.mq.MQServer
 class ConnectionService {
 
 	def mqServerService
-	
+	def eiotcServerStubService
+
 	/**
 	 * 
 	 * @param user
@@ -25,9 +20,11 @@ class ConnectionService {
 	 * @param deviceName
 	 * @return
 	 */
-    public boolean create(User user, String deviceType, String deviceName) {
+    boolean create(User user, String deviceType, String deviceName) {
 		boolean okCreate = false
-		
+
+		log.error(">>> Creations....")
+
 		//Identify the correct A-MQ
 		MQServer server = mqServerService.identifyMQserver(user)
 		
@@ -57,26 +54,44 @@ class ConnectionService {
 								   user		   : user)
 		
 		Device.withTransaction { st ->
-			boolean childernSaved = false
-			
-			childernSaved = infos.save()    &&
+			boolean  childrenSaved = infos.save()    &&
 						    producer.save() &&  
 							consumer.save() &&
 							status.save()
 			
-			if (childernSaved && device.save()) {
+			if (childrenSaved && device.save()) {
 				okCreate = true
 			}
 			else {
 				st.setRollbackOnly()
 			}
 		}
+
+		boolean okRegister = registerToAuthenticationServer(server, user, [producer, consumer, status])
 		
-		if(okCreate){
+		if(okCreate && okRegister){
 			server.activeUsers ++
 			server.save()
 		}
 		
 		return okCreate
+	}
+
+	/**
+	 *
+	 * @param mqServer
+	 * @param user
+	 * @param jacks
+	 * @return
+	 */
+	boolean registerToAuthenticationServer(MQServer mqServer, User user, List<Jack> jacks) {
+		AuthenticationServer authenticationServer = mqServer.authenticationServer
+
+		if(authenticationServer.type != AuthenticationServer.TYPE_EIOTC_APP) {
+			return eiotcServerStubService.registerUser(authenticationServer, user, jacks)
+		}
+		else {
+			return  true
+		}
 	}
 }

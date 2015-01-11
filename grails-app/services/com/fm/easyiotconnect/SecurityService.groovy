@@ -18,26 +18,35 @@ class SecurityService {
 
 	def springSecurityService
 
-	
-	public ServiceCodes.Infos createBaseUser(User user) {
+	/**
+	 *
+ 	 * @param user
+	 * @return
+	 */
+	ServiceCodes.Infos createBaseUser(User user) {
 		if(user == null) {
-			throw ServiceError.build(ServiceError.Codes.NULL_ARGUMENT)
+			throw ServiceError.build(ServiceCodes.Errors.NULL_ARGUMENT)
 		}
 
 		if(!user.save()) {
-			throw ServiceError.build(ServiceError.Codes.USER_NOT_SAVED)
+			throw ServiceError.build(ServiceCodes.Errors.USER_NOT_SAVED)
 		}
 
 		UserRole userRole = new UserRole(user : user, role : Role.getBaseRole())
 		if(!userRole.save()) {
-			throw ServiceError.build(ServiceError.Codes.USER_ROLE_NOT_SAVED)
+			throw ServiceError.build(ServiceCodes.Errors.USER_ROLE_NOT_SAVED)
 		}
 
 		return ServiceCodes.Infos.USER_CREATED
 	}
 
-	
-	def authenticateConnection (String username, String password) {
+	/**
+	 *
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	boolean authenticateConnection (String username, String password) {
 		User user = User.findByUsernameAndPassword(username, password)
 		if(user != null){
 			return true
@@ -46,8 +55,13 @@ class SecurityService {
 		return false
 	}
 
-
-	def authenticateSession (String username, String queueName) {
+	/**
+	 *
+	 * @param username
+	 * @param queueName
+	 * @return
+	 */
+	boolean authenticateSession (String username, String queueName) {
 		User user = User.findByUsername(username)
 		if(user != null){
 			def jack = Jack.findByQueueName(queueName)

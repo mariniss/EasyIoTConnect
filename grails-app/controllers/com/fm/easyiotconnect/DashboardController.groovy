@@ -44,7 +44,9 @@ class DashboardController {
       String deviceType = params.type
       
       def currentUser = springSecurityService.currentUser
-      
+
+      log.error(">>> ${currentUser}")
+
       boolean okCreate = connectionService.create(currentUser, deviceType, deviceName)
       
       if(okCreate) {

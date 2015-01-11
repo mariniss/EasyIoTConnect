@@ -80,5 +80,7 @@ grails.project.dependency.resolution = {
 		compile ':heroku:1.0.1'
 		compile ':cloud-support:1.0.8'
 		compile ':webxml:1.4.1'
+
+        compile ':rest-client-builder:2.0.3'
     }
 }

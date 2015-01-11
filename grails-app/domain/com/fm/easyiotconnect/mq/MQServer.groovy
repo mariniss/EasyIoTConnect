@@ -20,6 +20,8 @@ class MQServer {
 	String type
 	String url
 	String provider
+
+	AuthenticationServer authenticationServer
 	
 	long activeUsers = 0
 	
@@ -40,6 +42,8 @@ class MQServer {
 		provider	(nullable 	: false,
 					 blank		: false,
 					 inList		: [PROVIDER_AWS, PROVIDER_RACKSPACE, PROVIDER_HEROKU, PROVIDER_OPENSHIFT, PROVIDER_LOCALHOST])
+
+		authenticationServer (nullable: true)
     }
 	
 	String toString(){

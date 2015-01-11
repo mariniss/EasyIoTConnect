@@ -158,6 +158,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/user/**':					  	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/device':					 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/device/**':   			  	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/authenticationServer':	 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/authenticationServer/**': 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
 	
 	//REST Api
 	'/security':                      ['permitAll'],
@@ -183,6 +185,11 @@ grails {
 			   "mail.smtp.socketFactory.fallback":"false"]
 	}
  }
+
+grails.project.fork = [
+    test: false,
+    run: false
+]
 
 /******************************************************************************
  * Custom configurations
