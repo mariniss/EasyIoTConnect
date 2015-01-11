@@ -45,8 +45,7 @@ class DeviceService {
 		User user = device.user
 		Jack jack = device.jackProducer
 		MQServer server = jack.serverContainer
-		
-		Boolean result = false
+
 		try {
 			ActiveMQConnectionFactory connectionFactory = new ActiveMQConnectionFactory(server.url)
 					
@@ -71,14 +70,12 @@ class DeviceService {
 			amqSession.close()
 			connection.close()
 			
-			result = true
+			return true
 		} catch (Exception e) {
 			log.error"Caught: ${e} when sending command ${command} for Device ${device}"
 			e.printStackTrace()
 			
-			result = false
+			return false
 		}
-		
-		return result
 	}
 }

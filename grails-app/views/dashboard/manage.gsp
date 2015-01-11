@@ -13,26 +13,27 @@
 					<g:each in="${devices}" var="device">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<h4 class="panel-title">
+								<h3 class="panel-title">
 									<a data-toggle="collapse" data-parent="#accordion"
 										href="#section${device.id}"> ${device.infos.name}
 									</a>
-								</h4>
+									<a href="${createLink(controller: 'dashboard', action: 'deleteDevice', id: device.id)}"
+									   id="delete" name="delete" class="btn btn-danger btn-ms pull-right">Delete</a>
+								</h3>
 							</div>
 							<div id="section${device.id}" class="panel-collapse collapse in">
 								<div class="panel-body">
 									<g:form action="updateDeviceInfo">
 										<fieldset>
-											<legend>Informations device:</legend>
 											<input type="hidden" name="id" value="${device.id}">
-											<g:select name="type" from="${['RASPBERRY']}"
-												value="${device.type}" readonly="readonly" />
-											<br> <br> GPIO 0:
+
+											GPIO 0:
 											<g:textField name="gpio0Name"
 												value="${device.infos.gpio0Name?:''}" />
 											Visible
 											<g:checkBox name="gpio0Visible"
 												value="${device.infos.gpio0Visible?:false}" />
+
 											<br /> GPIO 1:
 											<g:textField name="gpio1Name"
 												value="${device.infos.gpio1Name?:''}" />

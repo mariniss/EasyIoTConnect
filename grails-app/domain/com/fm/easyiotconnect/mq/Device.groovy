@@ -26,6 +26,13 @@ class Device {
 		type (nullable: false, 
 			  inList: [TYPE_RASPBERRY])
     }
+
+	static mapping = {
+		jackProducer cascade: 'all-delete-orphan'
+		jackConsumer cascade: 'all-delete-orphan'
+		jackStatus   cascade: 'all-delete-orphan'
+		infos		 cascade: 'all-delete-orphan'
+	}
 	
 	def beforeValidate() {
 		if(infos == null) {

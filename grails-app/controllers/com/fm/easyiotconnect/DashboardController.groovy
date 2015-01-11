@@ -1,12 +1,10 @@
 package com.fm.easyiotconnect
 
-import com.fm.easyiotconnect.mq.Jack
 import com.fm.easyiotconnect.mq.Device
 import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
 import org.fm.pimq.PinStateMQ
 import org.fm.pimq.impl.PinMessageImpl
-
 /**
  * 
  * @author fabiomarini
@@ -193,14 +191,33 @@ class DashboardController {
       
       redirect action:"index"
    }
-   
+
+   def deleteDevice() {
+      def currentUser = springSecurityService.currentUser
+
+      Device deviceToDelete = Device.get(params.id)
+      if(deviceToDelete == null || currentUser.id != deviceToDelete.user.id) {
+         flash.message = "Sorry! You cannot delete these data"
+      }
+      else {
+         boolean deleted = connectionService.deleteDevice(deviceToDelete)
+
+         if(deleted) {
+            flash.message = "Device deleted successfully"
+         }
+         else {
+            flash.message = "Sorry! There were problems during the delete"
+         }
+      }
+
+      redirect action:"index"
+   }
    
    def remote() {
       def deviceId = params.id
       
       def currentUser = springSecurityService.currentUser
-      
-      Device device = null
+
       List<Device> devices = []
    
       if(deviceId != null) {
@@ -280,4 +297,5 @@ class DashboardController {
       
       redirect action:"index"
    }
+
 }
