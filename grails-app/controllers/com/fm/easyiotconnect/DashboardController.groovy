@@ -43,10 +43,7 @@ class DashboardController {
       
       def currentUser = springSecurityService.currentUser
 
-      log.error(">>> ${currentUser}")
-
       boolean okCreate = connectionService.create(currentUser, deviceType, deviceName)
-      
       if(okCreate) {
          flash.message = "Great! Device created successful!"
       }
