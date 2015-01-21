@@ -82,7 +82,9 @@
 		</div>
 		
 		<!-- Footer -->
-		<div class="footer" role="contentinfo"></div>
+		<div class="footer text-center text-primary" role="contentinfo">
+			© Copyright 2015, EasyIoTConnect. All rights reserved.
+		</div>
 		
 		<!-- Spinner -->
 		<div id="spinner" class="spinner" style="display:none;"><g:message code="spinner.alt" default="Loading&hellip;"/></div>

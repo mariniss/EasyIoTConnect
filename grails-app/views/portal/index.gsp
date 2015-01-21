@@ -8,14 +8,11 @@
 <body>
 	<div class="container-fluid">
 		<br />
-		<h2 class="big-message">Welcome to Easy IoT Connect</h2>
-		<br /> <br />
-
 		<div class="panel panel-default">
 			<div class="panel-body">
 			   <div class="row text-center">
 					<h2 class="text-uppercase">
-						<strong>Connect your home to internet!</strong>
+						<strong>Connect your home to the WWW!</strong>
 					</h2>
 			   </div>
 		    </div>
@@ -25,13 +22,15 @@
 			<div class="panel-body">
 
 				<div class="row text-center">
-					<h2 class="lead">With this service you can connect your
-						raspberry and manage it from the web, by your computer, tablet or
-						smartphone</h2>
+					<h2 class="lead">
+						With EasyIoTConnect you can manage your Raspberry from the web, by your computer, tablet or
+						smartphone, without any particular request to your internet provider or programming skills!
+					</h2>
 				</div>
 				<br /> <br />
 
 				<div class="row text-center">
+
 					<div class="col-md-3">
 						<div class="panel panel-success">
 							<div class="panel-heading">
@@ -45,20 +44,6 @@
 						</div>
 					</div>
 
-<%--					<div class="col-md-3">--%>
-<%--						<div class="panel panel-success">--%>
-<%--							<div class="panel-heading">--%>
-<%--								<h3 class="panel-title">Fast</h3>--%>
-<%--							</div>--%>
-<%--							<div class="panel-body text-left">--%>
-<%--								<ul class="list-unstyled">--%>
-<%--									<li>Fast response from raspberry</li>--%>
-<%--									<li>Dedicated server on each continent</li>--%>
-<%--								</ul>--%>
-<%--							</div>--%>
-<%--						</div>--%>
-<%--					</div>--%>
-
 					<div class="col-md-3">
 						<div class="panel panel-success">
 							<div class="panel-heading">
@@ -66,8 +51,20 @@
 							</div>
 							<div class="panel-body text-left">
 								<ul class="list-unstyled">
-									<li>Simple to configure</li>
-									<li>Simple to use</li>
+									<li>Simple to configure a really simple to use</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-3">
+						<div class="panel panel-success">
+							<div class="panel-heading">
+								<h3 class="panel-title">Fast</h3>
+							</div>
+							<div class="panel-body text-left">
+								<ul class="list-unstyled">
+									<li>The response time just depends on your internet connection
 								</ul>
 							</div>
 						</div>
@@ -80,8 +77,7 @@
 							</div>
 							<div class="panel-body text-left">
 								<ul class="list-unstyled">
-									<li>Each user works on own area</li>
-									<li>https connections</li>
+									<li>Each user has his work area with exclusive access</li>
 								</ul>
 							</div>
 						</div>
