@@ -14,9 +14,9 @@ class PortalController {
 	def index() {
 		render view:"index"
 	}
-	
-	
-    def howItWorks() { 
+
+
+	def howItWorks() {
 		render view:"howItWorks"
 	}
 	

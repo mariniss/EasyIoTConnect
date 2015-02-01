@@ -717,3 +717,10 @@ out/test/easyiotconnect/com/fm/easyiotconnect/mq/JackControllerSpec.class
 out/test/easyiotconnect/com/fm/easyiotconnect/mq/JackSpec.class
 out/test/easyiotconnect/com/fm/easyiotconnect/mq/MQServerControllerSpec.class
 out/test/easyiotconnect/com/fm/easyiotconnect/mq/SecurityControllerSpec.class
+out/production/easyiotconnect/com/fm/easyiotconnect/ConnectionService$_$tt__create_closure4.class
+out/production/easyiotconnect/com/fm/easyiotconnect/ConnectionService$_deleteDevice_closure3.class
+out/production/easyiotconnect/com/fm/easyiotconnect/mq/Device$__clinit__closure2.class
+out/production/easyiotconnect/easyiotconnect/LandingController$_closure1.class
+out/production/easyiotconnect/easyiotconnect/LandingController$_closure1_closure2.class
+out/production/easyiotconnect/easyiotconnect/LandingController.class
+out/test/easyiotconnect/easyiotconnect/LandingControllerSpec.class

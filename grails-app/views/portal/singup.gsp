@@ -47,7 +47,13 @@
 						<label class="col-sm-2 control-label" for="password">Password</label>
 						<div class="col-sm-10">
 							<input id="password" name="password" type="password"
-								placeholder="Insert a good password" class="form-control">
+								placeholder="<div class="row control-group">
+							<div class="form-group col-xs-12 floating-label-form-group controls">
+								<label>Name</label>
+								<input type="text" class="form-control" placeholder="Your complete nam3" id="fullname" name="fullname" required data-validation-required-message="Please enter your name.">
+								<p class="help-block text-danger"></p>
+							</div>
+						</div>" class="form-control">
 						</div>
 					</div>
 					

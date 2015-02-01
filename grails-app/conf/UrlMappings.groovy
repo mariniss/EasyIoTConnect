@@ -11,8 +11,12 @@ class UrlMappings {
         "/devel"(view:"/devel")
 		
 		//Portal
-		"/"(view:"/portal/index")
-		
+		//"/"(view:"/portal/index")
+
+		//Landing
+		"/"(controller: 'landing', action: 'index')
+		"/askQuestion"(controller: 'landing', action: 'askQuestion')
+
 		//Dashboard
 		"/dashboard"(controller:"dashboard", action:"index")
 		

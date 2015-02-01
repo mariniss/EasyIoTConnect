@@ -11,7 +11,7 @@
 		<div class="panel panel-default">
 			<div class="panel-body">
 			   <div class="row text-center">
-					<h2 class="text-uppercase">
+					<h2>
 						<strong>Connect your home to the WWW!</strong>
 					</h2>
 			   </div>

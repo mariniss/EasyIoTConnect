@@ -34,11 +34,11 @@
 					</div>
 					
 					<div class="form-group">
-		            <label class="col-sm-2 control-label" for="remember_me">Remember me</label>
-                  <div class="col-sm-10">
-                     <input type='checkbox' name='_spring_security_remember_me' id='remember_me' />
-                  </div>
-		         </div>
+						<label class="col-sm-2 control-label" for="remember_me">Remember me</label>
+					  	<div class="col-sm-10">
+							<input name='_spring_security_remember_me' id='remember_me' type='checkbox' class="form-control" />
+					  	</div>
+					</div>
 					
 					<div class="col-sm-offset-2 col-sm-10">
 						<button type="submit" class="btn btn-primary btn-lg">Login</button>
