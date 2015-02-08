@@ -6,6 +6,8 @@ import com.fm.easyiotconnect.User
 class LandingController {
 
     def mailService
+    def securityService
+    def messageCodeResolverService
 
 
     def index() {
@@ -18,7 +20,7 @@ class LandingController {
         if(params.email && params.message) {
             def message = mailService.sendMail {
                 to "easyiotconnect@gmail.com"
-                from "${params.email}"
+                from "${params.sender}"
                 cc "fabio.mariniss@gmail.com"
                 subject "Question form ${params.name}"
                 body "${params.message}"
@@ -32,7 +34,7 @@ class LandingController {
 
 
     def singUp() {
-        def name 	 = params.name
+        def name 	 = params.fullname
         def country  = params.country
         def email	 = params.email
         def password = params.password
@@ -46,15 +48,15 @@ class LandingController {
         newUser.validate()
         if(newUser.hasErrors()){
             flash.message = "Validation error: ${newUser.errors}"
-            render view:"singup", model:[userData:newUser]
+
+            redirect view: "index"
         }
         else {
             def resultCode = securityService.createBaseUser(newUser)
 
             flash.message = messageCodeResolverService.getMessageByCode(resultCode)
-            render view:"index"
-        }
 
-        redirect view: "index"
+            redirect controller: "dashboard"
+        }
     }
 }

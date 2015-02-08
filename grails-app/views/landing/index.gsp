@@ -9,7 +9,7 @@
 	<meta name="description" content="">
 	<meta name="author" content="">
 
-	<title>Freelancer - Start Bootstrap Theme</title>
+	<title>Easy IoT Connect</title>
 
 	<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 	<asset:stylesheet src="bootstrap.css"/>
@@ -65,6 +65,13 @@
 				</li>
 				<li class="page-scroll">
 					<a href="#contact">Contact</a>
+				</li>
+				<li class="page-scroll">
+					<div class="login-menu">
+						<a href="#loginModal" class="btn btn-xs" id="menuLoginButton"  data-toggle="modal">
+							<i class="fa fa-user"></i> Login
+						</a>
+					</div>
 				</li>
 			</ul>
 		</div>
@@ -208,7 +215,7 @@
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">
 							<label>Email Address</label>
-							<input type="email" class="form-control" placeholder="Email Address" id="email" name="email" required data-validation-required-message="Please enter your email address.">
+							<input type="email" class="form-control" placeholder="Email Address" id="sender" name="sender" required data-validation-required-message="Please enter your email address.">
 							<p class="help-block text-danger"></p>
 						</div>
 					</div>
@@ -322,7 +329,7 @@
 						<div class="row control-group">
 							<div class="form-group col-xs-12 floating-label-form-group controls">
 								<label>Country</label>
-								<input type="text" class="form-control" placeholder="Country where yuo live" id="country" name="contry" required data-validation-required-message="Please enter your country.">
+								<input type="text" class="form-control" placeholder="Country where yuo live" id="country" name="country" required data-validation-required-message="Please enter your country.">
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>
@@ -330,7 +337,7 @@
 						<div class="row control-group">
 							<div class="form-group col-xs-12 floating-label-form-group controls">
 								<label>Email</label>
-								<input type="email" class="form-control" placeholder="Email Address" id="username" name="usernam" required data-validation-required-message="Please enter your email address.">
+								<input type="email" class="form-control" placeholder="Email Address" id="email" name="email" required data-validation-required-message="Please enter your email address.">
 								<p class="help-block text-danger"></p>
 							</div>
 						</div>

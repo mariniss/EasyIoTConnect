@@ -1,106 +1,137 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
-<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
-<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
-<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
-<!--[if (gt IE 9)|!(IE)]><!-->
-<html lang="en" class="no-js">
-<!--<![endif]-->
+<html lang="en">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<title><g:layoutTitle default="EIoTC" /></title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="">
+	<meta name="author" content="">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title><g:layoutTitle default="EIoTC" /></title>
 
-<link rel="shortcut icon" href="${assetPath(src: 'eiot.ico')}"
-	type="image/x-icon">
+	<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+	<asset:stylesheet src="bootstrap.css"/>
 
-<asset:javascript src="jquery-1.11.1.js" />
-<asset:javascript src="bootstrap.js" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!-- Custom CSS -->
+	<asset:stylesheet src="freelancer.css"/>
+	<asset:stylesheet src="landing.css"/>
+	<asset:stylesheet src="dashboard.css"/>
 
-<link href='http://fonts.googleapis.com/css?family=Merriweather'
-	rel='stylesheet' type='text/css'>
-<asset:stylesheet src="bootstrap.css" />
-<asset:stylesheet src="bootstrap-theme.css" />
-<asset:stylesheet src="dashboard.css" />
+	<!-- Custom Fonts -->
+	<asset:stylesheet src="font-awesome.css"/>
+	<link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+	<link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-<g:layoutHead />
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<g:layoutHead />
 </head>
+
 <body>
-	<!-- Menu -->
-	<div id="page-body"
-		class="page-body navbar navbar-inverse navbar-fixed-top"
-		role="navigation">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-default navbar-fixed-top header-navigation navbar-shrink">
 		<div class="container">
-			<div class="navbar-header">
-				<asset:image src="eiot.ico" style="float:left; margin-right: 10px;" />
-				<button type="button" class="navbar-toggle" data-toggle="collapse"
-					data-target=".navbar-collapse">
-					<span class="sr-only">Toggle navigation</span> <span
-						class="icon-bar"></span> <span class="icon-bar"></span> <span
-						class="icon-bar"></span>
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Dashboard</a>
+				<div style="margin-right: 10px">
+					<asset:image src="eiotc-ico.png"/>
+					<a class="navbar-brand" href="#page-top"></a>
+				</div>
+
 			</div>
-			<div class="collapse navbar-collapse">
-				<ul class="nav navbar-nav">
 
-					<li class="${params.action=='index'?'active':''}"><a
-						href="${createLink(controller:'dashboard', action: 'index')}">Overview</a>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav navbar-left">
+					<li class="hidden">
+						<a href="#page-top"></a>
 					</li>
-
-					<li class="${params.action=='manage'?'active':''}"><a
-						href="${createLink(controller:'dashboard', action: 'manage')}">Manage</a>
+					<li class="page-scroll ${params.action=='index'?'active':''}">
+						<a href="${createLink(controller:'dashboard', action: 'index')}">Dashboard</a>
 					</li>
-
-					<li class="${params.action=='remote'?'active':''}"><a
-						href="${createLink(controller:'dashboard', action: 'remote')}">Remote</a>
+					<li class="page-scroll ${params.action=='manage'?'active':''}">
+						<a href="${createLink(controller:'dashboard', action: 'manage')}">Manage</a>
 					</li>
-
-               <li class="${params.action=='configure'?'active':''}"><a
-                  href="${createLink(controller:'dashboard', action: 'configure')}">Configure</a>
-               </li>
+					<li class="page-scroll ${params.action=='remote'?'active':''}">
+						<a href="${createLink(controller:'dashboard', action: 'remote')}">Remote</a>
+					</li>
+					<li class="page-scroll ${params.action=='configure'?'active':''}">
+						<a href="${createLink(controller:'dashboard', action: 'configure')}">Configure</a>
+					</li>
 				</ul>
+
 				<ul class="nav navbar-nav navbar-right">
-					<li class="${params.action=='personal'?'active':''}"><a
-						href="${createLink(controller:'dashboard', action: 'personal')}">Personal</a>
+					<li class="${params.action=='personal'?'active':''}">
+						<a href="${createLink(controller:'dashboard', action: 'personal')}">Personal</a>
 					</li>
-					<li><a href="${createLink(uri:'/j_spring_security_logout')}">Logout</a>
+					<li>
+						<a href="${createLink(uri:'/j_spring_security_logout')}">Logout</a>
 					</li>
 				</ul>
 			</div>
-			<!--/.nav-collapse -->
+			<!-- /.navbar-collapse -->
 		</div>
-	</div>
+		<!-- /.container-fluid -->
+	</nav>
 
 	<!-- Body -->
-	<div class="starter-template">
-		<div class="jumbotron">
+	<div id="page-top" class="index">
+		<!-- Flash message -->
+		<g:if test="${flash.message}">
+			<div class="alert alert-danger" role="alert">
+				<strong> ${flash.message}
+				</strong>
+			</div>
+		</g:if>
 
-			<!-- Flash message -->
-			<g:if test="${flash.message}">
-				<div class="alert alert-danger" role="alert">
-					<strong> ${flash.message}
-					</strong>
-				</div>
-			</g:if>
-
-			<!-- Container -->
-			<g:layoutBody />
-
-		</div>
+		<!-- Container -->
+		<g:layoutBody />
 	</div>
+
 
 	<!-- Footer -->
-	<div class="footer" role="contentinfo"></div>
+	<footer class="navbar-fixed-bottom">
+		<div class="footer-below text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						Copyright &copy;, EasyIoTConnect 2015.
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
 
-	<!-- Spinner -->
-	<div id="spinner" class="spinner" style="display: none;">
-		<g:message code="spinner.alt" default="Loading&hellip;" />
-	</div>
+	<!-- jQuery -->
+	<asset:javascript src="jquery-1.11.1.js"/>
+
+	<!-- Bootstrap Core JavaScript -->
+	<asset:javascript src="bootstrap.min.js"/>
+
+	<!-- Plugin JavaScript -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<asset:javascript src="classie.js"/>
+	<asset:javascript src="cbpAnimatedHeader.js"/>
+
+	<!-- Custom Theme JavaScript -->
+	<asset:javascript src="freelancer.js"/>
+
 </body>
 </html>

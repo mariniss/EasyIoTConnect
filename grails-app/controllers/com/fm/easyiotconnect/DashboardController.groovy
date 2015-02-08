@@ -5,6 +5,7 @@ import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
 import org.fm.pimq.PinStateMQ
 import org.fm.pimq.impl.PinMessageImpl
+
 /**
  * 
  * @author fabiomarini
@@ -28,18 +29,14 @@ class DashboardController {
       
       render view:"index", 
             model:[ devices     : devices, 
-                     toConfigure: devices.size() == 0? false : toConfigure]
+                    toConfigure: devices.size() == 0? false : toConfigure,
+                    pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
    }
-   
-   
-   def createDevice() {
-      render view:"createDevice"
-   }
-   
+
    
    def saveDevice() {
       String deviceName = params.name
-      String deviceType = params.type
+      String deviceType = Device.TYPE_RASPBERRY //params.type
       
       def currentUser = springSecurityService.currentUser
 
