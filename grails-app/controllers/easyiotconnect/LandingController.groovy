@@ -17,7 +17,7 @@ class LandingController {
     def askQuestion = {
         Map result = [error : true]
 
-        if(params.email && params.message) {
+        if(params.sender && params.message) {
             def message = mailService.sendMail {
                 to "easyiotconnect@gmail.com"
                 from "${params.sender}"
