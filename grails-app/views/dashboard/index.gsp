@@ -30,9 +30,9 @@
                 </div>
 
                 <div class="col-lg-4 text-center">
-                    <g:link action="manage" params="[id: device.id]">
+                    <a href="#manageDevice${device.id}" data-toggle="modal">
                         <asset:image src="sweet-home.png"/>
-                    </g:link>
+                    </a>
                 </div>
 
                 <div class="col-lg-4  text-center">
@@ -42,9 +42,9 @@
                 </div>
 
                 <div class="col-lg-4  text-center">
-                    <g:link action="remote" params="[id: device.id]">
+                    <a href="#remoteDevice${device.id}" data-toggle="modal">
                         <asset:image src="Internet.png"/>
-                    </g:link>
+                    </a>
                 </div>
             </div>
         </section>
@@ -106,7 +106,6 @@
                         </div>
                         <br/>
 
-                        <!-- <div id="success"></div> -->
                         <div class="row">
                             <div class="form-group col-xs-12 text-right">
                                 <g:submitButton name="saveDevice" value="Create" class="btn btn-success btn-lg"/>
@@ -185,5 +184,156 @@
         </div>
     </g:each>
 </g:if>
+
+
+<!-- Manage Device -->
+<g:if test="${devices.size() > 0}">
+    <g:each in="${devices}" var="device" status="i">
+        <div class="portfolio-modal modal fade" id="manageDevice${device.id}" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <h3>${device.infos.name}</h3>
+                            <hr />
+
+                            <g:form method='POST' name='updateDeviceInfo' action='updateDeviceInfo'
+                                    class="form-horizontal" role="form" autocomplete='off'>
+
+                                <input type="hidden" name="id" value="${device.id}">
+
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 0', id: 'gpio0name', name: 'gpio0name', value: device.infos.gpio0Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 1', id: 'gpio1name', name: 'gpio1name', value: device.infos.gpio1Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 2', id: 'gpio2name', name: 'gpio2name', value: device.infos.gpio2Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 3', id: 'gpio3name', name: 'gpio3name', value: device.infos.gpio3Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 4', id: 'gpio4name', name: 'gpio4name', value: device.infos.gpio4Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 5', id: 'gpio5name', name: 'gpio5name', value: device.infos.gpio5Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 6', id: 'gpio6name', name: 'gpio6name', value: device.infos.gpio6Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 7', id: 'gpio7name', name: 'gpio7name', value: device.infos.gpio7Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 8', id: 'gpio8name', name: 'gpio8name', value: device.infos.gpio8Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 9', id: 'gpio9name', name: 'gpio9name', value: device.infos.gpio9Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 10', id: 'gpio10name', name: 'gpio10name', value: device.infos.gpio10Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 11', id: 'gpio11name', name: 'gpio11name', value: device.infos.gpio11Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 12', id: 'gpio12name', name: 'gpio12name', value: device.infos.gpio12Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 13', id: 'gpio13name', name: 'gpio13name', value: device.infos.gpio13Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 14', id: 'gpio14name', name: 'gpio14name', value: device.infos.gpio14Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 15', id: 'gpio15name', name: 'gpio15name', value: device.infos.gpio15Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 16', id: 'gpio16name', name: 'gpio16name', value: device.infos.gpio16Name]" />
+                                <g:render template="gpioInput"
+                                          model="['label': 'GPIO 17', id: 'gpio17name', name: 'gpio17name', value: device.infos.gpio17Name]" />
+
+                                <div class="row">
+                                    <div class="form-group col-xs-6 text-left">
+                                        <br/><br/>
+                                        <a href="${createLink(controller: 'dashboard', action: 'deleteDevice', id: device.id)}"
+                                           id="delete" name="delete" class="btn btn-danger btn-lg">Delete device</a>
+                                    </div>
+
+                                    <div class="form-group col-xs-6 text-right">
+                                        <br/><br/>
+                                        <g:submitButton name="updateDevice" value="Update" class="btn btn-success btn-lg"/>
+                                    </div>
+                                </div>
+                            </g:form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </g:each>
+</g:if>
+
+
+<!-- Remote Device -->
+<g:if test="${devices.size() > 0}">
+    <g:each in="${devices}" var="device" status="i">
+        <div class="portfolio-modal modal fade" id="remoteDevice${device.id}" tabindex="-1" role="dialog"
+             aria-hidden="true">
+            <div class="modal-content">
+                <div class="close-modal" data-dismiss="modal">
+                    <div class="lr">
+                        <div class="rl">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+                            <h3>${device.infos.name}</h3>
+                            <hr />
+
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio0Visible, 'name': device.infos.gpio0Name, 'deviceId': device.id, 'pinId': 1]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio1Visible, 'name': device.infos.gpio1Name, 'deviceId': device.id, 'pinId': 2]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio2Visible, 'name': device.infos.gpio2Name, 'deviceId': device.id, 'pinId': 3]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio3Visible, 'name': device.infos.gpio3Name, 'deviceId': device.id, 'pinId': 4]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio4Visible, 'name': device.infos.gpio4Name, 'deviceId': device.id, 'pinId': 5]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio5Visible, 'name': device.infos.gpio5Name, 'deviceId': device.id, 'pinId': 6]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio6Visible, 'name': device.infos.gpio6Name, 'deviceId': device.id, 'pinId': 7]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio7Visible, 'name': device.infos.gpio7Name, 'deviceId': device.id, 'pinId': 8]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio8Visible, 'name': device.infos.gpio8Name, 'deviceId': device.id, 'pinId': 9]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio9Visible, 'name': device.infos.gpio9Name, 'deviceId': device.id, 'pinId': 10]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio10Visible, 'name': device.infos.gpio10Name, 'deviceId': device.id, 'pinId': 11]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio11Visible, 'name': device.infos.gpio11Name, 'deviceId': device.id, 'pinId': 12]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio12Visible, 'name': device.infos.gpio12Name, 'deviceId': device.id, 'pinId': 13]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio13Visible, 'name': device.infos.gpio13Name, 'deviceId': device.id, 'pinId': 14]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio14Visible, 'name': device.infos.gpio14Name, 'deviceId': device.id, 'pinId': 15]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio15Visible, 'name': device.infos.gpio15Name, 'deviceId': device.id, 'pinId': 16]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio16Visible, 'name': device.infos.gpio16Name, 'deviceId': device.id, 'pinId': 17]" />
+                            <g:render template="gpioRemote"
+                                      model="['visible': device.infos.gpio17Visible, 'name': device.infos.gpio17Name, 'deviceId': device.id, 'pinId': 18]" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </g:each>
+</g:if>
+
+
 </body>
 </html>

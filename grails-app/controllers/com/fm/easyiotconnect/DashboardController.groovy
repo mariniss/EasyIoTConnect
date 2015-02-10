@@ -1,6 +1,7 @@
 package com.fm.easyiotconnect
 
 import com.fm.easyiotconnect.mq.Device
+import org.apache.commons.lang.StringUtils
 import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
 import org.fm.pimq.PinStateMQ
@@ -135,45 +136,46 @@ class DashboardController {
          flash.message = "Error, device not found!"
       }
       else {
-         device.infos.name = params.name
-         
-         device.infos.gpio0Name  = params.gpio0Name
-         device.infos.gpio1Name  = params.gpio1Name
-         device.infos.gpio2Name  = params.gpio2Name
-         device.infos.gpio3Name  = params.gpio3Name
-         device.infos.gpio4Name  = params.gpio4Name
-         device.infos.gpio5Name  = params.gpio5Name
-         device.infos.gpio6Name  = params.gpio6Name
-         device.infos.gpio7Name  = params.gpio7Name
-         device.infos.gpio8Name  = params.gpio8Name
-         device.infos.gpio9Name  = params.gpio9Name
-         device.infos.gpio10Name = params.gpio10Name
-         device.infos.gpio11Name = params.gpio11Name
-         device.infos.gpio12Name = params.gpio12Name
-         device.infos.gpio13Name = params.gpio13Name
-         device.infos.gpio14Name = params.gpio14Name
-         device.infos.gpio15Name = params.gpio15Name
-         device.infos.gpio16Name = params.gpio16Name
-         device.infos.gpio17Name = params.gpio17Name
+         //Actually the name is unmodifiable
+         //device.infos.name = params.name
 
-         device.infos.gpio0Visible  = params.gpio0Visible
-         device.infos.gpio1Visible  = params.gpio1Visible
-         device.infos.gpio2Visible  = params.gpio2Visible
-         device.infos.gpio3Visible  = params.gpio3Visible
-         device.infos.gpio4Visible  = params.gpio4Visible
-         device.infos.gpio5Visible  = params.gpio5Visible
-         device.infos.gpio6Visible  = params.gpio6Visible
-         device.infos.gpio7Visible  = params.gpio7Visible
-         device.infos.gpio8Visible  = params.gpio8Visible
-         device.infos.gpio9Visible  = params.gpio9Visible
-         device.infos.gpio10Visible = params.gpio10Visible
-         device.infos.gpio11Visible = params.gpio11Visible
-         device.infos.gpio12Visible = params.gpio12Visible
-         device.infos.gpio13Visible = params.gpio13Visible
-         device.infos.gpio14Visible = params.gpio14Visible
-         device.infos.gpio15Visible = params.gpio15Visible
-         device.infos.gpio16Visible = params.gpio16Visible
-         device.infos.gpio17Visible = params.gpio17Visible
+         device.infos.gpio0Name  = params.gpio0name
+         device.infos.gpio1Name  = params.gpio1name
+         device.infos.gpio2Name  = params.gpio2name
+         device.infos.gpio3Name  = params.gpio3name
+         device.infos.gpio4Name  = params.gpio4name
+         device.infos.gpio5Name  = params.gpio5name
+         device.infos.gpio6Name  = params.gpio6name
+         device.infos.gpio7Name  = params.gpio7name
+         device.infos.gpio8Name  = params.gpio8name
+         device.infos.gpio9Name  = params.gpio9name
+         device.infos.gpio10Name = params.gpio10name
+         device.infos.gpio11Name = params.gpio11name
+         device.infos.gpio12Name = params.gpio12name
+         device.infos.gpio13Name = params.gpio13name
+         device.infos.gpio14Name = params.gpio14name
+         device.infos.gpio15Name = params.gpio15name
+         device.infos.gpio16Name = params.gpio16name
+         device.infos.gpio17Name = params.gpio17name
+
+         device.infos.gpio0Visible  = StringUtils.isNotBlank(device.infos.gpio0Name)
+         device.infos.gpio1Visible  = StringUtils.isNotBlank(device.infos.gpio1Name)
+         device.infos.gpio2Visible  = StringUtils.isNotBlank(device.infos.gpio2Name)
+         device.infos.gpio3Visible  = StringUtils.isNotBlank(device.infos.gpio3Name)
+         device.infos.gpio4Visible  = StringUtils.isNotBlank(device.infos.gpio4Name)
+         device.infos.gpio5Visible  = StringUtils.isNotBlank(device.infos.gpio5Name)
+         device.infos.gpio6Visible  = StringUtils.isNotBlank(device.infos.gpio6Name)
+         device.infos.gpio7Visible  = StringUtils.isNotBlank(device.infos.gpio7Name)
+         device.infos.gpio8Visible  = StringUtils.isNotBlank(device.infos.gpio8Name)
+         device.infos.gpio9Visible  = StringUtils.isNotBlank(device.infos.gpio9Name)
+         device.infos.gpio10Visible = StringUtils.isNotBlank(device.infos.gpio10Name)
+         device.infos.gpio11Visible = StringUtils.isNotBlank(device.infos.gpio11Name)
+         device.infos.gpio12Visible = StringUtils.isNotBlank(device.infos.gpio12Name)
+         device.infos.gpio13Visible = StringUtils.isNotBlank(device.infos.gpio13Name)
+         device.infos.gpio14Visible = StringUtils.isNotBlank(device.infos.gpio14Name)
+         device.infos.gpio15Visible = StringUtils.isNotBlank(device.infos.gpio15Name)
+         device.infos.gpio16Visible = StringUtils.isNotBlank(device.infos.gpio16Name)
+         device.infos.gpio17Visible = StringUtils.isNotBlank(device.infos.gpio17Name)
          
          if(device.save(flush:true)) {
             flash.message = "Great! Device update successfully"
