@@ -20,9 +20,8 @@ class LandingController {
         if(params.sender && params.message) {
             def message = mailService.sendMail {
                 to "easyiotconnect@gmail.com"
-                from "${params.sender}"
-                cc "fabio.mariniss@gmail.com"
-                subject "Question form ${params.name}"
+                from "easyiotconnect@gmail.com"
+                subject "[ASK] - ${params.sender} : ${params.name?:'-'}"
                 body "${params.message}"
             }
 
