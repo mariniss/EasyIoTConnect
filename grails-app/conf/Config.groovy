@@ -162,6 +162,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/device/**':   			  	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/authenticationServer':	 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/authenticationServer/**': 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/userQuestions':                 ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/userQuestions/**':              ['ROLE_DEVEL', 'ROLE_ADMIN'],
 	
 	//REST Api
 	'/security':                      ['permitAll'],

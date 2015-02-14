@@ -102,6 +102,10 @@ hr.user:after {
     content: "\f007";
 }
 
+hr.exclamation-triangle:after {
+    content: "\f071";
+}
+
 .img-centered {
     margin: 0 auto;
 }

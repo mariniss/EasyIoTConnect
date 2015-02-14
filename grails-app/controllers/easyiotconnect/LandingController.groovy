@@ -1,11 +1,12 @@
 package easyiotconnect
 
 import com.fm.easyiotconnect.User
+import com.fm.easyiotconnect.UserQuestions
 
 
 class LandingController {
 
-    def mailService
+    //def mailService
     def securityService
     def messageCodeResolverService
 
@@ -18,6 +19,7 @@ class LandingController {
         Map result = [error : true]
 
         if(params.sender && params.message) {
+            /*
             def message = mailService.sendMail {
                 to "easyiotconnect@gmail.com"
                 from "easyiotconnect@gmail.com"
@@ -26,6 +28,15 @@ class LandingController {
             }
 
             result.error = (message == null)
+            */
+
+            UserQuestions question = new UserQuestions()
+            question.email = params.
+            question.name  = params.name
+            question.text  = params.message
+
+            //FIXME: please move me on a service!!!
+            result.error = (question.save())
         }
 
         redirect view: "index"

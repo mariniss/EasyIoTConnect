@@ -64,7 +64,7 @@
 					<a href="#start">Start</a>
 				</li>
 				<li class="page-scroll">
-					<a href="#contact">Contact</a>
+					<a href="#contact" id="btnContactMe">Contact</a>
 				</li>
 				<li class="page-scroll">
 					<div class="login-menu">
@@ -479,6 +479,8 @@
 <script>
 	if (location.hash == '#loginModal') {
 		$('#loginButton').click();
+	} else if (location.hash == '#askQuestion') {
+		window.location.href = '#contact'
 	}
 </script>
 
