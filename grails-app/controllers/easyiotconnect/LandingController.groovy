@@ -6,7 +6,6 @@ import com.fm.easyiotconnect.UserQuestions
 
 class LandingController {
 
-    //def mailService
     def securityService
     def messageCodeResolverService
 
@@ -19,19 +18,8 @@ class LandingController {
         Map result = [error : true]
 
         if(params.sender && params.message) {
-            /*
-            def message = mailService.sendMail {
-                to "easyiotconnect@gmail.com"
-                from "easyiotconnect@gmail.com"
-                subject "[ASK] - ${params.sender} : ${params.name?:'-'}"
-                body "${params.message}"
-            }
-
-            result.error = (message == null)
-            */
-
             UserQuestions question = new UserQuestions()
-            question.email = params.
+            question.email = params.sender
             question.name  = params.name
             question.text  = params.message
 
