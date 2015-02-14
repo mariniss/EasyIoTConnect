@@ -446,14 +446,14 @@
 							<br />
 
 							<dt>Do it  yourself</dt>
-							<dd>EIoTC is OpenSource, got to my <a href="https://github.com/mariniss"> GitHub </a>, you will found the base libraries to develop or extends the client</dd>
+							<dd>EIoTC is OpenSource, got to my <a href="https://github.com/mariniss">GitHub</a>, you will found the base libraries to develop or extends the client</dd>
 							<br />
 
 							<dt>Buy a Raspberry Pi</dt>
 							<dd>It is a great device for home automation</dd>
 							<br />
 						</dl>
-						<a href="#" type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-check"></i>Ok</a>
+						<a href="#" type="button" class="btn btn-success btn-mg" data-dismiss="modal"><i class="fa fa-check"></i>Ok</a>
 					</div>
 				</div>
 			</div>

@@ -1,7 +1,6 @@
 package com.fm.easyiotconnect
 
-import java.util.Date;
-import java.util.Set;
+
 import com.fm.easyiotconnect.mq.Device;
 
 class User {

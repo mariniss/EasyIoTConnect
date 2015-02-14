@@ -54,26 +54,6 @@
 </div>
 </g:if>
 
-<!-- Buttons section -->
-<section id="actions">
-    <div class="container">
-        <div class="row">
-            <p class="text-right">
-                <g:if test="${devices == null || devices.size == 0}">To start you have to add a new Device <i
-                        class="fa fa-arrow-right"></i></g:if>
-                <a href="#createDevice" class="btn btn-lg btn-primary main-action  btn-action"
-                   data-toggle="modal">New</a>
-            </p>
-
-            <p class="text-right">
-                <g:if test="${toConfigure == true}">And configure your it <i class="fa fa-arrow-right"></i></g:if>
-                <a href="${createLink(action: 'configure')}"
-                   class="btn btn-lg btn-primary main-action  btn-action">Configure</a>
-            </p>
-        </div>
-    </div>
-</section>
-
 <!-- *** Modals *** -->
 
 <!-- Create Device -->
@@ -334,6 +314,74 @@
     </g:each>
 </g:if>
 
+
+<!-- Personal -->
+<div class="portfolio-modal modal fade" id="personal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-content">
+        <div class="close-modal" data-dismiss="modal">
+            <div class="lr">
+                <div class="rl">
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h3>Change your personal information</h3>
+
+                    <g:form method='POST' name='updatePersonal' action='updatePersonal'
+                            class="form-horizontal" role="form" autocomplete='off'>
+
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <input type="text" class="form-control" placeholder="Your complete name"
+                                       id="completeName" name="completeName" value="${currentUser.name}"
+                                       data-validation-required-message="Please enter your complete name" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="row control-group">
+                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <label>Email</label>
+                                <input type="text" class="form-control" placeholder="Your country"
+                                       id="country" name="country" value="${currentUser.state}"
+                                       data-validation-required-message="Please enter your country" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <div class="row control-group">
+                            <div class="form-group col-xs-6 floating-label-form-group controls">
+                                <label>Password</label>
+                                <input type="password" class="form-control" placeholder="Your password"
+                                       id="password" name="password"
+                                       data-validation-required-message="Please enter the new password" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                            <div class="form-group col-xs-6 floating-label-form-group controls">
+                                <label>Repeat password</label>
+                                <input type="password" class="form-control" placeholder="Repeat password"
+                                       id="repeatPassword" name="repeatPassword"
+                                       data-validation-required-message="Please repeat the new password" />
+                                <p class="help-block text-danger"></p>
+                            </div>
+                        </div>
+
+                        <br/>
+
+                        <div class="row">
+                            <div class="form-group col-xs-12 text-right">
+                                <g:submitButton name="updatePersonal" value="Update" class="btn btn-success btn-lg"/>
+                            </div>
+                        </div>
+                    </g:form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>

@@ -26,3 +26,10 @@ section.not-first {
 section.not-first.success {
 	padding: 80px 0px;
 }
+
+
+.btn-navbar {
+	margin-left: 30px;
+	margin-top: 0px;
+	font-size: 14px;
+}

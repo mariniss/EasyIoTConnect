@@ -74,26 +74,25 @@
 					<li class="hidden">
 						<a href="#page-top"></a>
 					</li>
-					<li class="page-scroll ${params.action=='index'?'active':''}">
+					<li>
 						<a href="${createLink(controller:'dashboard', action: 'index')}">Dashboard</a>
 					</li>
-					<li class="page-scroll ${params.action=='manage'?'active':''}">
-						<a href="${createLink(controller:'dashboard', action: 'manage')}">Manage</a>
-					</li>
-					<li class="page-scroll ${params.action=='remote'?'active':''}">
-						<a href="${createLink(controller:'dashboard', action: 'remote')}">Remote</a>
-					</li>
-					<li class="page-scroll ${params.action=='configure'?'active':''}">
-						<a href="${createLink(controller:'dashboard', action: 'configure')}">Configure</a>
+
+					<li>
+						<a href="#createDevice" data-toggle="modal" class="btn-outline btn-navbar">Add device</a>
 					</li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
-					<li class="${params.action=='personal'?'active':''}">
-						<a href="${createLink(controller:'dashboard', action: 'personal')}">Personal</a>
-					</li>
 					<li>
-						<a href="${createLink(uri:'/j_spring_security_logout')}">Logout</a>
+						<a href="#personal" data-toggle="modal">Personal</a>
+					</li>
+					<li class="page-scroll">
+						<div class="login-menu">
+							<a href="${createLink(uri:'/j_spring_security_logout')}">
+								<i class="fa fa-user"></i> Logout
+							</a>
+						</div>
 					</li>
 				</ul>
 			</div>

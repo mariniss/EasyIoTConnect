@@ -24,13 +24,11 @@ class DashboardController {
    
     def index() {
       def currentUser = springSecurityService.currentUser
-
       def devices = Device.findAllByUser(currentUser)
-      def toConfigure = devices.any { it.toConfigure == true }
       
       render view:"index", 
-            model:[ devices     : devices, 
-                    toConfigure: devices.size() == 0? false : toConfigure,
+            model:[ devices : devices,
+                    currentUser: currentUser,
                     pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
    }
 
@@ -50,25 +48,6 @@ class DashboardController {
       }
       
       redirect action:"index"
-   }
-   
-   
-   def configure() {
-      def deviceId = params.id
-      def currentUser = springSecurityService.currentUser
-
-      List<Device> devices = []
-   
-      if(deviceId != null) {
-         devices << Device.findByIdAndUser(deviceId, currentUser) 
-      }
-      else {
-         devices = Device.findAllByUser(currentUser)
-      }
-      
-      [ user: currentUser,
-        devices: devices,
-        pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
    }
    
    
@@ -106,23 +85,6 @@ class DashboardController {
       }
       
       redirect view:"index"
-   }
-   
-   
-   def manage() {
-      def deviceId = params.id
-      def currentUser = springSecurityService.currentUser
-      
-      List<Device> devices = []
-   
-      if(deviceId != null) {
-         devices << Device.findByIdAndUser(deviceId, currentUser) 
-      }
-      else {
-         devices = Device.findAllByUser(currentUser)
-      }
-      
-      [ devices: devices ]
    }
    
    
@@ -209,23 +171,6 @@ class DashboardController {
       redirect action:"index"
    }
    
-   def remote() {
-      def deviceId = params.id
-      
-      def currentUser = springSecurityService.currentUser
-
-      List<Device> devices = []
-   
-      if(deviceId != null) {
-         devices << Device.findByIdAndUser(deviceId, currentUser) 
-      }
-      else {
-         devices = Device.findAllByUser(currentUser)
-      }
-      
-      [ devices: devices ]
-   }
-   
    
    def sendCommand() {
       def deviceId = params.id
@@ -252,45 +197,36 @@ class DashboardController {
          }
       }
       
-      redirect action:"remote", params: [id: deviceId]
+      redirect action:"index"
    }
-   
-   
-   def personal() {
-      def currentUser = springSecurityService.currentUser
 
-      render view:"personal", model:[user : currentUser]
-   }
-   
    
    def updatePersonal() {
       def currentUser = springSecurityService.currentUser
-      
-      User userToUpdate = User.get(params.id)
-      if(userToUpdate == null || currentUser.id != userToUpdate.id) {
-         flash.message = "Sorry! You cannot change these data"
+
+      User toUpdate = User.get(currentUser.id)
+      String name = params.completeName
+      toUpdate.name = name
+
+      String country = params.country
+      toUpdate.state = country
+
+      String password = params.password
+      String repeatPassword = params.repeatPassword
+      String okPassword = password == repeatPassword
+      if(password && password.size() > 0 && okPassword) {
+         toUpdate.password = password
+      }
+
+      boolean saved = toUpdate.save(flush: true)
+
+      if(saved) {
+         flash.message = "Data updated successfully"
       }
       else {
-         String name = params.name
-         userToUpdate.name = name
- 
-         String password = params.password
-         String repeatPassword = params.repeatPassword
-         String okPassword = password == params.repeatPassword
-         if(password.size() > 0) {
-            userToUpdate.password = password
-         }
-
-         boolean saved = userToUpdate.save(flush: true)
-
-         if(saved) {
-            flash.message = "Data updated successfully"
-         }
-         else {
-            flash.message = "Sorry! There were problems during the update"
-         }
+         flash.message = "Sorry! There were problems during the update"
       }
-      
+
       redirect action:"index"
    }
 
