@@ -85,7 +85,7 @@
 
 				<ul class="nav navbar-nav navbar-right">
 					<li>
-						<a href="#personal" data-toggle="modal">Personal</a>
+						<a href="#personal" data-toggle="modal"  >Personal</a>
 					</li>
 					<li class="page-scroll">
 						<div class="login-menu">
@@ -117,7 +117,7 @@
 
 
 	<!-- Footer -->
-	<footer class="navbar-fixed-bottom">
+	<footer class="footer">
 		<div class="footer-below text-center">
 			<div class="container">
 				<div class="row">

@@ -250,8 +250,7 @@
 
 				<div class="footer-col col-md-4">
 					<h3>The basic idea</h3>
-					<p>Internet, Open source and freeware give me a lot a fantastic services and programs, <span>this ti the moment
-					to return the favor</span></p>
+					<p>Help people to make their lives more smart</p>
 				</div>
 
 				<div class="footer-col col-md-4">
@@ -266,15 +265,12 @@
 						<li>
 							<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
 						</li>
-						<li>
-							<a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-						</li>
 					</ul>
 				</div>
 
 				<div class="footer-col col-md-4">
 					<h3>Work in progress</h3>
-					<p>EIoTC is always evolving, we are working on mobile application, rule engine and integration with <a href="http://eclipse.org/smarthome/">Eclipse SmartHome</a> </p>
+					<p>EIoTC is always evolving, if your are interested to contribute don't hesitate to contact us!</p>
 				</div>
 			</div>
 		</div>
