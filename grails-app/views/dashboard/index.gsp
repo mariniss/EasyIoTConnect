@@ -14,10 +14,51 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h2 class="text-center">Welcome on your personal dashboard</h2>
+                    <br />
+                    <p>This is the section where you can register, configure and control the devices</p>
+                    <br />
                 </div>
             </div>
         </div>
     </header>
+
+    <section class="not-first">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>To start you have to add a new device, give a good name configure it by three simple steps</p>
+                    <p>You will found these images for each device, these are the link to performs the tree steps</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4 text-right">
+                    <asset:image src="sweet-home.png"/>
+                </div>
+                <div class="col-lg-8 link-description text-left">
+                    This is the link for the section to give the labels to the device pin
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4  text-right">
+                    <asset:image src="jack-l.png"/>
+                </div>
+                <div class="col-lg-8 link-description text-left">
+                    This is the link for the section that contains the instructions to configure the device
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-4  text-right">
+                    <asset:image src="Internet.png"/>
+                </div>
+                <div class="col-lg-8 link-description text-left">
+                    This is the link for the section to send command to the pin with a label
+                </div>
+            </div>
+        </div>
+    </section>
 </g:if>
 <g:if test="${devices.size() > 0}">
     <g:each in="${devices}" var="device" status="i">

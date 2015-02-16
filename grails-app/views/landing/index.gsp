@@ -437,12 +437,12 @@
 						<p>You have three options to use EIoTC</p>
 						<br /><br />
 						<dl class="dl-horizontal" style="align-content: center">
-							<dt>Contact me</dt>
+							<dt>Contact us</dt>
 							<dd>Will be a pleasure for me extend EIoTC to support other devices</dd>
 							<br />
 
 							<dt>Do it  yourself</dt>
-							<dd>EIoTC is OpenSource, got to my <a href="https://github.com/mariniss">GitHub</a>, you will found the base libraries to develop or extends the client</dd>
+							<dd>EIoTC is OpenSource, got to our <a href="https://github.com/mariniss">GitHub</a>, you will found the base libraries to develop or extends the client</dd>
 							<br />
 
 							<dt>Buy a Raspberry Pi</dt>
