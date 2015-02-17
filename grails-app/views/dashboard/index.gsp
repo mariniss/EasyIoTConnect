@@ -26,35 +26,35 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <p>To start you have to add a new device, give a good name configure it by three simple steps</p>
+                    <p>To start you have to add a new device, give a good name and configure it by three simple steps</p>
                     <p>You will found these images for each device, these are the link to performs the tree steps</p>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4 text-right">
+                <div class="col-lg-4 text-center">
                     <asset:image src="sweet-home.png"/>
                 </div>
                 <div class="col-lg-8 link-description text-left">
-                    This is the link for the section to give the labels to the device pin
+                    This is the link for the section to give labels to the device's pins
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4  text-right">
+                <div class="col-lg-4  text-center">
                     <asset:image src="jack-l.png"/>
                 </div>
                 <div class="col-lg-8 link-description text-left">
-                    This is the link for the section that contains the instructions to configure the device
+                    This is the link for the section that contains the instructions to configure the EIoTClient
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-4  text-right">
+                <div class="col-lg-4  text-center">
                     <asset:image src="Internet.png"/>
                 </div>
                 <div class="col-lg-8 link-description text-left">
-                    This is the link for the section to send command to the pin with a label
+                    This is the link for the section to send command to the pins (that have a label)
                 </div>
             </div>
         </div>
