@@ -27,7 +27,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <p>To start you have to add a new device, give a good name and configure it by three simple steps</p>
-                    <p>You will found these images for each device, these are the link to performs the tree steps</p>
+                    <p>You will found these images for each device, they are the link to performs the three steps</p>
                 </div>
             </div>
 
@@ -98,47 +98,48 @@
 <!-- *** Modals *** -->
 
 <!-- Create Device -->
-<div class="portfolio-modal modal fade" id="createDevice" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-                <div class="rl">
+<g:if test="${devices.size() < grailsApplication.config.eiotc.device.max}">
+    <div class="portfolio-modal modal fade" id="createDevice" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2">
-                    <h3>Create a new Device</h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h3>Create a new Device</h3>
 
-                    <g:form method='POST' name='saveDevice' action='saveDevice'
-                            class="form-horizontal" role="form" autocomplete='off'>
+                        <g:form method='POST' name='saveDevice' action='saveDevice'
+                                class="form-horizontal" role="form" autocomplete='off'>
 
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Name</label>
-                                <input type="text" class="form-control" placeholder="An identifier for the raspberry"
-                                       id="name" name="name" required
-                                       data-validation-required-message="Please enter the device name.">
+                            <div class="row control-group">
+                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                    <label>Name</label>
+                                    <input type="text" class="form-control" placeholder="An identifier for the raspberry"
+                                           id="name" name="name" required
+                                           data-validation-required-message="Please enter the device name.">
 
-                                <p class="help-block text-danger"></p>
+                                    <p class="help-block text-danger"></p>
+                                </div>
                             </div>
-                        </div>
-                        <br/>
+                            <br/>
 
-                        <div class="row">
-                            <div class="form-group col-xs-12 text-right">
-                                <g:submitButton name="saveDevice" value="Create" class="btn btn-success btn-lg"/>
+                            <div class="row">
+                                <div class="form-group col-xs-12 text-right">
+                                    <g:submitButton name="saveDevice" value="Create" class="btn btn-success btn-lg"/>
+                                </div>
                             </div>
-                        </div>
-                    </g:form>
+                        </g:form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
+</g:if>
 
 <!-- Configure Device -->
 <g:if test="${devices.size() > 0}">

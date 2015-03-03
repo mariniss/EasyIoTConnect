@@ -10,6 +10,7 @@ import grails.transaction.Transactional
 @Transactional
 class ConnectionService {
 
+	def grailsApplication
 	def mqServerService
 	def eiotcServerStubService
 
@@ -23,7 +24,10 @@ class ConnectionService {
     boolean create(User user, String deviceType, String deviceName) {
 		boolean okCreate = false
 
-		log.error(">>> Creations....")
+		int maxDevices = grailsApplication.config.eiotc.device.max
+		if(Device.countByUser(user) >= maxDevices) {
+			return false
+		}
 
 		//Identify the correct A-MQ
 		MQServer server = mqServerService.identifyMQserver(user)

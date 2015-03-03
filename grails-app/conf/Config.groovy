@@ -195,3 +195,5 @@ grails {
  ******************************************************************************/
 
 eiotc.device.configure.pimqUrl = "https://github.com/mariniss/PiMQ/blob/master/EIoTC/org.fm.pimq.client-0.1-SNAPSHOT.jar?raw=true" 
+
+eiotc.device.max = 3

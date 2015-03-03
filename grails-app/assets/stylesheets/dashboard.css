@@ -1,5 +1,17 @@
 @CHARSET "UTF-8";
 
+html, body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	/* Negative indent footer by it's height */
+	margin: 0 auto -60px;
+}
+
 header .container {
 	padding-top: 120px;
 	padding-bottom: 0px;
@@ -37,3 +49,4 @@ section.not-first.success {
 	margin-top: 50px;
 
 }
+

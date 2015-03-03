@@ -78,9 +78,11 @@
 						<a href="${createLink(controller:'dashboard', action: 'index')}">Dashboard</a>
 					</li>
 
-					<li>
-						<a href="#createDevice" data-toggle="modal" class="btn-outline btn-navbar">Add device</a>
-					</li>
+					<g:if test="${devices.size() < grailsApplication.config.eiotc.device.max}">
+						<li>
+							<a href="#createDevice" data-toggle="modal" class="btn-outline btn-navbar">Add device</a>
+						</li>
+					</g:if>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">
@@ -101,33 +103,38 @@
 		<!-- /.container-fluid -->
 	</nav>
 
-	<!-- Body -->
-	<div id="page-top" class="index">
-		<!-- Flash message -->
-		<g:if test="${flash.message}">
-			<div class="alert alert-danger" role="alert">
-				<strong> ${flash.message}
-				</strong>
-			</div>
-		</g:if>
+	<!-- The main container -->
+	<div id="wrap">
 
-		<!-- Container -->
-		<g:layoutBody />
-	</div>
+		<!-- Body -->
+		<div id="page-top" class="index">
+			<!-- Flash message -->
+			<g:if test="${flash.message}">
+				<div class="alert alert-danger" role="alert">
+					<strong> ${flash.message}
+					</strong>
+				</div>
+			</g:if>
+
+			<!-- Container -->
+			<g:layoutBody />
+		</div>
 
 
-	<!-- Footer -->
-	<footer class="footer">
-		<div class="footer-below text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						Copyright &copy;, EasyIoTConnect 2015.
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="footer-below text-center">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-12">
+							Copyright &copy;, EasyIoTConnect 2015.
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</footer>
+		</footer>
+
+	</div>
 
 	<!-- jQuery -->
 	<asset:javascript src="jquery-1.11.1.js"/>

@@ -250,7 +250,7 @@
 
 				<div class="footer-col col-md-4">
 					<h3>The basic idea</h3>
-					<p>Help people to make their lives more smart</p>
+					<p>EIoTC is born and grows with a simple idea: help people to improve their quality life with the low cost technology</p>
 				</div>
 
 				<div class="footer-col col-md-4">
@@ -438,7 +438,7 @@
 						<br /><br />
 						<dl class="dl-horizontal" style="align-content: center">
 							<dt>Contact us</dt>
-							<dd>Will be a pleasure for me extend EIoTC to support other devices</dd>
+							<dd>Will be a pleasure extend EIoTC to support other devices</dd>
 							<br />
 
 							<dt>Do it  yourself</dt>
