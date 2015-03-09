@@ -69,23 +69,7 @@ class DashboardController {
          redirect action: "index"
       }
    }
-   
 
-   def configured() {
-      def deviceId = params.id
-      
-      def currentUser = springSecurityService.currentUser
-      
-      Device device = Device.findByIdAndUser(deviceId, currentUser)
-      if(device == null) {
-         flash.alert = [type:"waring", title: "Sorry", message: "Device not found!"]
-      } else {
-         device.toConfigure = false
-         device.save(flush:true)
-      }
-      
-      redirect view:"index"
-   }
    
    
    def updateDeviceInfo() {

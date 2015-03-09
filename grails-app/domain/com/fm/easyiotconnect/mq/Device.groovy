@@ -20,7 +20,7 @@ class Device {
 	
 	DeviceInfos infos
 	
-	Boolean toConfigure = true
+	Boolean toConfigure = false // FIXME: not used with the new interface
 	
     static constraints = {
 		type (nullable: false, 

@@ -197,8 +197,9 @@
                                 <br/>
                             </dl>
 
-                            <a href="${createLink(action: 'configured', params: [id: device.id])}"
-                               class="btn btn-success btn-lg" role="button">Done</a>
+                            <a href="#" type="button" class="btn btn-success btn-mg" data-dismiss="modal">
+                                <i class="fa fa-check"></i>Done
+                            </a>
                         </div>
                     </div>
                 </div>
