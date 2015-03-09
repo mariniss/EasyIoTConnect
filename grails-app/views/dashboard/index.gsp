@@ -272,8 +272,22 @@
                                 <div class="row">
                                     <div class="form-group col-xs-6 text-left">
                                         <br/><br/>
-                                        <a href="${createLink(controller: 'dashboard', action: 'deleteDevice', id: device.id)}"
-                                           id="delete" name="delete" class="btn btn-danger btn-lg">Delete device</a>
+                                        <a href="#"
+                                           id="delete" name="delete" class="btn btn-danger btn-lg"
+                                           onclick='swal({title: "Are you sure?",
+                                                          text:  "You will not be able to recover this device!",
+                                                          type: "warning",
+                                                          showCancelButton: true,
+                                                          confirmButtonColor: "#DD6B55",
+                                                          confirmButtonText: "Yes, delete it!",
+                                                          cancelButtonText: "No, cancel plx!",
+                                                          closeOnConfirm: false,   closeOnCancel: true },
+                                                         function(isConfirm) {
+                                                             if(isConfirm) {
+                                                                 window.location = "${createLink(controller: 'dashboard', action: 'deleteDevice', id: device.id)}";
+                                                             }
+                                                         });'>
+                                            Delete device</a>
                                     </div>
 
                                     <div class="form-group col-xs-6 text-right">

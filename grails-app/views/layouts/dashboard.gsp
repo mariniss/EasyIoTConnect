@@ -31,6 +31,9 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+	<asset:javascript src="sweet-alert.min.js"/>
+	<asset:stylesheet src="sweet-alert.css" />
+
 	<g:layoutHead />
 
 	<script>
