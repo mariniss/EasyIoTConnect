@@ -99,10 +99,16 @@ class ConnectionService {
 		}
 	}
 
+	/**
+	 *
+	 * @param device
+	 * @return
+	 */
 	boolean deleteDevice(Device device) {
 
 		//TODO: remove all linked data
+		device.delete()
 
-		return device.delete()
+		return true
 	}
 }
