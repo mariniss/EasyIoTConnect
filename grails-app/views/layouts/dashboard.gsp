@@ -111,13 +111,7 @@
 
 		<!-- Body -->
 		<div id="page-top" class="index">
-			<!-- Flash message -->
-			<g:if test="${flash.message}">
-				<div class="alert alert-danger" role="alert">
-					<strong> ${flash.message}
-					</strong>
-				</div>
-			</g:if>
+
 
 			<!-- Container -->
 			<g:layoutBody />
@@ -152,6 +146,15 @@
 
 	<!-- Custom Theme JavaScript -->
 	<asset:javascript src="freelancer.js"/>
+
+	<!-- Flash message -->
+	<g:if test="${flash.alert}">
+		<script>
+			$(function(){
+				swal("${flash.alert.title}", "${flash.alert.message}", "${flash.alert.type}");
+			});
+		</script>
+	</g:if>
 
 </body>
 </html>

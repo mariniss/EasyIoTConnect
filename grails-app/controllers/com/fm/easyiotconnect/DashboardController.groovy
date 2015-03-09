@@ -23,13 +23,13 @@ class DashboardController {
 
    
     def index() {
-      def currentUser = springSecurityService.currentUser
-      def devices = Device.findAllByUser(currentUser)
-      
-      render view:"index", 
-            model:[ devices : devices,
-                    currentUser: currentUser,
-                    pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl ]
+       def currentUser = springSecurityService.currentUser
+       def devices = Device.findAllByUser(currentUser)
+
+       render view:"index",
+              model:[devices : devices,
+                     currentUser: currentUser,
+                     pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl]
    }
 
    
@@ -41,10 +41,10 @@ class DashboardController {
 
       boolean okCreate = connectionService.create(currentUser, deviceType, deviceName)
       if(okCreate) {
-         flash.message = "Great! Device created successful!"
+         flash.alert = [type:"success", title: "Done", message: "Device created successfully!"]
       }
       else {
-         flash.message = "Sorry! There was a problem creating device"
+         flash.alert = [type:"warning", title: "Sorry", message: "There was a problem creating device!"]
       }
       
       redirect action:"index"
@@ -78,7 +78,7 @@ class DashboardController {
       
       Device device = Device.findByIdAndUser(deviceId, currentUser)
       if(device == null) {
-         flash.message = "Error, device not found!"
+         flash.alert = [type:"waring", title: "Sorry", message: "Device not found!"]
       } else {
          device.toConfigure = false
          device.save(flush:true)
@@ -95,7 +95,7 @@ class DashboardController {
       
       Device device = Device.findByIdAndUser(deviceId, currentUser)
       if(device == null) {
-         flash.message = "Error, device not found!"
+         flash.alert = [type:"waring", title: "Sorry", message: "Device not found!"]
       }
       else {
          //Actually the name is unmodifiable
@@ -140,7 +140,7 @@ class DashboardController {
          device.infos.gpio17Visible = StringUtils.isNotBlank(device.infos.gpio17Name)
          
          if(device.save(flush:true)) {
-            flash.message = "Great! Device update successfully"
+            flash.alert = [type:"success", title: "Done", message: "Device updated successfully!"]
          }
          else {
             flash.message = "Sorry! There were problems updating device"
@@ -155,16 +155,16 @@ class DashboardController {
 
       Device deviceToDelete = Device.get(params.id)
       if(deviceToDelete == null || currentUser.id != deviceToDelete.user.id) {
-         flash.message = "Sorry! You cannot delete these data"
+         flash.alert = [type:"error", title: "Sorry", message: "You cannot delete this device!"]
       }
       else {
          boolean deleted = connectionService.deleteDevice(deviceToDelete)
 
          if(deleted) {
-            flash.message = "Device deleted successfully"
+            flash.alert = [type:"success", title: "Done", message: "Device deleted successfully!"]
          }
          else {
-            flash.message = "Sorry! There were problems during the delete"
+            flash.alert = [type:"warning", title: "Sorry", message: "There was a problem deleting device!"]
          }
       }
 
@@ -190,10 +190,10 @@ class DashboardController {
          IPinMessage command = new PinMessageImpl(mqPin, mqState)
 
          if(deviceService.sendCommand(device, command)) {
-            flash.message = "Great! Command sent successful!"
+            flash.alert = [type:"success", title: "Done", message: "Command sent successfully!"]
          }
          else {
-            flash.message = "Sorry! Command not sent"
+            flash.alert = [type:"warning", title: "Sorry", message: "Command not sent!"]
          }
       }
       
@@ -202,7 +202,7 @@ class DashboardController {
 
    
    def updatePersonal() {
-      def currentUser = springSecurityService.currentUser
+      User currentUser = springSecurityService.currentUser
 
       User toUpdate = User.get(currentUser.id)
       String name = params.completeName
@@ -221,10 +221,10 @@ class DashboardController {
       boolean saved = toUpdate.save(flush: true)
 
       if(saved) {
-         flash.message = "Data updated successfully"
+         flash.alert = [type:"success", title: "Done", message: "Information updated successfully!"]
       }
       else {
-         flash.message = "Sorry! There were problems during the update"
+         flash.alert = [type:"warning", title: "Sorry", message: "There was problems during the update!"]
       }
 
       redirect action:"index"
