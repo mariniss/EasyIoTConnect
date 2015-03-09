@@ -18,7 +18,7 @@ class MessageCodeResolverService {
 		
 		switch(code){
 			case ServiceCodes.Infos.USER_CREATED:
-				message = "Sing-Up done!"
+				message = "Sing-Up done! Now you can connect your home to internet"
 				break
 		}
 		
@@ -27,7 +27,7 @@ class MessageCodeResolverService {
 	
 	def String getMessageByCode(ServiceCodes.Errors code) {
 		
-		def message = "Sorry!, we have got a proble"
+		def message = "Sorry!, we have got a problem"
 		
 		switch(code){
 			case ServiceCodes.Errors.NULL_ARGUMENT:

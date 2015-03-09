@@ -29,6 +29,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+	<asset:javascript src="sweet-alert.min.js"/>
+	<asset:stylesheet src="sweet-alert.css" />
 </head>
 
 <body id="page-top" class="index">
@@ -479,6 +482,15 @@
 		window.location.href = '#contact'
 	}
 </script>
+
+<!-- Flash message -->
+<g:if test="${flash.alert}">
+	<script>
+		$(function(){
+			swal("${flash.alert.title}", "${flash.alert.message}", "${flash.alert.type}");
+		});
+	</script>
+</g:if>
 
 </body>
 

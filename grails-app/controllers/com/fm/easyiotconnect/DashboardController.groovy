@@ -127,7 +127,7 @@ class DashboardController {
             flash.alert = [type:"success", title: "Done", message: "Device updated successfully!"]
          }
          else {
-            flash.message = "Sorry! There were problems updating device"
+            flash.alert = [type:"waring", title: "Sorry", message: "There was problems updating device!"]
          }
       }
       

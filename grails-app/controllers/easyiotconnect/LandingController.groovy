@@ -1,11 +1,13 @@
 package easyiotconnect
 
+import com.fm.easyiotconnect.ServiceCodes
 import com.fm.easyiotconnect.User
 import com.fm.easyiotconnect.UserQuestions
 
 
 class LandingController {
 
+    def springSecurityService
     def securityService
     def messageCodeResolverService
 
@@ -15,8 +17,6 @@ class LandingController {
 
 
     def askQuestion = {
-        Map result = [error : true]
-
         if(params.sender && params.message) {
             UserQuestions question = new UserQuestions()
             question.email = params.sender
@@ -24,7 +24,12 @@ class LandingController {
             question.text  = params.message
 
             //FIXME: please move me on a service!!!
-            result.error = (question.save())
+            if(question.save(flush: true)) {
+                flash.alert = [type:"success", title: "Done", message: "Question sent successfully!"]
+            }
+            else {
+                flash.alert = [type:"waring", title: "Sorry", message: "There was problem asking your question!"]
+            }
         }
 
         redirect view: "index"
@@ -45,16 +50,27 @@ class LandingController {
 
         newUser.validate()
         if(newUser.hasErrors()){
-            flash.message = "Validation error: ${newUser.errors}"
+            flash.alert = [type:"waring", title: "Sorry", message: "There was problem on inserted data!"]
 
             redirect view: "index"
         }
         else {
             def resultCode = securityService.createBaseUser(newUser)
 
-            flash.message = messageCodeResolverService.getMessageByCode(resultCode)
+            def type = resultCode == ServiceCodes.Infos.USER_CREATED ? "success" : "waring"
+            def title = resultCode == ServiceCodes.Infos.USER_CREATED ? "Done" : "Sorry"
+            def message = messageCodeResolverService.getMessageByCode(resultCode)
 
-            redirect controller: "dashboard"
+            flash.alert = [type:type, title: title, message: message]
+
+            if(resultCode == ServiceCodes.Infos.USER_CREATED) {
+                springSecurityService.reauthenticate(newUser.email)
+
+                redirect controller: "dashboard"
+            }
+            else {
+                redirect view: "index"
+            }
         }
     }
 }
