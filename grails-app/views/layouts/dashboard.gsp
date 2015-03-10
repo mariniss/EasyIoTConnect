@@ -34,6 +34,16 @@
 	<asset:javascript src="sweet-alert.min.js"/>
 	<asset:stylesheet src="sweet-alert.css" />
 
+	<!-- jQuery -->
+	<asset:javascript src="jquery-1.11.1.js"/>
+
+	<!-- Bootstrap Core JavaScript -->
+	<asset:javascript src="bootstrap.min.js"/>
+
+
+	<!-- Custom Theme JavaScript -->
+	<asset:javascript src="freelancer.js"/>
+
 	<g:layoutHead />
 
 	<script>
@@ -133,20 +143,6 @@
 
 	</div>
 
-	<!-- jQuery -->
-	<asset:javascript src="jquery-1.11.1.js"/>
-
-	<!-- Bootstrap Core JavaScript -->
-	<asset:javascript src="bootstrap.min.js"/>
-
-	<!-- Plugin JavaScript -->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-	<asset:javascript src="classie.js"/>
-	<asset:javascript src="cbpAnimatedHeader.js"/>
-
-	<!-- Custom Theme JavaScript -->
-	<asset:javascript src="freelancer.js"/>
-
 	<!-- Flash message -->
 	<g:if test="${flash.alert}">
 		<script>
@@ -155,6 +151,11 @@
 			});
 		</script>
 	</g:if>
+
+	<!-- Plugin JavaScript -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<asset:javascript src="classie.js"/>
+	<asset:javascript src="cbpAnimatedHeader.js"/>
 
 </body>
 </html>

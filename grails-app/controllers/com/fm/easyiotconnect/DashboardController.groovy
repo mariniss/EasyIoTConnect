@@ -1,6 +1,7 @@
 package com.fm.easyiotconnect
 
 import com.fm.easyiotconnect.mq.Device
+import grails.converters.JSON
 import org.apache.commons.lang.StringUtils
 import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
@@ -156,7 +157,7 @@ class DashboardController {
    }
    
    
-   def sendCommand() {
+   /* def sendCommand() {
       def deviceId = params.id
       
       def currentUser = springSecurityService.currentUser
@@ -182,6 +183,31 @@ class DashboardController {
       }
       
       redirect action:"index"
+   } */
+
+
+   def sendAjaxCommand() {
+      def deviceId = params.id
+      def currentUser = springSecurityService.currentUser
+
+      Map result = [error:true]
+
+      Device device = Device.findByIdAndUser(deviceId, currentUser)
+      if(device == null) {
+         result.message = "Device not found!"
+      }
+      else {
+         int pin    = params.int('pin')
+         int status = params.int('status')
+
+         PinMQ mqPin = new PinMQ(pin)
+         PinStateMQ mqState = status == 0 ? PinStateMQ.LOW : PinStateMQ.HIGH
+         IPinMessage command = new PinMessageImpl(mqPin, mqState)
+
+         result.error = !deviceService.sendCommand(device, command)
+      }
+
+      render result as JSON
    }
 
    

@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="col-lg-4  text-center">
-                    <a href="#remoteDevice${device.id}" data-toggle="modal">
+                    <a href="#remoteDevice${device.id}" id="btnRemoteDevice${device.id}" data-toggle="modal">
                         <asset:image src="Internet.png"/>
                     </a>
                 </div>
@@ -439,6 +439,15 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    <g:each in="${devices}" var="device" status="i">
+        if (location.hash == "#remoteDevice${device.id}") {
+            $("#btnRemoteDevice${device.id}").click();
+        }
+    </g:each>
+</script>
 
 </body>
 </html>
