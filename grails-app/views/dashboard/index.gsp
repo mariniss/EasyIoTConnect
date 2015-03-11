@@ -162,37 +162,54 @@
 
                             <dl class="dl-horizontal" style="align-content: center">
                                 <dt>Internet access</dt>
-                                <dd>Give the Internet access to your Device,
-                                    <span>see the <a
-                                            href="http://www.raspberrypi.org/documentation/configuration/wireless/README.md">official guide</a>
+                                <dd class="text-left">
+                                    Give the Internet access to your Device, you can connect by a cable to the router/modem or
+                                    connect by wifi,
+                                    <span>
+                                        see the <a href="http://www.raspberrypi.org/documentation/configuration/wireless/README.md" target="_blank">
+                                        official guide</a>
                                     </span>
                                 </dd>
                                 <br/>
 
                                 <dt>Get EIoT client</dt>
-                                <dd>
+                                <dd class="text-left">
                                     Download the client application from <a href="${pimqUrl}">here</a>,
                                     <span>You can use the wget command from raspberry</span>
+<pre>
+wget ${pimqUrl}
+</pre>
                                 </dd>
                                 <br/>
 
                                 <dt>Install EIoT client</dt>
-                                <dd>
-                                    Extract the client content and copy on Raspberry, <span>Example...</span>
+                                <dd class="text-left">
+                                    Extract the client content and copy on Raspberry
+<pre class="text-left vertical-grabber">
+unzip ${pimqUrl} <br/>
+cp -r client /opt/eiotc
+</pre>
                                 </dd>
                                 <br/>
 
                                 <dt>Configure EIoT client</dt>
-                                <dd>
+                                <dd class="text-left">
                                     Put
                                     <a href="${createLink(action: 'downloadConfiguration', params: [id: device.id])}">this file</a>
                                     on client folder
+<pre class="text-left vertical-grabber">
+cp configuration.properties /opt/eiotc/
+</pre>
                                 </dd>
                                 <br/>
 
                                 <dt>Finish</dt>
-                                <dd>
-                                    Start the client, <span>Example...</span>
+                                <dd class="text-left">
+                                    Start the client
+<pre class="text-left vertical-grabber">
+cd /opt/eiotc/
+sudo java -cp "/home/pi/development/pimq/client/.:/home/pi/development/pimq/client/dependency-jars/*" -jar /home/pi/development/pimq/client/org.fm.pimq.client-0.1-SNAPSHOT.jar /home/pi/development/pimq/client/ conf.properties &
+</pre>
                                 </dd>
                                 <br/>
                             </dl>
