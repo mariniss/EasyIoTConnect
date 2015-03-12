@@ -28,15 +28,11 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-	<g:if env="development">
-		<asset:stylesheet src="error.css" />
-	</g:if>
 </head>
 
 <body>
 
-	<header>
+	<header style="padding-top: 60px; padding-bottom: 20px;">
 		<div>
 			<div class="row">
 				<div class="col-lg-12">
@@ -68,25 +64,6 @@
 			</div>
 		</div>
 	</section>
-
-
-	<!-- Footer -->
-	<footer class="navbar-fixed-bottom">
-		<div class="footer-below text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						Copyright &copy;, EasyIoTConnect 2015.
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
-
-
-	<g:if env="development">
-		<g:renderException exception="${exception}" />
-	</g:if>
 </body>
 
 <!-- jQuery -->

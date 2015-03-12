@@ -91,7 +91,7 @@
 						<a href="${createLink(controller:'dashboard', action: 'index')}">Dashboard</a>
 					</li>
 
-					<g:if test="${devices.size() < grailsApplication.config.eiotc.device.max}">
+					<g:if test="${devices != null && devices.size() < grailsApplication.config.eiotc.device.max}">
 						<li>
 							<a href="#createDevice" data-toggle="modal" class="btn-outline btn-navbar">Add device</a>
 						</li>
