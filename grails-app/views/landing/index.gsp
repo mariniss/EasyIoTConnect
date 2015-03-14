@@ -205,7 +205,7 @@
 		<div class="row">
 			<div class="col-lg-8 col-lg-offset-2">
 				<g:form method="POST" action="askQuestion"
-					  id='askQuestion'  autocomplete='off' class="form-horizontal" role="form" >
+					  	id='askQuestion'  autocomplete='off' class="form-horizontal" role="form" >
 
 					<div class="row control-group">
 						<div class="form-group col-xs-12 floating-label-form-group controls">

@@ -245,7 +245,7 @@ sudo java -cp "/home/pi/development/pimq/client/.:/home/pi/development/pimq/clie
                             <h3>${device.infos.name}</h3>
                             <hr />
 
-                            <g:form method='POST' name='updateDeviceInfo' action='updateDeviceInfo'
+                            <g:form method='POST' name='updateDeviceInfo' action='updateDevice'
                                     class="form-horizontal" role="form" autocomplete='off'>
 
                                 <input type="hidden" name="id" value="${device.id}">

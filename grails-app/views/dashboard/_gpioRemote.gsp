@@ -3,7 +3,7 @@
         <div class="col-xs-4 text-right">
             <button class="btn btn-success btn-lg"
                     onclick="$.ajax({
-                        url: '${createLink(action: 'sendAjaxCommand', params: [id: deviceId, pin: pinId, status: 1])}',
+                        url: '${createLink(action: 'sendCommand', params: [id: deviceId, pin: pinId, status: 1])}',
                         type: 'POST', dataType:'JSON', data: {},
                             success: function(r){
                                 if(!r.error) {
@@ -28,7 +28,7 @@
         <div class="col-xs-4 text-left">
             <button class="btn btn-danger btn-lg"
                     onclick="$.ajax({
-                        url: '${createLink(action: 'sendAjaxCommand', params: [id: deviceId, pin: pinId, status: 0])}',
+                        url: '${createLink(action: 'sendCommand', params: [id: deviceId, pin: pinId, status: 0])}',
                         type: 'POST', dataType:'JSON', data: {},
                         success: function(r){
                             if(!r.error) {

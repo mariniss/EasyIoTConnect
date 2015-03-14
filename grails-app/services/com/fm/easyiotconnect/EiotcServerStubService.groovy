@@ -28,6 +28,7 @@ class EiotcServerStubService {
         }
 
         for(def jack : jacks) {
+
             def resp = rest.post("${server.url}${USER_PATH}") {
                 //auth System.getProperty("artifactory.user"), System.getProperty("artifactory.pass")
                 contentType "application/vnd.org.jfrog.artifactory.security.Group+json"

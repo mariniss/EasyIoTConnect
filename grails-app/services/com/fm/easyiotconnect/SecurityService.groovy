@@ -18,27 +18,6 @@ class SecurityService {
 
 	def springSecurityService
 
-	/**
-	 *
- 	 * @param user
-	 * @return
-	 */
-	ServiceCodes.Infos createBaseUser(User user) {
-		if(user == null) {
-			throw ServiceError.build(ServiceCodes.Errors.NULL_ARGUMENT)
-		}
-
-		if(!user.save()) {
-			throw ServiceError.build(ServiceCodes.Errors.USER_NOT_SAVED)
-		}
-
-		UserRole userRole = new UserRole(user : user, role : Role.getBaseRole())
-		if(!userRole.save()) {
-			throw ServiceError.build(ServiceCodes.Errors.USER_ROLE_NOT_SAVED)
-		}
-
-		return ServiceCodes.Infos.USER_CREATED
-	}
 
 	/**
 	 *
@@ -54,6 +33,7 @@ class SecurityService {
 
 		return false
 	}
+
 
 	/**
 	 *

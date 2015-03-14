@@ -126,7 +126,7 @@ grails.plugin.springsecurity.useRoleGroups = false
 grails.plugin.springsecurity.auth.loginFormUrl = '/#loginModal'
 grails.plugin.springsecurity.successHandler.alwaysUseDefault = false
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/'
-grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard/index'
+grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard'
 
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	//Resources

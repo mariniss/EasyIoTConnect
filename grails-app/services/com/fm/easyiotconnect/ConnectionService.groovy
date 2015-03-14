@@ -29,17 +29,18 @@ class ConnectionService {
 			return false
 		}
 
+		def query = Device.where { user == user && infos.name == deviceName }
+		if(query.count() != 0) {
+			return false
+		}
+
 		//Identify the correct A-MQ
 		MQServer server = mqServerService.identifyMQserver(user)
-		
-		//FIXME: check it the device name is unique on users devices
-		DeviceInfos infos = new DeviceInfos(name : deviceName)
-	
+
 		//Create the queues (names)
 		Map names = mqServerService.generateQueuesName(user, server, deviceName)
 		
 		//Make Jacks, Device and DeviceInfos
-
 		Jack producer = new Jack(queueName 		: names.producer,
 								 type			: Jack.TYPE_PRODUCER,
 								 serverContainer: server)
@@ -49,31 +50,35 @@ class ConnectionService {
 		Jack status	  = new Jack(queueName 		: names.status,
 								 type			: Jack.TYPE_STATUS,
 								 serverContainer: server)
-		
+
+		DeviceInfos infos = new DeviceInfos(name : deviceName)
+
 		Device device = new Device(type 	   : deviceType,
 								   jackProducer: producer,
 								   jackConsumer: consumer,
 								   jackStatus  : status,
 								   infos	   : infos,
 								   user		   : user)
-		
+
+		device.validate()
+		if(device.hasErrors()){
+			return false
+		}
+
 		Device.withTransaction { st ->
-			boolean  childrenSaved = infos.save()    &&
-						    producer.save() &&  
-							consumer.save() &&
-							status.save()
+			Device savedDevice = device.save()
 			
-			if (childrenSaved && device.save()) {
-				okCreate = true
+			if (savedDevice) {
+				boolean okRegister = registerToAuthenticationServer(server, user, [producer, consumer, status])
+
+				okCreate = okRegister
 			}
 			else {
 				st.setRollbackOnly()
 			}
 		}
 
-		boolean okRegister = registerToAuthenticationServer(server, user, [producer, consumer, status])
-		
-		if(okCreate && okRegister){
+		if(okCreate){
 			server.activeUsers ++
 			server.save()
 		}

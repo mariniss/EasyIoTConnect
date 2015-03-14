@@ -50,30 +50,10 @@ class DashboardController {
       
       redirect action:"index"
    }
-   
-   
-   def downloadConfiguration() {
-      def currentUser = springSecurityService.currentUser
-      Device device = Device.findByIdAndUser(params?.id, currentUser) 
-
-      if(device != null) {
-         String deviceConfig = 
-                  groovyPageRenderer.render(view: '/fileTemplates/pimqConfig', 
-                                            model: [jack: device.jackProducer,
-                                            user: currentUser])
-
-         response.setContentType("text/plain")
-         response.setHeader("Content-disposition", "attachment;filename=configurations.properties")
-         response.outputStream << deviceConfig.bytes
-      }
-      else {
-         redirect action: "index"
-      }
-   }
 
    
    
-   def updateDeviceInfo() {
+   def updateDevice() {
       def deviceId = params.id
       
       def currentUser = springSecurityService.currentUser
@@ -155,38 +135,29 @@ class DashboardController {
 
       redirect action:"index"
    }
-   
-   
-   /* def sendCommand() {
-      def deviceId = params.id
-      
+
+
+   def downloadConfiguration() {
       def currentUser = springSecurityService.currentUser
-      
-      Device device = Device.findByIdAndUser(deviceId, currentUser)
-      if(device == null) {
-         flash.message = "Error, device not found!"
+      Device device = Device.findByIdAndUser(params?.id, currentUser)
+
+      if(device != null) {
+         String deviceConfig =
+                 groovyPageRenderer.render(view: '/fileTemplates/pimqConfig',
+                         model: [jack: device.jackProducer,
+                                 user: currentUser])
+
+         response.setContentType("text/plain")
+         response.setHeader("Content-disposition", "attachment;filename=configurations.properties")
+         response.outputStream << deviceConfig.bytes
       }
       else {
-         int pin    = params.int('pin')
-         int status = params.int('status')
-         
-         PinMQ mqPin = new PinMQ(pin)
-         PinStateMQ mqState = status == 0 ? PinStateMQ.LOW : PinStateMQ.HIGH
-         IPinMessage command = new PinMessageImpl(mqPin, mqState)
-
-         if(deviceService.sendCommand(device, command)) {
-            flash.alert = [type:"success", title: "Done", message: "Command sent successfully!"]
-         }
-         else {
-            flash.alert = [type:"warning", title: "Sorry", message: "Command not sent!"]
-         }
+         redirect action: "index"
       }
-      
-      redirect action:"index"
-   } */
+   }
 
 
-   def sendAjaxCommand() {
+   def sendCommand() {
       def deviceId = params.id
       def currentUser = springSecurityService.currentUser
 
