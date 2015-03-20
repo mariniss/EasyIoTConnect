@@ -10,14 +10,23 @@ class AuthenticationServer {
 
     String type
     String url
+    String boUrl
 
     static constraints = {
 
-        type (nullable: false,
-              blank   : false,
-              inList  : [TYPE_EIOTC_APP, TYPE_EIOTC_SERVER])
+        type    (nullable: false,
+                 blank   : false,
+                 inList  : [TYPE_EIOTC_APP, TYPE_EIOTC_SERVER])
 
-        url  (nullable: false,
-              blank   : false)
+        url     (nullable: false,
+                 blank   : false)
+
+        boUrl   (nullable: true, //only to backward compatibility compatibility
+                 blank   : false)
+    }
+
+
+    def beforeValidate() {
+        if(boUrl == null || boUrl.isEmpty()) boUrl = url
     }
 }

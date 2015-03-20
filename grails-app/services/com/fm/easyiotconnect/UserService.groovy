@@ -59,4 +59,40 @@ class UserService {
 
         return ServiceCodes.Infos.USER_CREATED
     }
+
+    /**
+     *
+     * @param userId
+     * @param name
+     * @param country
+     * @param password
+     * @return
+     */
+    boolean updateUser(Integer userId, String name, String country, String password) {
+        boolean updated = false
+
+        User toUpdate = User.get(userId)
+        if(toUpdate != null) {
+            toUpdate.name = name
+            toUpdate.state = country
+
+            if (password && password.size() > 0) {
+                toUpdate.password = password
+
+                //TODO: change also the jack passwords????!!! I don't know because we have to change the configuration
+                //so I think now is not necessary but will be, and in this case I suggest a different command! or a popup
+                //to inform the change
+            }
+
+            toUpdate.validate()
+            if(!toUpdate.hasErrors()) {
+                updated = (toUpdate.save() != null)
+            }
+            else {
+                updated = false
+            }
+        }
+
+        return updated
+    }
 }

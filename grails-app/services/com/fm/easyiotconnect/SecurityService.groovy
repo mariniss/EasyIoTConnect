@@ -1,12 +1,8 @@
 package com.fm.easyiotconnect
 
-import com.fm.easyiotconnect.User
-import com.fm.easyiotconnect.Role
-import com.fm.easyiotconnect.UserRole
 import com.fm.easyiotconnect.mq.Jack
-
-import grails.plugin.springsecurity.SpringSecurityService;
 import grails.transaction.Transactional
+
 
 /**
  * 

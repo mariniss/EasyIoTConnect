@@ -69,7 +69,7 @@ class ConnectionService {
 			Device savedDevice = device.save()
 			
 			if (savedDevice) {
-				boolean okRegister = registerToAuthenticationServer(server, user, [producer, consumer, status])
+				boolean okRegister = registerToAuthenticationServer(server, user, device.jacks)
 
 				okCreate = okRegister
 			}
@@ -86,18 +86,12 @@ class ConnectionService {
 		return okCreate
 	}
 
-	/**
-	 *
-	 * @param mqServer
-	 * @param user
-	 * @param jacks
-	 * @return
-	 */
-	boolean registerToAuthenticationServer(MQServer mqServer, User user, List<Jack> jacks) {
+
+	private boolean registerToAuthenticationServer(MQServer mqServer, User user, List<Jack> jacks) {
 		AuthenticationServer authenticationServer = mqServer.authenticationServer
 
 		if(authenticationServer.type != AuthenticationServer.TYPE_EIOTC_APP) {
-			return eiotcServerStubService.registerUser(authenticationServer, user, jacks)
+			return eiotcServerStubService.registerJacks(authenticationServer, user, jacks)
 		}
 		else {
 			return  true
@@ -109,11 +103,33 @@ class ConnectionService {
 	 * @param device
 	 * @return
 	 */
-	boolean deleteDevice(Device device) {
+	boolean deleteDevice(User user, Device device) {
+		boolean result = false
 
-		//TODO: remove all linked data
-		device.delete()
+		if(user && device) {
+			device.delete()
 
-		return true
+			boolean deleted = deleteFromAuthenticationServer(device.serverContainer, user, device.jacks)
+			if (deleted) {
+				result = true
+			}
+			else {
+				st.setRollbackOnly()
+			}
+		}
+
+		return result
+	}
+
+
+	private boolean deleteFromAuthenticationServer(MQServer mqServer, User user, List<Jack> jacks) {
+		AuthenticationServer authenticationServer = mqServer.authenticationServer
+
+		if(authenticationServer.type != AuthenticationServer.TYPE_EIOTC_APP) {
+			return eiotcServerStubService.deleteJacks(authenticationServer, user, jacks)
+		}
+		else {
+			return  true
+		}
 	}
 }

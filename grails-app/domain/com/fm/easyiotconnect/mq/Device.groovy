@@ -49,4 +49,23 @@ class Device {
 	String toString() {
 		return "${infos.name}: ${type} - ${user}"
 	}
+
+	List<Jack> getJacks() {
+		List<Jack> jacks = []
+
+		if(jackProducer) jacks += jackProducer
+		if(jackConsumer) jacks += jackConsumer
+		if(jackStatus)   jacks += jackStatus
+
+		return jacks
+	}
+
+
+	MQServer getServerContainer() {
+		if(!jacks.isEmpty()) {
+			return jacks.first().serverContainer
+		}
+
+		return null
+	}
 }

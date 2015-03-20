@@ -21,6 +21,7 @@ class DashboardController {
    def deviceService
    def grailsApplication
    def groovyPageRenderer
+   def userService
 
    
     def index() {
@@ -51,13 +52,13 @@ class DashboardController {
       redirect action:"index"
    }
 
-   
-   
+
    def updateDevice() {
       def deviceId = params.id
       
       def currentUser = springSecurityService.currentUser
-      
+
+
       Device device = Device.findByIdAndUser(deviceId, currentUser)
       if(device == null) {
          flash.alert = [type:"waring", title: "Sorry", message: "Device not found!"]
@@ -65,6 +66,8 @@ class DashboardController {
       else {
          //Actually the name is unmodifiable
          //device.infos.name = params.name
+
+         //TODO: move into a service
 
          device.infos.gpio0Name  = params.gpio0name
          device.infos.gpio1Name  = params.gpio1name
@@ -123,7 +126,7 @@ class DashboardController {
          flash.alert = [type:"error", title: "Sorry", message: "You cannot delete this device!"]
       }
       else {
-         boolean deleted = connectionService.deleteDevice(deviceToDelete)
+         boolean deleted = connectionService.deleteDevice(currentUser, deviceToDelete)
 
          if(deleted) {
             flash.alert = [type:"success", title: "Done", message: "Device deleted successfully!"]
@@ -143,9 +146,9 @@ class DashboardController {
 
       if(device != null) {
          String deviceConfig =
-                 groovyPageRenderer.render(view: '/fileTemplates/pimqConfig',
-                         model: [jack: device.jackProducer,
-                                 user: currentUser])
+                 groovyPageRenderer.render(view : '/fileTemplates/pimqConfig',
+                                           model: [jack: device.jackProducer,
+                                                   user: currentUser])
 
          response.setContentType("text/plain")
          response.setHeader("Content-disposition", "attachment;filename=configurations.properties")
@@ -183,25 +186,22 @@ class DashboardController {
 
    
    def updatePersonal() {
+      boolean updated = false
+
       User currentUser = springSecurityService.currentUser
 
-      User toUpdate = User.get(currentUser.id)
+      Integer userId = currentUser.id
       String name = params.completeName
-      toUpdate.name = name
-
       String country = params.country
-      toUpdate.state = country
 
       String password = params.password
       String repeatPassword = params.repeatPassword
       String okPassword = password == repeatPassword
-      if(password && password.size() > 0 && okPassword) {
-         toUpdate.password = password
+      if(okPassword) {
+         updated = userService.updateUser(userId, name, country, password)
       }
 
-      boolean saved = toUpdate.save(flush: true)
-
-      if(saved) {
+      if(updated) {
          flash.alert = [type:"success", title: "Done", message: "Information updated successfully!"]
       }
       else {
