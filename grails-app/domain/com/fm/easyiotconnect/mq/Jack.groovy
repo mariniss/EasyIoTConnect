@@ -8,12 +8,15 @@ package com.fm.easyiotconnect.mq
  */
 class Jack {
 	
-	static String TYPE_PRODUCER = "producer"
-	static String TYPE_CONSUMER = "consumer"
-	static String TYPE_STATUS	= "status"
-	
+	static String TYPE_COMMAND = "command"
+	static String TYPE_STATUS  = "status"
+
+	static String USES_PRODUCE = "producer"
+	static String USES_CONSUMER = "producer"
+
 	String queueName
 	String type
+	String uses
 	MQServer serverContainer
 
 	Device device
@@ -24,17 +27,19 @@ class Jack {
 		queueName		( nullable  : false,
 						  blank		: false,
 						  unique	: true )
-
 		
 		type			( nullable: false,
-					  	  inList: [TYPE_PRODUCER, TYPE_CONSUMER, TYPE_STATUS] )
-		
+					  	  inList: [TYPE_COMMAND, TYPE_STATUS] )
+
+		uses			( nullable: false,
+						  inList: [USES_PRODUCE, USES_CONSUMER] )
+
 		serverContainer	( nullable  : false )
 
 		containerStoreId ( nullable : true )
     }
 
 	String toString() {
-		return "${device} (${type} : ${queueName})"
+		return "${device} (${type} - ${uses} : ${queueName})"
 	}
 }

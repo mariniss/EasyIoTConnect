@@ -39,24 +39,35 @@ class ConnectionService {
 
 		//Create the queues (names)
 		Map names = mqServerService.generateQueuesName(user, server, deviceName)
-		
+
 		//Make Jacks, Device and DeviceInfos
-		Jack producer = new Jack(queueName 		: names.producer,
-								 type			: Jack.TYPE_PRODUCER,
-								 serverContainer: server)
-		Jack consumer = new Jack(queueName 		: names.consumer,
-								 type			: Jack.TYPE_CONSUMER,
-								 serverContainer: server)
-		Jack status	  = new Jack(queueName 		: names.status,
-								 type			: Jack.TYPE_STATUS,
-								 serverContainer: server)
+		Jack commandProducer = new Jack(queueName 		: names.commandProducer,
+										type			: Jack.TYPE_COMMAND,
+										uses  			: Jack.USES_PRODUCE,
+										serverContainer : server)
+
+		Jack commandConsumer = new Jack(queueName 		: names.commandConsumer,
+										type			: Jack.TYPE_COMMAND,
+										uses  			: Jack.USES_CONSUMER,
+										serverContainer : server)
+
+		Jack statusProducer = new Jack(queueName 		: names.statusProducer,
+									   type				: Jack.TYPE_STATUS,
+				                       uses  			: Jack.USES_PRODUCE,
+				  					   serverContainer 	: server)
+
+		Jack statusConsumer = new Jack(queueName 	    : names.statusConsumer,
+									   type			    : Jack.TYPE_STATUS,
+									   uses  		    : Jack.USES_CONSUMER,
+									   serverContainer  : server)
 
 		DeviceInfos infos = new DeviceInfos(name : deviceName)
 
 		Device device = new Device(type 	   : deviceType,
-								   jackProducer: producer,
-								   jackConsumer: consumer,
-								   jackStatus  : status,
+								   jackCommandProducer: commandProducer,
+								   jackCommandConsumer: commandConsumer,
+								   jackStatusProducer : statusProducer,
+								   jackStatusConsumer : statusConsumer,
 								   infos	   : infos,
 								   user		   : user)
 

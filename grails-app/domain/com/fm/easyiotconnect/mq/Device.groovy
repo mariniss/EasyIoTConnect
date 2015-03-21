@@ -14,10 +14,11 @@ class Device {
 	User user
 	String type
 	
-	Jack jackProducer
-	Jack jackConsumer
-	Jack jackStatus
-	
+	Jack jackCommandProducer //webapp
+	Jack jackCommandConsumer //device
+	Jack jackStatusProducer  //device
+	Jack jackStatusConsumer  //webapp
+
 	DeviceInfos infos
 	
 	Boolean toConfigure = false // FIXME: not used with the new interface
@@ -28,10 +29,11 @@ class Device {
     }
 
 	static mapping = {
-		jackProducer cascade: 'all-delete-orphan'
-		jackConsumer cascade: 'all-delete-orphan'
-		jackStatus   cascade: 'all-delete-orphan'
-		infos		 cascade: 'all-delete-orphan'
+		jackCommandProducer cascade: 'all-delete-orphan'
+		jackCommandConsumer cascade: 'all-delete-orphan'
+		jackStatusProducer  cascade: 'all-delete-orphan'
+		jackStatusConsumer  cascade: 'all-delete-orphan'
+		infos		 		cascade: 'all-delete-orphan'
 	}
 	
 	def beforeValidate() {
@@ -53,9 +55,10 @@ class Device {
 	List<Jack> getJacks() {
 		List<Jack> jacks = []
 
-		if(jackProducer) jacks += jackProducer
-		if(jackConsumer) jacks += jackConsumer
-		if(jackStatus)   jacks += jackStatus
+		if(jackCommandProducer) jacks += jackCommandProducer
+		if(jackCommandConsumer) jacks += jackCommandConsumer
+		if(jackStatusProducer)   jacks += jackStatusProducer
+		if(jackStatusConsumer)   jacks += jackStatusConsumer
 
 		return jacks
 	}

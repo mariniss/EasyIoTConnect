@@ -37,10 +37,12 @@ class MqServerService {
 		
 		Map names = [:]
 
-		names.producer = "${Jack.TYPE_PRODUCER}_${user.id}_${name}"
-		names.consumer = "queue://${Jack.TYPE_CONSUMER}_${user.id}_${name}"
-		names.status   = "${Jack.TYPE_STATUS}_${user.id}_${name}"
-		
+		names.commandProducer = "${Jack.TYPE_COMMAND}_${user.id}_${name}"
+		names.commandConsumer = "queue://${names.commandProducer}"
+
+		names.statusProducer = "${Jack.TYPE_STATUS}_${user.id}_${name}"
+		names.statusConsumer = "queue://${names.statusProducer}"
+
 		return names
 	}
 }

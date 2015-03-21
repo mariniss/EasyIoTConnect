@@ -5,17 +5,9 @@ import com.fm.easyiotconnect.mq.Jack
 import com.fm.easyiotconnect.mq.MQServer
 import grails.transaction.Transactional
 
-
-import static org.springframework.http.HttpStatus.*
-import grails.transaction.Transactional
-
 import org.apache.activemq.ActiveMQConnectionFactory
 import org.apache.activemq.RedeliveryPolicy
-import org.fm.pimq.IPinMessage
-import org.fm.pimq.PinMQ
-import org.fm.pimq.PinStateMQ
 import org.fm.pimq.IPinCommand
-import org.fm.pimq.impl.PinMessageImpl
 
 import javax.jms.*
 
@@ -38,12 +30,12 @@ class DeviceService {
 		log.debug "Sending command ${command} for Device ${device}"
 		
 		assert device != null
-		assert device.jackProducer != null
+		assert device.jackCommandProducer != null
 		assert device.user != null
 		assert command != null
 		
 		User user = device.user
-		Jack jack = device.jackConsumer
+		Jack jack = device.jackCommandProducer
 		MQServer server = jack.serverContainer
 
 		try {
