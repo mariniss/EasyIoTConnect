@@ -12,7 +12,7 @@ class Jack {
 	static String TYPE_STATUS  = "status"
 
 	static String USES_PRODUCE = "producer"
-	static String USES_CONSUMER = "producer"
+	static String USES_CONSUMER = "consumer"
 
 	String queueName
 	String type
