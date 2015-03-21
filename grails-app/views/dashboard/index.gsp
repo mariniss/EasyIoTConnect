@@ -344,7 +344,7 @@ sudo java -cp "/home/pi/development/pimq/client/.:/home/pi/development/pimq/clie
                             <hr />
 
                             <g:render template="gpioRemote"
-                                      model="['visible': device.infos.gpio0Visible, 'name': device.infos.gpio0Name, 'deviceId': device.id, 'pinId': 1]" />
+                                      model="['visible': device.infos.gpio0Visible, 'name': device.infos.gpio0Name, 'deviceId': device.id, 'pinId': 0]" />
                             <g:render template="gpioRemote"
                                       model="['visible': device.infos.gpio1Visible, 'name': device.infos.gpio1Name, 'deviceId': device.id, 'pinId': 2]" />
                             <g:render template="gpioRemote"
