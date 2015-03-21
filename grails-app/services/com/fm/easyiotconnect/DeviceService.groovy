@@ -43,7 +43,7 @@ class DeviceService {
 		assert command != null
 		
 		User user = device.user
-		Jack jack = device.jackProducer
+		Jack jack = device.jackConsumer
 		MQServer server = jack.serverContainer
 
 		try {
