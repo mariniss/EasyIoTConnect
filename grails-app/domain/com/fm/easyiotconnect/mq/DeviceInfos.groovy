@@ -27,6 +27,9 @@ class DeviceInfos {
 	String gpio15Name = ""
 	String gpio16Name = ""
 	String gpio17Name = ""
+	String gpio18Name = ""
+	String gpio19Name = ""
+	String gpio20Name = ""
 	
 	Boolean gpio0Visible  = false
 	Boolean gpio1Visible  = false
@@ -46,6 +49,9 @@ class DeviceInfos {
 	Boolean gpio15Visible = false
 	Boolean gpio16Visible = false
 	Boolean gpio17Visible = false
+	Boolean gpio18Visible = false
+	Boolean gpio19Visible = false
+	Boolean gpio20Visible = false
 	
 	static belongsTo = [device: Device]
 	
@@ -72,7 +78,10 @@ class DeviceInfos {
 		gpio15Name  (nullable: true)
 		gpio16Name  (nullable: true)
 		gpio17Name  (nullable: true)
-		
+		gpio18Name  (nullable: true)
+		gpio19Name  (nullable: true)
+		gpio20Name  (nullable: true)
+
 		gpio0Visible  ( nullable: true )
 		gpio1Visible  ( nullable: true )
 		gpio2Visible  ( nullable: true )
@@ -91,5 +100,8 @@ class DeviceInfos {
 		gpio15Visible ( nullable: true )
 		gpio16Visible ( nullable: true )
 		gpio17Visible ( nullable: true )
+		gpio18Visible ( nullable: true )
+		gpio19Visible ( nullable: true )
+		gpio20Visible ( nullable: true )
     }
 }
