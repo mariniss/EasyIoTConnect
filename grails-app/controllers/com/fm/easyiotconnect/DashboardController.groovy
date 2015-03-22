@@ -213,7 +213,8 @@ class DashboardController {
 
 
    def downloadClient() {
-      File client = grailsApplication.parentContext.getResource("/assets/client.zip")?.file
+      //DEBUG:
+      File client = grailsApplication.parentContext.getResource("/assets/client-f4e7d9b45c9941379fadd9062d2b07ba.zip")?.file
 
       if(client) {
          response.setHeader("Content-disposition", "filename=\"client.zip\"")
@@ -229,10 +230,11 @@ class DashboardController {
 
 
    def downloadInstallationScript() {
-      File client = grailsApplication.parentContext.getResource("/client/install.sh")?.file
+      //DEBUG:
+      File client = grailsApplication.parentContext.getResource("/assets/install-e9372c8c1c307befa8174bb5ab3e695e.sh")?.file
 
       if(client) {
-         response.setHeader("Content-disposition", "filename=\"client.zip\"")
+         response.setHeader("Content-disposition", "filename=\"install.sh\"")
          response.contentType = "application/zip"
          response.outputStream << client.readBytes()
 
