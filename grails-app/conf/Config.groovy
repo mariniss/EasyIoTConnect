@@ -146,6 +146,11 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 	'/dashboard':                     ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/dashboard/**':                  ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
 	'/device/sendCommand':            ['ROLE_BASE', 'ROLE_DEVEL', 'ROLE_ADMIN'],
+
+    '/downloadClient':                          ['permitAll'],
+    '/dashboard/downloadClient':                ['permitAll'],
+    '/downloadInstallationScript':              ['permitAll'],
+    '/dashboard/downloadInstallationScript':    ['permitAll'],
 	
 	 //** Devel **
 	 '/devel':                         ['ROLE_DEVEL'],

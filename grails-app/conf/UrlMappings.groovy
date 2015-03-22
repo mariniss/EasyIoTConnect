@@ -21,8 +21,12 @@ class UrlMappings {
 		"/saveDevice"(controller:"dashboard", action:"saveDevice")
 		"/updateDevice"(controller: "dashboard", action: "updateDevice")
 		"/deleteDevice"(controller: "dashboard", action: "deleteDevice")
-		"/downloadConfiguration"(controller: "dashboard", action: "downloadConfiguration")
+
 		"/sendCommand"(controller: "dashboard", action: "sendCommand")
+
+		"/downloadConfiguration"(controller: "dashboard", action: "downloadConfiguration")
+		"/downloadClient"(controller: "dashboard", action: "downloadClient")
+		"/downloadInstallationScript"(controller: "dashboard", action: "downloadInstallationScript")
 
 
 		//General

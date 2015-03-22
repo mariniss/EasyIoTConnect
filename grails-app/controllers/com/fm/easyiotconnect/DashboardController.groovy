@@ -140,26 +140,6 @@ class DashboardController {
    }
 
 
-   def downloadConfiguration() {
-      def currentUser = springSecurityService.currentUser
-      Device device = Device.findByIdAndUser(params?.id, currentUser)
-
-      if(device != null) {
-         String deviceConfig =
-                 groovyPageRenderer.render(view : '/fileTemplates/pimqConfig',
-                                           model: [jack: device.jackCommandProducer,
-                                                   user: currentUser])
-
-         response.setContentType("text/plain")
-         response.setHeader("Content-disposition", "attachment;filename=configurations.properties")
-         response.outputStream << deviceConfig.bytes
-      }
-      else {
-         redirect action: "index"
-      }
-   }
-
-
    def sendCommand() {
       def deviceId = params.id
       def currentUser = springSecurityService.currentUser
@@ -211,4 +191,55 @@ class DashboardController {
       redirect action:"index"
    }
 
+
+   def downloadConfiguration() {
+      def currentUser = springSecurityService.currentUser
+      Device device = Device.findByIdAndUser(params?.id, currentUser)
+
+      if(device != null) {
+         String deviceConfig =
+                 groovyPageRenderer.render(view : '/fileTemplates/pimqConfig',
+                         model: [jack: device.jackCommandProducer,
+                                 user: currentUser])
+
+         response.setContentType("text/plain")
+         response.setHeader("Content-disposition", "attachment;filename=configurations.properties")
+         response.outputStream << deviceConfig.bytes
+      }
+      else {
+         redirect action: "index"
+      }
+   }
+
+
+   def downloadClient() {
+      File client = grailsApplication.parentContext.getResource("/client/client.zip")?.file
+
+      if(client) {
+         response.setHeader("Content-disposition", "filename=\"client.zip\"")
+         response.contentType = "application/zip"
+         response.outputStream << client.readBytes()
+
+         response.outputStream.flush()
+      }
+      else {
+         redirect action: "index"
+      }
+   }
+
+
+   def downloadInstallationScript() {
+      File client = grailsApplication.parentContext.getResource("/client/install.sh")?.file
+
+      if(client) {
+         response.setHeader("Content-disposition", "filename=\"client.zip\"")
+         response.contentType = "application/zip"
+         response.outputStream << client.readBytes()
+
+         response.outputStream.flush()
+      }
+      else {
+         redirect action: "index"
+      }
+   }
 }
