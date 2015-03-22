@@ -213,7 +213,7 @@ class DashboardController {
 
 
    def downloadClient() {
-      File client = grailsApplication.parentContext.getResource("client/client.zip")?.file
+      File client = grailsApplication.parentContext.getResource("/assets/client.zip")?.file
 
       if(client) {
          response.setHeader("Content-disposition", "filename=\"client.zip\"")
