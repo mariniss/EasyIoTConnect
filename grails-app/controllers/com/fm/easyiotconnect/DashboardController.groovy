@@ -2,6 +2,7 @@ package com.fm.easyiotconnect
 
 import com.fm.easyiotconnect.mq.Device
 import grails.converters.JSON
+import grails.util.Environment
 import org.apache.commons.lang.StringUtils
 import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
@@ -213,35 +214,21 @@ class DashboardController {
 
 
    def downloadClient() {
-      //DEBUG:
-      File client = grailsApplication.parentContext.getResource("/assets/client-f4e7d9b45c9941379fadd9062d2b07ba.zip")?.file
-
-      if(client) {
-         response.setHeader("Content-disposition", "filename=\"client.zip\"")
-         response.contentType = "application/zip"
-         response.outputStream << client.readBytes()
-
-         response.outputStream.flush()
+      if(Environment.current == Environment.DEVELOPMENT) {
+         redirect url: "/assets/client.zip"
       }
       else {
-         redirect action: "index"
+         redirect url: "/assets/client-f4e7d9b45c9941379fadd9062d2b07ba.zip"
       }
    }
 
 
    def downloadInstallationScript() {
-      //DEBUG:
-      File client = grailsApplication.parentContext.getResource("/assets/install-e9372c8c1c307befa8174bb5ab3e695e.sh")?.file
-
-      if(client) {
-         response.setHeader("Content-disposition", "filename=\"install.sh\"")
-         response.contentType = "application/zip"
-         response.outputStream << client.readBytes()
-
-         response.outputStream.flush()
+      if(Environment.current == Environment.DEVELOPMENT) {
+         redirect url: "/assets/install.sh"
       }
       else {
-         redirect action: "index"
+         redirect url: "/assets/install-e9372c8c1c307befa8174bb5ab3e695e.sh"
       }
    }
 }
