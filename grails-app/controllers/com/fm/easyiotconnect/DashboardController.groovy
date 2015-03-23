@@ -32,7 +32,7 @@ class DashboardController {
        render view:"index",
               model:[devices : devices,
                      currentUser: currentUser,
-                     pimqUrl: grailsApplication.config.eiotc.device.configure.pimqUrl]
+                     installScriptUrl: grailsApplication.config.eiotc.device.configure.install.url]
    }
 
    
@@ -118,6 +118,7 @@ class DashboardController {
       
       redirect action:"index"
    }
+
 
    def deleteDevice() {
       def currentUser = springSecurityService.currentUser

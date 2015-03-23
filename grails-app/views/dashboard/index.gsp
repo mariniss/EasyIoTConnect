@@ -174,20 +174,22 @@
 
                                 <dt>Get EIoT client</dt>
                                 <dd class="text-left">
-                                    Download the client application from <a href="${pimqUrl}">here</a>,
-                                    <span>You can use the wget command from raspberry</span>
+                                    Download the installation script by this link <a href="${installScriptUrl}">on your raspberry</a>,
+                                    <span>You can use the wget command from raspberry and download it on the home</span>
 <pre>
-wget ${pimqUrl}
+cd /home/pi
+mkdir eiotc
+cd eiotc
+wget ${installScriptUrl}
 </pre>
                                 </dd>
                                 <br/>
 
                                 <dt>Install EIoT client</dt>
                                 <dd class="text-left">
-                                    Extract the client content and copy on Raspberry
+                                    Execute the installation script just downloaded
 <pre class="text-left vertical-grabber">
-unzip ${pimqUrl} <br/>
-cp -r client /opt/eiotc
+sh ./install.sh <br/>
 </pre>
                                 </dd>
                                 <br/>
@@ -196,19 +198,21 @@ cp -r client /opt/eiotc
                                 <dd class="text-left">
                                     Put
                                     <a href="${createLink(action: 'downloadConfiguration', params: [id: device.id])}">this file</a>
-                                    on client folder
+                                    on client folder. Copy the file by scp or usb key; if you are using Windows OS you can use WinSCP <br />
+                                    With scp you can do:
 <pre class="text-left vertical-grabber">
-cp configuration.properties /opt/eiotc/
+#open a terminal
+#goto into the directory where is the download file
+scp config.properties pi@[raspberry ip]:/home/pi/eiotc
 </pre>
                                 </dd>
                                 <br/>
 
                                 <dt>Finish</dt>
                                 <dd class="text-left">
-                                    Start the client
+                                    Start the client using the generated file runClient.sh
 <pre class="text-left vertical-grabber">
-cd /opt/eiotc/
-sudo java -cp "/home/pi/development/pimq/client/.:/home/pi/development/pimq/client/dependency-jars/*" -jar /home/pi/development/pimq/client/org.fm.pimq.client-0.1-SNAPSHOT.jar /home/pi/development/pimq/client/ conf.properties &
+sudo sh ./runClient.sh
 </pre>
                                 </dd>
                                 <br/>
