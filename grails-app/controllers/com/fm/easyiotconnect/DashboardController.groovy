@@ -219,7 +219,7 @@ class DashboardController {
          redirect url: "/assets/client.zip"
       }
       else {
-         redirect url: "/assets/client-f4e7d9b45c9941379fadd9062d2b07ba.zip"
+         redirect url: "/assets/client-2563dee903032305dcbc3c96ac9680a8.zip"
       }
    }
 
@@ -229,7 +229,7 @@ class DashboardController {
          redirect url: "/assets/install.sh"
       }
       else {
-         redirect url: "/assets/install-ec5a37c5b88e5573567281d832d7043d.sh"
+         redirect url: "/assets/install-42a5729417a800a1a1b2bd4f0443dc51.sh"
       }
    }
 }
