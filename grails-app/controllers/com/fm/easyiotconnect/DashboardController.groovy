@@ -229,7 +229,7 @@ class DashboardController {
          redirect url: "/assets/install.sh"
       }
       else {
-         redirect url: "/assets/install-e9372c8c1c307befa8174bb5ab3e695e.sh"
+         redirect url: "/assets/install-ba21501c5292d46e21eff99c1cc97560.sh"
       }
    }
 }

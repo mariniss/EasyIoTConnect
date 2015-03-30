@@ -12,7 +12,8 @@ if [ ! -z "$_java" ]; then
     unzip client.zip
 
     echo "#!/bin/bash
-          sudo java -cp \"./dependency-jars\" -jar org.fm.pimq.client-0.1-SNAPSHOT.jar conf.properties &" > runClient.sh
+sudo java -cp \"./client/dependency-jars\" -jar ./client/org.fm.pimq.client-0.1-SNAPSHOT.jar ./client/configurations.properties &
+" > runClient.sh
 
     echo "Client installed. "
     echo "Now you have to download the configuration from your dashboard and put it in this folder"
