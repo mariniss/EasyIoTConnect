@@ -25,8 +25,8 @@ class UrlMappings {
 		"/sendCommand"(controller: "dashboard", action: "sendCommand")
 
 		"/downloadConfiguration"(controller: "dashboard", action: "downloadConfiguration")
-		"/downloadClient"(controller: "dashboard", action: "downloadClient")
-		"/downloadInstallationScript"(controller: "dashboard", action: "downloadInstallationScript")
+		"/client.zip"(controller: "dashboard", action: "downloadClient")
+		"/install.sh"(controller: "dashboard", action: "downloadInstallationScript")
 
 
 		//General

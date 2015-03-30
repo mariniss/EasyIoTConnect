@@ -189,7 +189,7 @@ wget ${installScriptUrl}
                                 <dd class="text-left">
                                     Execute the installation script just downloaded
 <pre class="text-left vertical-grabber">
-sh ./install.sh <br/>
+sh ./install.sh
 </pre>
                                 </dd>
                                 <br/>

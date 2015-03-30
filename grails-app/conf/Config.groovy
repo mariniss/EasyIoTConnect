@@ -199,7 +199,7 @@ grails {
  * Custom configurations
  ******************************************************************************/
 
-eiotc.device.configure.install.url = "http://www.easyiotconnect.com/downloadInstallationScript"
-eiotc.device.configure.pimqUrl = "http://www.easyiotconnect.com/downloadClient"
+eiotc.device.configure.install.url = "http://www.easyiotconnect.com/install.sh"
+eiotc.device.configure.pimqUrl = "http://www.easyiotconnect.com/client.zip"
 
 eiotc.device.max = 3
