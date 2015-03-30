@@ -12,7 +12,7 @@ if [ ! -z "$_java" ]; then
     unzip client.zip
 
     echo "#!/bin/bash
-sudo java -cp \"./client/:./client/dependency-jars/*\" -jar ./client/org.fm.pimq.client-0.1-SNAPSHOT.jar ./client/ configurations.properties &
+sudo java -cp \"./client/:./client/dependency-jars/*\" -jar ./client/org.fm.pimq.client-1.0.jar ./client/ configurations.properties &
 " > runClient.sh
 
     echo "Client installed. "
