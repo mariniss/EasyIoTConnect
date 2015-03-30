@@ -203,7 +203,7 @@ sh ./install.sh
 <pre class="text-left vertical-grabber">
 #open a terminal
 #goto into the directory where is the download file
-scp config.properties pi@[raspberry ip]:/home/pi/eiotc/client
+scp configurations.properties pi@[raspberry ip]:/home/pi/eiotc/client
 </pre>
                                 </dd>
                                 <br/>
