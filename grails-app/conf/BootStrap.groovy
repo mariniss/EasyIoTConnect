@@ -1,8 +1,9 @@
 import com.fm.easyiotconnect.Role
 import com.fm.easyiotconnect.User
 import com.fm.easyiotconnect.UserRole
-import com.fm.easyiotconnect.DateUtils
+import com.fm.easyiotconnect.mq.AuthenticationServer
 import com.fm.easyiotconnect.mq.MQServer
+import grails.util.Environment
 
 class BootStrap {
 
@@ -72,22 +73,37 @@ class BootStrap {
 	def addMQServers() {
 		if(MQServer.count() == 0) {
 			if(Environment.current == Environment.DEVELOPMENT) {
+				AuthenticationServer authenticationServer =
+						new AuthenticationServer(type: AuthenticationServer.TYPE_EIOTC_SERVER,
+								url: "http://localhost:8888",
+								boUrl: "http://localhost:9999",)
+				authenticationServer.save(flush: true, failOnError: true)
+
 				MQServer local =
-				new MQServer(name: "Local test server",
-							 type: MQServer.TYPE_ACTIVE_MQ,
-							 url: "http://localhost:61616",
-							 provider: MQServer.PROVIDER_LOCALHOST)
+					new MQServer(name: "Local test server",
+								 type: MQServer.TYPE_ACTIVE_MQ,
+								 url: "http://localhost:61616",
+								 provider: MQServer.PROVIDER_LOCALHOST,
+								 authenticationServer: authenticationServer)
 
 				local.save(flush: true, failOnError: true)
 			}
 			else {
-				MQServer awsServerOne = 
-					new MQServer(name: "AWS Srv One",
-								 type: MQServer.TYPE_ACTIVE_MQ,
-								 url: "http://ec2-54-77-129-207.eu-west-1.compute.amazonaws.com:61516",
-								 provider: MQServer.PROVIDER_AWS)
-	
-				awsServerOne.save(flush: true, failOnError: true)
+				AuthenticationServer authenticationServer =
+					new AuthenticationServer(type: AuthenticationServer.TYPE_EIOTC_SERVER,
+											 url: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:8888",
+											 boUrl: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:9999",)
+				authenticationServer.save(flush: true, failOnError: true)
+
+				MQServer awsProOne =
+						new MQServer(name: "AWS PRO 1",
+									 type: MQServer.TYPE_ACTIVE_MQ,
+									 url: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:61516",
+									 provider: MQServer.PROVIDER_AWS,
+								     authenticationServer: authenticationServer)
+
+				awsProOne.save(flush: true, failOnError: true)
+
 			}
 		}
 	}

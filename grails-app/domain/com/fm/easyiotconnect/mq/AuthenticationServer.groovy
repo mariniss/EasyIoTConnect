@@ -29,4 +29,8 @@ class AuthenticationServer {
     def beforeValidate() {
         if(boUrl == null || boUrl.isEmpty()) boUrl = url
     }
+
+    String toString() {
+        return "${this.type} - ${this.url}"
+    }
 }

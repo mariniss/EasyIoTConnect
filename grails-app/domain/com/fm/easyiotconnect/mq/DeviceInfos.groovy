@@ -104,4 +104,9 @@ class DeviceInfos {
 		gpio19Visible ( nullable: true )
 		gpio20Visible ( nullable: true )
     }
+
+
+	String toString() {
+		return "${this.name}: ${this.device}"
+	}
 }
