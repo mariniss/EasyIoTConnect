@@ -263,8 +263,8 @@
 							<a href="https://www.facebook.com/easyiotconnect" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
 						</li>
 						<li>
-							<a href="https://plus.google.com/117372982299542385954" rel="publisher"></a>
-							</li>
+							<a href="https://plus.google.com/117372982299542385954" class="btn-social btn-outline" rel="publisher"><i class="fa fa-fw fa-facebook"></i></a>
+						</li>
 						<li>
 							<a href="https://twitter.com/easyiotconnect" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
 						</li>
