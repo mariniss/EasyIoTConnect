@@ -215,21 +215,11 @@ class DashboardController {
 
 
    def downloadClient() {
-      if(Environment.current == Environment.DEVELOPMENT) {
-         redirect url: "/assets/client.zip"
-      }
-      else {
-         redirect url: "/assets/client-2563dee903032305dcbc3c96ac9680a8.zip"
-      }
+      redirect url: "/assets/client.zip"
    }
 
 
    def downloadInstallationScript() {
-      if(Environment.current == Environment.DEVELOPMENT) {
-         redirect url: "/assets/install.sh"
-      }
-      else {
-         redirect url: "/assets/install-42a5729417a800a1a1b2bd4f0443dc51.sh"
-      }
+      redirect url: "/assets/install.sh"
    }
 }
