@@ -219,7 +219,7 @@ class DashboardController {
          redirect url: "/assets/client.zip"
       }
       else {
-         redirect url: "/assets/client-2b68c667dd52e27ca7790d9efeec6737.zip"
+         redirect url: "/assets/client-9380458a9cec4aecfe5443603f36307c.zip"
       }
    }
 
