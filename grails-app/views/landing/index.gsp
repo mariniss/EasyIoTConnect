@@ -135,7 +135,7 @@
 			<p>Get your Raspberry Pi and connect it to the internet by your home network</p>
 		</div>
 		<div class="col-lg-4">
-			<p>Sing-Up on EIoTC, download the client and install on your Raspberry Pi</p>
+			<p>Sign-Up on EIoTC, download the client and install on your Raspberry Pi</p>
 		</div>
 		<div class="col-lg-4">
 			<p>Go to the EIoTC dashboard, give some labels and that's it</p>
@@ -174,7 +174,7 @@
 
 			<div class="col-lg-8 col-lg-offset-2 text-center">
 				<a href="#singupModal" class="btn btn-lg btn-outline" data-toggle="modal">
-					<i class="fa fa-sign-in"></i> Sing-Up
+					<i class="fa fa-sign-in"></i> Sign-Up
 				</a>
 			</div>
 
@@ -299,7 +299,7 @@
 
 <!-- Modals -->
 
-<!-- Sing-Up -->
+<!-- Sign-Ups -->
 <div class="portfolio-modal modal fade" id="singupModal" tabindex="-1" role="dialog" aria-hidden="true">
 	<div class="modal-content">
 		<div class="close-modal" data-dismiss="modal">
@@ -311,7 +311,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8 col-lg-offset-2">
-					<h2>Sing-Up</h2>
+					<h2>Sign-Up</h2>
 					<hr class="star-primary sign-in">
 
 					<g:form method="POST" action="singUp"
@@ -353,7 +353,7 @@
 						<!-- <div id="success"></div> -->
 						<div class="row">
 							<div class="form-group col-xs-12">
-								<g:submitButton name="singUp" value="Sing-Up"  class="btn btn-success btn-lg"/>
+								<g:submitButton name="singUp" value="Sign-Up"  class="btn btn-success btn-lg"/>
 							</div>
 						</div>
 					</g:form>
