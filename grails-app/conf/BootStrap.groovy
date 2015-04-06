@@ -75,14 +75,14 @@ class BootStrap {
 			if(Environment.current == Environment.DEVELOPMENT) {
 				AuthenticationServer authenticationServer =
 						new AuthenticationServer(type: AuthenticationServer.TYPE_EIOTC_SERVER,
-								url: "http://localhost:8888",
-								boUrl: "http://localhost:9999",)
+								url: "http://127.0.0.1:8888",
+								boUrl: "http://127.0.0.1:9999",)
 				authenticationServer.save(flush: true, failOnError: true)
 
 				MQServer local =
 					new MQServer(name: "Local test server",
 								 type: MQServer.TYPE_ACTIVE_MQ,
-								 url: "http://localhost:61616",
+								 url: "http://127.0.0.1:61616",
 								 provider: MQServer.PROVIDER_LOCALHOST,
 								 authenticationServer: authenticationServer)
 

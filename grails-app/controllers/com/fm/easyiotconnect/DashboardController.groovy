@@ -31,8 +31,7 @@ class DashboardController {
 
        render view:"index",
               model:[devices : devices,
-                     currentUser: currentUser,
-                     installScriptUrl: grailsApplication.config.eiotc.device.configure.install.url]
+                     currentUser: currentUser]
    }
 
    

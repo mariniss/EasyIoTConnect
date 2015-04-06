@@ -13,8 +13,13 @@
                                     swal('Sorry', 'We have got a problem sending the command!', 'warning');
                                 }
                             },
-                            error: function(){
-                                swal('Sorry', 'We have got a problem sending the command!', 'warning');
+                            error: function(e){
+                                if(e.status == 401) {
+                                    window.location = '${createLink(uri: '/#loginModal')}'
+                                }
+                                else {
+                                    swal('Sorry', 'We have got a problem sending the command!', 'warning');
+                                }
                             }
                     });">
                 Send On
@@ -38,8 +43,14 @@
                                 swal('Sorry', 'We have got a problem sending the command!', 'warning');
                             }
                         },
-                        error: function(){
-                            swal('Sorry', 'We have got a problem sending the command!', 'warning');
+                        error: function(e){
+                            if(e.status == 401) {
+                                window.location = '${createLink(uri: '/#loginModal')}'
+                            }
+                            else {
+                                swal('Sorry', 'We have got a problem sending the command!', 'warning');
+                            }
+                        }
                         }
                     });">
                 Send Off

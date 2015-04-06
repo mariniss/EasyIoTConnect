@@ -61,6 +61,8 @@
     </section>
 </g:if>
 <g:if test="${devices.size() > 0}">
+    <g:set var="installScriptUrl" value="${createLink(uri: '/install.sh')}" />
+
     <g:each in="${devices}" var="device" status="i">
         <section data-id="${device.id}" class="device ${i % 2 == 0 ? 'success' : ''} ${i == 0 ? 'first' : 'not-first'}">
             <div class="container">
@@ -174,13 +176,13 @@
 
                                 <dt>Get EIoT client</dt>
                                 <dd class="text-left">
-                                    Download the installation script by this link <a href="${installScriptUrl}">on your raspberry</a>,
+                                    Download the installation script by <a href="${installScriptUrl}">this link</a> on your raspberry,
                                     <span>You can use the wget command from raspberry and download it on the home</span>
 <pre>
 cd /home/pi
 mkdir eiotc
 cd eiotc
-wget ${installScriptUrl}
+wget http://www.easyiotconnect.com/install.sh
 </pre>
                                 </dd>
                                 <br/>

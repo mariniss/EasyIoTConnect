@@ -124,7 +124,7 @@ grails.plugin.springsecurity.authority.groupAuthorityNameField = 'authorities'
 grails.plugin.springsecurity.useRoleGroups = false
 
 grails.plugin.springsecurity.auth.loginFormUrl = '/#loginModal'
-grails.plugin.springsecurity.successHandler.alwaysUseDefault = false
+grails.plugin.springsecurity.successHandler.alwaysUseDefault = true
 grails.plugin.springsecurity.failureHandler.defaultFailureUrl = '/'
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = '/dashboard'
 
@@ -198,8 +198,5 @@ grails {
 /******************************************************************************
  * Custom configurations
  ******************************************************************************/
-
-eiotc.device.configure.install.url = "http://www.easyiotconnect.com/install.sh"
-eiotc.device.configure.pimqUrl = "http://www.easyiotconnect.com/client.zip"
 
 eiotc.device.max = 3
