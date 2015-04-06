@@ -51,7 +51,6 @@
                                 swal('Sorry', 'We have got a problem sending the command!', 'warning');
                             }
                         }
-                        }
                     });">
                 Send Off
             </button>
