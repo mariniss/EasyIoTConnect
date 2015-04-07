@@ -200,3 +200,4 @@ grails {
  ******************************************************************************/
 
 eiotc.device.max = 3
+eiotc.blog.url = 'http://blog.easyiotconnect.com'

@@ -1,5 +1,6 @@
 package easyiotconnect
 
+import com.fm.easyiotconnect.LandingController
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 

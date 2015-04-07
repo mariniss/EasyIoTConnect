@@ -1,9 +1,4 @@
-package easyiotconnect
-
-import com.fm.easyiotconnect.ServiceCodes
-import com.fm.easyiotconnect.ServiceError
-import com.fm.easyiotconnect.User
-import com.fm.easyiotconnect.UserQuestions
+package com.fm.easyiotconnect
 
 
 class LandingController {

@@ -42,6 +42,8 @@
 		ga('create', 'UA-59646328-1', 'auto');
 		ga('send', 'pageview');
 	</script>
+
+	<g:set var="blogUrl" value="${grailsApplication.config.eiotc.blog.url}" />
 </head>
 
 <body id="page-top" class="index">
@@ -78,6 +80,9 @@
 				</li>
 				<li class="page-scroll">
 					<a href="#contact" id="btnContactMe">Contact</a>
+				</li>
+				<li class="page-scroll">
+					<a href="${blogUrl}">Blog</a>
 				</li>
 				<li class="page-scroll">
 					<div class="login-menu">
@@ -159,6 +164,11 @@
 
 		<div class="row text-center">
 			<a href="#noRaspberryModal" class="portfolio-link" data-toggle="modal">I don't have a Raspberry</a>
+		</div>
+
+		<br />
+		<div class="col-lg-12 text-center">
+			<p>You can found more information, tutorial, news and discussions on our <a href="${blogUrl}" target="_blank">blog!</a></p>
 		</div>
 
 	</div>
