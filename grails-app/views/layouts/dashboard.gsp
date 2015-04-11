@@ -56,6 +56,8 @@
 		ga('send', 'pageview');
 
 	</script>
+
+	<asset:javascript id="cookiebanner" src="cookiebanner.min.js"/>
 </head>
 
 <body>

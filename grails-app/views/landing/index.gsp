@@ -43,6 +43,9 @@
 		ga('send', 'pageview');
 	</script>
 
+
+	<asset:javascript id="cookiebanner" src="cookiebanner.min.js"/>
+
 	<g:set var="blogUrl" value="${grailsApplication.config.eiotc.blog.url}" />
 </head>
 
