@@ -1,6 +1,6 @@
 <g:if test="${visible}">
     <g:if test="${pinId == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_W1_THERM}">
-        <div class="w1therm-out" data-device-id="${deviceId}">
+        <div class="w1therm-out row" data-device-id="${deviceId}">
             <div id="gpio${pinId}w1one_${deviceId}" id="gpio${pinId}w1one_${deviceId}"
                  class="col-xs-4 text-right w1therm-out-one" style="margin-top: 10px">
                 - °C
