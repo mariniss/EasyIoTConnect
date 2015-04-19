@@ -16,8 +16,15 @@ class Device {
 	
 	Jack jackCommandProducer //webapp
 	Jack jackCommandConsumer //device
+
 	Jack jackStatusProducer  //device
 	Jack jackStatusConsumer  //webapp
+
+	Jack jackW1DataRequestProducer  //webapp
+	Jack jackW1DataRequestConsumer  //device
+
+	Jack jackW1DataProducer  		//device
+	Jack jackW1DataConsumer  		//webapp
 
 	DeviceInfos infos
 	
@@ -29,11 +36,15 @@ class Device {
     }
 
 	static mapping = {
-		jackCommandProducer cascade: 'all-delete-orphan'
-		jackCommandConsumer cascade: 'all-delete-orphan'
-		jackStatusProducer  cascade: 'all-delete-orphan'
-		jackStatusConsumer  cascade: 'all-delete-orphan'
-		infos		 		cascade: 'all-delete-orphan'
+		jackCommandProducer 		cascade: 'all-delete-orphan'
+		jackCommandConsumer 		cascade: 'all-delete-orphan'
+		jackStatusProducer  		cascade: 'all-delete-orphan'
+		jackStatusConsumer  		cascade: 'all-delete-orphan'
+		jackW1DataRequestProducer	cascade: 'all-delete-orphan'
+		jackW1DataRequestConsumer 	cascade: 'all-delete-orphan'
+		jackW1DataProducer			cascade: 'all-delete-orphan'
+		jackW1DataConsumer			cascade: 'all-delete-orphan'
+		infos		 				cascade: 'all-delete-orphan'
 	}
 	
 	def beforeValidate() {
@@ -55,10 +66,14 @@ class Device {
 	List<Jack> getJacks() {
 		List<Jack> jacks = []
 
-		if(jackCommandProducer) jacks += jackCommandProducer
-		if(jackCommandConsumer) jacks += jackCommandConsumer
-		if(jackStatusProducer)   jacks += jackStatusProducer
-		if(jackStatusConsumer)   jacks += jackStatusConsumer
+		if(jackCommandProducer) 		jacks += jackCommandProducer
+		if(jackCommandConsumer) 		jacks += jackCommandConsumer
+		if(jackStatusProducer)  		jacks += jackStatusProducer
+		if(jackStatusConsumer)  		jacks += jackStatusConsumer
+		if(jackW1DataRequestProducer) 	jacks += jackW1DataRequestProducer
+		if(jackW1DataRequestConsumer) 	jacks += jackW1DataRequestConsumer
+		if(jackW1DataProducer) 		  	jacks += jackW1DataProducer
+		if(jackW1DataConsumer) 		  	jacks += jackW1DataConsumer
 
 		return jacks
 	}
@@ -70,5 +85,16 @@ class Device {
 		}
 
 		return null
+	}
+
+
+	boolean w1ThermEnabled() {
+		boolean enabled = false
+		if(infos && infos.gpio4Visible
+				 && infos.gpio4Type == DeviceInfos.GPIO_TYPE_W1_THERM) {
+			enabled = true
+		}
+
+		return enabled
 	}
 }

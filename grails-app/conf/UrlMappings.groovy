@@ -23,6 +23,7 @@ class UrlMappings {
 		"/deleteDevice"(controller: "dashboard", action: "deleteDevice")
 
 		"/sendCommand"(controller: "dashboard", action: "sendCommand")
+		'/w1ThermData'(controller: "dashboard", action: "w1ThermData")
 
 		"/downloadConfiguration"(controller: "dashboard", action: "downloadConfiguration")
 		"/client.zip"(controller: "dashboard", action: "downloadClient")

@@ -257,47 +257,47 @@ sudo sh ./runClient.sh
                                 <input type="hidden" name="id" value="${device.id}">
 
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 0', id: 'gpio0name', name: 'gpio0name', value: device.infos.gpio0Name]" />
+                                          model="[gpioNumber: 0, name: device.infos.gpio0Name, type: device.infos.gpio0Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 1', id: 'gpio1name', name: 'gpio1name', value: device.infos.gpio1Name]" />
+                                          model="[gpioNumber: 1, name: device.infos.gpio1Name, type: device.infos.gpio1Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 2', id: 'gpio2name', name: 'gpio2name', value: device.infos.gpio2Name]" />
+                                          model="[gpioNumber: 2, name: device.infos.gpio2Name, type: device.infos.gpio2Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 3', id: 'gpio3name', name: 'gpio3name', value: device.infos.gpio3Name]" />
+                                          model="[gpioNumber: 3, name: device.infos.gpio3Name, type: device.infos.gpio3Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 4', id: 'gpio4name', name: 'gpio4name', value: device.infos.gpio4Name]" />
+                                          model="[gpioNumber: 4, name: device.infos.gpio4Name, type: device.infos.gpio4Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 5', id: 'gpio5name', name: 'gpio5name', value: device.infos.gpio5Name]" />
+                                          model="[gpioNumber: 5, name: device.infos.gpio5Name, type: device.infos.gpio5Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 6', id: 'gpio6name', name: 'gpio6name', value: device.infos.gpio6Name]" />
+                                          model="[gpioNumber: 6, name: device.infos.gpio6Name, type: device.infos.gpio6Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 7', id: 'gpio7name', name: 'gpio7name', value: device.infos.gpio7Name]" />
+                                          model="[gpioNumber: 7, name: device.infos.gpio7Name, type: device.infos.gpio7Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 8', id: 'gpio8name', name: 'gpio8name', value: device.infos.gpio8Name]" />
+                                          model="[gpioNumber: 8, name: device.infos.gpio8Name, type: device.infos.gpio8Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 9', id: 'gpio9name', name: 'gpio9name', value: device.infos.gpio9Name]" />
+                                          model="[gpioNumber: 9, name: device.infos.gpio9Name, type: device.infos.gpio9Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 10', id: 'gpio10name', name: 'gpio10name', value: device.infos.gpio10Name]" />
+                                          model="[gpioNumber: 10, name: device.infos.gpio10Name, type: device.infos.gpio10Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 11', id: 'gpio11name', name: 'gpio11name', value: device.infos.gpio11Name]" />
+                                          model="[gpioNumber: 11, name: device.infos.gpio11Name, type: device.infos.gpio11Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 12', id: 'gpio12name', name: 'gpio12name', value: device.infos.gpio12Name]" />
+                                          model="[gpioNumber: 12, name: device.infos.gpio12Name, type: device.infos.gpio12Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 13', id: 'gpio13name', name: 'gpio13name', value: device.infos.gpio13Name]" />
+                                          model="[gpioNumber: 13, name: device.infos.gpio13Name, type: device.infos.gpio13Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 14', id: 'gpio14name', name: 'gpio14name', value: device.infos.gpio14Name]" />
+                                          model="[gpioNumber: 14, name: device.infos.gpio14Name, type: device.infos.gpio14Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 15', id: 'gpio15name', name: 'gpio15name', value: device.infos.gpio15Name]" />
+                                          model="[gpioNumber: 15, name: device.infos.gpio15Name, type: device.infos.gpio15Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 16', id: 'gpio16name', name: 'gpio16name', value: device.infos.gpio16Name]" />
+                                          model="[gpioNumber: 16, name: device.infos.gpio16Name, type: device.infos.gpio16Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 17', id: 'gpio17name', name: 'gpio17name', value: device.infos.gpio17Name]" />
+                                          model="[gpioNumber: 17, name: device.infos.gpio17Name, type: device.infos.gpio17Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 18', id: 'gpio18name', name: 'gpio18name', value: device.infos.gpio18Name]" />
+                                          model="[gpioNumber: 18, name: device.infos.gpio18Name, type: device.infos.gpio18Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 19', id: 'gpio19name', name: 'gpio19name', value: device.infos.gpio19Name]" />
+                                          model="[gpioNumber: 19, name: device.infos.gpio19Name, type: device.infos.gpio19Type]" />
                                 <g:render template="gpioInput"
-                                          model="['label': 'GPIO 20', id: 'gpio20name', name: 'gpio20name', value: device.infos.gpio20Name]" />
+                                          model="[gpioNumber: 20, name: device.infos.gpio20Name, type: device.infos.gpio20Type]" />
 
                                 <div class="row">
                                     <div class="form-group col-xs-6 text-left">
@@ -482,6 +482,56 @@ sudo sh ./runClient.sh
             $("#btnRemoteDevice${device.id}").click();
         }
     </g:each>
+</script>
+
+<script>
+    <g:if test="${devices.any{it.w1ThermEnabled()}}">
+        $(function() {
+            var w1thermOuts = $('.w1therm-out');
+            var timeout = null, lastXhr = false;
+
+            function refresh_w1therm_value(w1therm, w1thermDiv) {
+                if(w1therm.error) {
+                    $('.w1therm-out-one', w1thermDiv).html('- °C');
+                    $('.w1therm-out-two', w1thermDiv).html('- °F');
+                }
+                else {
+                    $('.w1therm-out-one', w1thermDiv).html(w1therm.data.celsius + ' °C' || '- °C');
+                    $('.w1therm-out-two', w1thermDiv).html(w1therm.data.fahrenheit + ' °F'  || '- °F');
+                }
+            }
+
+            function update_status() {
+                if(lastXhr) { lastXhr.abort(); }
+
+                w1thermOuts.each(function() {
+                    var self = this;
+                    var deviceId = self.dataset.deviceId;
+
+                    lastXhr = $.ajax({
+                        url: "${g.createLink(action:'w1ThermData')}",
+                        type: "POST", dataType: "json", data: { id: deviceId },
+                        success: function(data) { refresh_w1therm_value(data, self) },
+                        error: function() {
+                            var data = {error: 'Data transmision'};
+                            refresh_w1therm_value(data, self)
+                        }
+                    });
+                });
+            }
+
+            function start_monitoring() {
+                if(timeout) { clearInterval(timeout); }
+                timeout = setInterval(update_status, 30000);
+            }
+
+            if($(w1thermOuts).length) {
+                update_status();
+                start_monitoring();
+            }
+        });
+    </g:if>
+
 </script>
 
 </body>

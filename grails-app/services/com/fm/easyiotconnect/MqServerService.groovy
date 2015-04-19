@@ -8,7 +8,9 @@ import grails.transaction.Transactional
 
 @Transactional
 class MqServerService {
-	
+
+	public static final String ACTIVE_MQ_DQL_QUEUE_NAME = "ActiveMQ.DLQ"
+
 	/**
 	 * 
 	 * @param user
@@ -42,6 +44,12 @@ class MqServerService {
 
 		names.statusProducer = "${Jack.TYPE_STATUS}_${user.id}_${name}"
 		names.statusConsumer = "queue://${names.statusProducer}"
+
+		names.w1DataRequestProducer = "${Jack.TYPE_W1_REQUEST}_${user.id}_${name}"
+		names.w1DataRequestConsumer = "queue://${names.w1DataRequestProducer}"
+
+		names.w1DataProducer = "${Jack.TYPE_W1}_${user.id}_${name}"
+		names.w1DataConsumer = "queue://${names.w1DataProducer}"
 
 		return names
 	}

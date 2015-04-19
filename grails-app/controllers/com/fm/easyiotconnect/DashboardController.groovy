@@ -1,12 +1,14 @@
 package com.fm.easyiotconnect
 
 import com.fm.easyiotconnect.mq.Device
+import com.fm.easyiotconnect.mq.DeviceInfos
 import grails.converters.JSON
 import grails.util.Environment
 import org.apache.commons.lang.StringUtils
 import org.fm.pimq.IPinMessage
 import org.fm.pimq.PinMQ
 import org.fm.pimq.PinStateMQ
+import org.fm.pimq.bus.w1.therm.Temperature
 import org.fm.pimq.impl.PinMessageImpl
 
 /**
@@ -87,6 +89,10 @@ class DashboardController {
          device.infos.gpio15Name = params.gpio15name
          device.infos.gpio16Name = params.gpio16name
          device.infos.gpio17Name = params.gpio17name
+         device.infos.gpio18Name = params.gpio18name
+         device.infos.gpio19Name = params.gpio19name
+         device.infos.gpio20Name = params.gpio20name
+
 
          device.infos.gpio0Visible  = StringUtils.isNotBlank(device.infos.gpio0Name)
          device.infos.gpio1Visible  = StringUtils.isNotBlank(device.infos.gpio1Name)
@@ -106,6 +112,32 @@ class DashboardController {
          device.infos.gpio15Visible = StringUtils.isNotBlank(device.infos.gpio15Name)
          device.infos.gpio16Visible = StringUtils.isNotBlank(device.infos.gpio16Name)
          device.infos.gpio17Visible = StringUtils.isNotBlank(device.infos.gpio17Name)
+         device.infos.gpio18Visible = StringUtils.isNotBlank(device.infos.gpio18Name)
+         device.infos.gpio19Visible = StringUtils.isNotBlank(device.infos.gpio19Name)
+         device.infos.gpio20Visible = StringUtils.isNotBlank(device.infos.gpio20Name)
+
+
+         device.infos.gpio0Type  = params.gpio0type
+         device.infos.gpio1Type  = params.gpio1type
+         device.infos.gpio2Type  = params.gpio2type
+         device.infos.gpio3Type  = params.gpio3type
+         device.infos.gpio4Type  = params.gpio4type
+         device.infos.gpio5Type  = params.gpio5type
+         device.infos.gpio6Type  = params.gpio6type
+         device.infos.gpio7Type  = params.gpio7type
+         device.infos.gpio8Type  = params.gpio8type
+         device.infos.gpio9Type  = params.gpio9type
+         device.infos.gpio10Type = params.gpio10type
+         device.infos.gpio11Type = params.gpio11type
+         device.infos.gpio12Type = params.gpio12type
+         device.infos.gpio13Type = params.gpio13type
+         device.infos.gpio14Type = params.gpio14type
+         device.infos.gpio15Type = params.gpio15type
+         device.infos.gpio16Type = params.gpio16type
+         device.infos.gpio17Type = params.gpio17type
+         device.infos.gpio18Type = params.gpio18type
+         device.infos.gpio19Type = params.gpio19type
+         device.infos.gpio20Type = params.gpio20type
          
          if(device.save(flush:true)) {
             flash.alert = [type:"success", title: "Done", message: "Device updated successfully!"]
@@ -163,6 +195,36 @@ class DashboardController {
       }
 
       render result as JSON
+   }
+
+
+   def w1ThermData() {
+      def deviceId = params.id
+      def currentUser = springSecurityService.currentUser
+
+      Map result = [error:true]
+
+      Device device = Device.findByIdAndUser(deviceId, currentUser)
+      if(device == null) {
+         result.message = "Device not found!"
+      }
+      else {
+         int pin = DeviceInfos.GPIO_W1_THERM
+
+         PinMQ mqPin = new PinMQ(pin)
+         IPinMessage command = new PinMessageImpl(mqPin)
+
+         if(deviceService.sendW1DataRequest(device, command)) {
+            Temperature temperature = deviceService.getW1Data(device)
+            if(temperature != null) {
+               result.error = false
+               result.data = [celsius: temperature.celsius, fahrenheit: temperature.fahrenheit]
+            }
+         }
+      }
+
+      render result as JSON
+
    }
 
    

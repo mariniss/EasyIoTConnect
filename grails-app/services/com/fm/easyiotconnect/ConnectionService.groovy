@@ -61,6 +61,26 @@ class ConnectionService {
 									   uses  		    : Jack.USES_CONSUMER,
 									   serverContainer  : server)
 
+		Jack w1DataRequestProducer = new Jack(queueName 		: names.w1DataRequestProducer,
+										  	  type				: Jack.TYPE_W1_REQUEST,
+											  uses  			: Jack.USES_PRODUCE,
+											  serverContainer	: server)
+
+		Jack w1DataRequestConsumer = new Jack(queueName 		: names.w1DataRequestConsumer,
+											  type				: Jack.TYPE_W1_REQUEST,
+											  uses  			: Jack.USES_CONSUMER,
+											  serverContainer 	: server)
+
+		Jack w1DataProducer = new Jack(queueName 		: names.w1DataProducer,
+									   type				: Jack.TYPE_W1,
+									   uses  			: Jack.USES_PRODUCE,
+				 					   serverContainer 	: server)
+
+		Jack w1DataConsumer = new Jack(queueName 	    : names.w1DataConsumer,
+									   type			    : Jack.TYPE_W1,
+									   uses  		    : Jack.USES_CONSUMER,
+									   serverContainer  : server)
+
 		DeviceInfos infos = new DeviceInfos(name : deviceName)
 
 		Device device = new Device(type 	   : deviceType,
@@ -68,6 +88,10 @@ class ConnectionService {
 								   jackCommandConsumer: commandConsumer,
 								   jackStatusProducer : statusProducer,
 								   jackStatusConsumer : statusConsumer,
+								   jackW1DataRequestConsumer: w1DataRequestConsumer,
+								   jackW1DataRequestProducer: w1DataRequestProducer,
+								   jackW1DataConsumer: w1DataConsumer,
+								   jackW1DataProducer: w1DataProducer,
 								   infos	   : infos,
 								   user		   : user)
 
@@ -109,11 +133,7 @@ class ConnectionService {
 		}
 	}
 
-	/**
-	 *
-	 * @param device
-	 * @return
-	 */
+
 	boolean deleteDevice(User user, Device device) {
 		boolean result = false
 

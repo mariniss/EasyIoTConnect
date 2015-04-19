@@ -12,6 +12,8 @@ if [ ! -z "$_java" ]; then
     unzip client.zip
 
     echo "#!/bin/bash
+sudo modprobe w1-gpio
+sudo modprobe w1-therm
 sudo java -cp \"./client/:./client/dependency-jars/*\" -jar ./client/org.fm.pimq.client-1.0.jar ./client/ configurations.properties &
 echo \"Client started\"
 " > runClient.sh
