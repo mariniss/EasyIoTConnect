@@ -522,7 +522,7 @@ sudo sh ./runClient.sh
 
             function start_monitoring() {
                 if(timeout) { clearInterval(timeout); }
-                timeout = setInterval(update_status, 30000);
+                timeout = setInterval(update_status, 180000);
             }
 
             if($(w1thermOuts).length) {
@@ -531,7 +531,6 @@ sudo sh ./runClient.sh
             }
         });
     </g:if>
-
 </script>
 
 </body>
