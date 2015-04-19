@@ -1,8 +1,13 @@
-org.fm.pimq.client.servertype=${jack.serverContainer.type}
-org.fm.pimq.client.connection.url=${jack.serverContainer.url}
+org.fm.pimq.client.servertype=${device.jackCommandProducer.serverContainer.type}
+org.fm.pimq.client.connection.url=${device.jackCommandProducer.serverContainer.url}
 org.fm.pimq.client.commands.enable=true
-org.fm.pimq.client.commands.queue=${jack.queueName}
+org.fm.pimq.client.commands.queue=${device.jackCommandProducer.queueName}
 org.fm.pimq.client.states.enable=false
 org.fm.pimq.client.states.queue=
 org.fm.pimq.client.ssl.username=${user.username}
 org.fm.pimq.client.ssl.password=${user.password}
+org.fm.pimq.client.w1bus.enable=true
+org.fm.pimq.client.w1bus.path=/sys/bus/w1/devices
+org.fm.pimq.client.w1bus.devics.prefix=28-
+org.fm.pimq.client.w1bus.queue=${device.jackW1DataProducer.queueName}
+org.fm.pimq.client.w1bus.requests.queue=${device.jackW1DataRequestProducer.queueName}

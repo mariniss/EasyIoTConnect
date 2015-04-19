@@ -262,7 +262,7 @@ class DashboardController {
       if(device != null) {
          String deviceConfig =
                  groovyPageRenderer.render(view : '/fileTemplates/pimqConfig',
-                         model: [jack: device.jackCommandProducer,
+                         model: [device: device,
                                  user: currentUser])
 
          response.setContentType("text/plain")
