@@ -1,8 +1,8 @@
 <g:if test="${gpioNumber == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_W1_THERM}">
     <div class="row form-group">
         <div class="col-xs-6 floating-label-form-group controls" >
-            <label><g:message code="gpio.input.name.label" args="${gpioNumber}"/></label>
-            <input type="text" class="form-control" placeholder="${message(code:'gpio.input.name.label', args: gpioNumber)}"
+            <label><g:message code="gpio.input.identifier.label" args="[gpioNumber]"/></label>
+            <input type="text" class="form-control" placeholder="${message(code:'gpio.input.name.label', args: [gpioNumber])}"
                    id="gpio${gpioNumber}name" name="gpio${gpioNumber}name"
                    value="${name}">
             <p class="help-block text-danger"></p>
@@ -26,8 +26,8 @@
 </g:if>
 <g:else>
     <div class="form-group col-xs-12 floating-label-form-group controls">
-        <label><g:message code="gpio.input.name.label" args="${gpioNumber}"/></label>
-        <input type="text" class="form-control" placeholder="${message(code:'gpio.input.name.label', args: gpioNumber)}"
+        <label><g:message code="gpio.input.identifier.label" args="[gpioNumber]"/></label>
+        <input type="text" class="form-control" placeholder="${message(code:'gpio.input.name.label', args: [gpioNumber])}"
                id="gpio${gpioNumber}name" name="gpio${gpioNumber}name"
                value="${name}">
         <p class="help-block text-danger"></p>

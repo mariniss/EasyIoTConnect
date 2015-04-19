@@ -18,6 +18,10 @@ sudo java -cp \"./client/:./client/dependency-jars/*\" -jar ./client/org.fm.pimq
 echo \"Client started\"
 " > runClient.sh
 
+    if ! grep -q "dtoverlay=w1-gpio" "/boot/config.txt"; then
+        echo "dtoverlay=w1-gpio" >> /boot/config.txt
+    fi
+
     echo "Client installed. "
     echo "Now you have to download the configuration from your dashboard and put it in this folder"
 else
