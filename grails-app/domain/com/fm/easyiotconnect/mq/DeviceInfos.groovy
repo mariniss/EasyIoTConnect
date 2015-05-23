@@ -85,7 +85,8 @@ class DeviceInfos {
 	String gpio20Type = GPIO_TYPE_ON_OFF
 	
 	static belongsTo = [device: Device]
-	
+
+
     static constraints = {
 		device (nullable: false)
 		
@@ -181,6 +182,30 @@ class DeviceInfos {
 		if(gpio19Type == null) gpio19Type = GPIO_TYPE_ON_OFF
 		if(gpio20Type == null) gpio20Type = GPIO_TYPE_ON_OFF
 	}
+
+
+	List<TimedCommand> getTimedCommands() {
+		return TimedCommand.findAllByDeviceInfos(this)
+	}
+
+
+	TimedCommand getTimedCommand(int gpioId, String type) {
+		List<TimedCommand> timedCommands = timedCommands
+		if(timedCommands) {
+			return timedCommands.find { it.gpioId == gpioId && it.type == type }
+		}
+
+		return null
+	}
+
+
+	Map<String, TimedCommand> getTimedCommands(int gpioId) {
+		return [
+				(TimedCommand.TYPE_SEND_ON) : getTimedCommand(gpioId, TimedCommand.TYPE_SEND_ON),
+				(TimedCommand.TYPE_SEND_OFF): getTimedCommand(gpioId, TimedCommand.TYPE_SEND_OFF)
+		]
+	}
+
 
 	String toString() {
 		return "${this.name}: ${this.device}"

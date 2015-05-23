@@ -58,6 +58,11 @@
 	</script>
 
 	<asset:javascript id="cookiebanner" src="cookiebanner.min.js"/>
+
+
+	<asset:stylesheet src="bootstrap-datetimepicker.min.css"/>
+	<asset:javascript src="bootstrap-datetimepicker.js"/>
+	<asset:javascript src="bootstrap-datetimepicker.uk.js"/>
 </head>
 
 <body>
@@ -159,5 +164,17 @@
 	<asset:javascript src="classie.js"/>
 	<asset:javascript src="cbpAnimatedHeader.js"/>
 
+	<script type="text/javascript">
+		$('.form_datetime').datetimepicker({
+			//language:  'en',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1
+		});
+	</script>
 </body>
 </html>

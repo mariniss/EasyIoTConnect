@@ -50,3 +50,11 @@ section.not-first.success {
 
 }
 
+.gpio-input.repeat-on-option-first {
+	display: inline-block;
+}
+
+.gpio-input.repeat-on-option {
+	display: inline-block;
+	padding-left: 10px;
+}

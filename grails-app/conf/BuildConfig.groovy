@@ -92,5 +92,7 @@ grails.project.dependency.resolution = {
 		compile ':webxml:1.4.1'
 
         compile ':rest-client-builder:2.0.3'
+
+        compile ":joda-time:1.5"
     }
 }

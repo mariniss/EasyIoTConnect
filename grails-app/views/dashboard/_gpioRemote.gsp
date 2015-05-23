@@ -1,5 +1,5 @@
 <g:if test="${visible}">
-    <g:if test="${pinId == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_W1_THERM}">
+    <g:if test="${type == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_W1_THERM}">
         <div class="w1therm-out row" data-device-id="${deviceId}">
             <div id="gpio${pinId}w1one_${deviceId}" id="gpio${pinId}w1one_${deviceId}"
                  class="col-xs-4 text-right w1therm-out-one" style="margin-top: 10px">
@@ -38,11 +38,20 @@
                                     }
                                 }
                         });">
-                    Send On
+                    <g:if test="${type == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}">
+                        Force On
+                    </g:if>
+                    <g:else>
+                        On
+                    </g:else>
                 </button>
             </div>
 
             <div class="form-group col-xs-4 text-center text-primary" style="margin-top: 10px">
+                <g:if test="${type == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}">
+                    <i class="fa fa-calendar"></i>
+                </g:if>
+
                 ${name}
             </div>
 
@@ -68,7 +77,12 @@
                                 }
                             }
                         });">
-                    Send Off
+                    <g:if test="${type == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}">
+                        Force Off
+                    </g:if>
+                    <g:else>
+                        Off
+                    </g:else>
                 </button>
             </div>
         </div>
