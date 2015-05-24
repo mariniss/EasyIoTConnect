@@ -43,6 +43,17 @@ class TimedCommand {
 
 public enum TimedRecurType {
     NONE('None'),
+    MINUTES_5('5 Minutes'),
+    MINUTES_15('15 Minutes'),
+    MINUTES_30('30 Minutes'),
+    MINUTES_45('45 Minutes'),
+    HOURLY('Hourly'),
+    HOURS_2("2 Hours"),
+    HOURS_4("4 Hours"),
+    HOURS_6("6 Hours"),
+    HOURS_8("8 Hours"),
+    HOURS_10("10 Hours"),
+    HOURS_12("12 Hours"),
     DAILY('Daily'),
     WEEKLY('Weekly'),
     MONTHLY('Monthly'),
