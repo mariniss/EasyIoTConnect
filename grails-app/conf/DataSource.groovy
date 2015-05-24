@@ -37,9 +37,9 @@ environments {
 			driverClassName = "org.postgresql.Driver"
 			dialect = net.sf.hibernate.dialect.PostgreSQLDialect
 			driverClassName = "org.postgresql.Driver"
-	        url = "jdbc:postgresql://ec2-54-246-101-76.eu-west-1.compute.amazonaws.com:5432/dak1lkua1ii285"
-			username = "wdintazhcntcaz"
-			password = "Jcu3xChAcsbGgpulXL-NopWZBM"
+	        url = "jdbc:postgresql://ec2-54-247-79-142.eu-west-1.compute.amazonaws.com:5432/dbch2r4r2u49pq"
+			username = "cgurzxmibfdpxi"
+			password = "eKcQJP0tZ8uVIQR-ZQY005MMYq"
 			properties {
 				// See http://grails.org/doc/latest/guide/conf.html#dataSource for documentation
 				jmxEnabled = true

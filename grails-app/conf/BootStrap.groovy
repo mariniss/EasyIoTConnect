@@ -91,14 +91,14 @@ class BootStrap {
 			else {
 				AuthenticationServer authenticationServer =
 					new AuthenticationServer(type: AuthenticationServer.TYPE_EIOTC_SERVER,
-											 url: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:8888",
-											 boUrl: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:9999",)
+											 url: "http://ec2-52-16-147-49.eu-west-1.compute.amazonaws.com:8888",
+											 boUrl: "http://ec2-52-16-147-49.eu-west-1.compute.amazonaws.com:9999",)
 				authenticationServer.save(flush: true, failOnError: true)
 
 				MQServer awsProOne =
-						new MQServer(name: "AWS PRO 1",
+						new MQServer(name: "AWS PRO 0",
 									 type: MQServer.TYPE_ACTIVE_MQ,
-									 url: "http://ec2-52-17-125-181.eu-west-1.compute.amazonaws.com:61516",
+									 url: "http://ec2-52-16-147-49.eu-west-1.compute.amazonaws.com:61516",
 									 provider: MQServer.PROVIDER_AWS,
 								     authenticationServer: authenticationServer)
 
