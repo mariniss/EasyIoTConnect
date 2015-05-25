@@ -25,7 +25,7 @@ else {
             // configure settings for the run-app JVM
             run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
             // configure settings for the run-war JVM
-            war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+            war: [maxMemory: 512, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
             // configure settings for the Console UI JVM
             console: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256]
     ]
