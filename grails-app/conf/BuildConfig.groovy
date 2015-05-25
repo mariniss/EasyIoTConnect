@@ -96,5 +96,6 @@ grails.project.dependency.resolution = {
         compile ":joda-time:1.5"
 
         compile ":quartz:1.0.2"
+        compile ":quartz-monitor:1.0"
     }
 }
