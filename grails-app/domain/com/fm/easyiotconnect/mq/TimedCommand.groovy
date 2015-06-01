@@ -52,10 +52,16 @@ class TimedCommand {
 
 
     Date getExecutionTimeWithTZ() {
-        Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
-        dateCalTZ.setTime(executionTime)
+        //Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
+        //dateCalTZ.setTime(executionTime)
+        //return dateCalTZ.time
 
-        return dateCalTZ.time
+        TimeZone tz = TimeZone.getTimeZone(timeZoneName)
+
+        Long execution = executionTime.time
+        execution -= tz.rawOffset
+
+        return new Date(execution)
     }
 }
 
