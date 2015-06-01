@@ -1,5 +1,6 @@
 package com.fm.easyiotconnect
 
+
 import com.fm.easyiotconnect.mq.TimedCommand
 import com.fm.easyiotconnect.mq.TimedRecurType
 import grails.transaction.Transactional
@@ -25,9 +26,6 @@ class TimedCommandsService {
         else if(command.recurringType == TimedRecurType.NONE) {
             return false
         }
-        else if(command.recurringEndTime && command.recurringEndTime < executionTime) {
-            return false
-        }
         else {
             boolean toExecute = false
 
@@ -45,12 +43,12 @@ class TimedCommandsService {
             int executionMonth = executionCal.get(Calendar.MONTH)
 
             switch (command.recurringType) {
-                case TimedRecurType.MINUTES_5:
+                /* case TimedRecurType.MINUTES_5:
                     toExecute = (timedCal.get(Calendar.MINUTE) % 5 == 0)
                     break
                 case TimedRecurType.MINUTES_15:
                     toExecute = isMinuteInRage(timedCal, executionCal, 0, 15, 30, 45)
-                    break
+                    break */
                 case TimedRecurType.MINUTES_30:
                     toExecute = isMinuteInRage(timedCal, executionCal, 0, 30)
                     break
@@ -192,19 +190,26 @@ class TimedCommandsService {
 
 
     Boolean execute(TimedCommand command) {
+        Boolean executed = false
+
         if(command && command.deviceInfos && command.deviceInfos.device) {
-            log.info "Executing command ${command.id} - date ${(new Date()).format("dd/MM/yy HH:mm:ss")}"
+            Date executionTime = new Date()
+
+            log.info "Executing command ${command.id} - date ${executionTime.format("dd/MM/yy HH:mm:ss")}"
 
             if (Environment.current == Environment.DEVELOPMENT) {
-                return true
+                executed = true
             } else {
                 PinMQ mqPin = new PinMQ(command.gpioId)
                 PinStateMQ mqState = command.type == TimedCommand.TYPE_SEND_OFF ? PinStateMQ.LOW : PinStateMQ.HIGH
 
-                return deviceService.sendCommand(command.deviceInfos.device, new PinMessageImpl(mqPin, mqState))
+                executed = deviceService.sendCommand(command.deviceInfos.device, new PinMessageImpl(mqPin, mqState))
             }
+
+            command.lastExecutionTime = executionTime
+            command.save()
         }
 
-        return false
+        return executed
     }
 }

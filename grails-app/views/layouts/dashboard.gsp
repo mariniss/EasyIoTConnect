@@ -36,6 +36,7 @@
 
 	<!-- jQuery -->
 	<asset:javascript src="jquery-1.11.1.js"/>
+	<asset:javascript src="dashboard.js"/>
 
 	<!-- Bootstrap Core JavaScript -->
 	<asset:javascript src="bootstrap.min.js"/>
@@ -58,7 +59,6 @@
 	</script>
 
 	<asset:javascript id="cookiebanner" src="cookiebanner.min.js"/>
-
 
 	<asset:stylesheet src="bootstrap-datetimepicker.min.css"/>
 	<asset:javascript src="bootstrap-datetimepicker.js"/>

@@ -4,6 +4,8 @@ import grails.transaction.Transactional
 import grails.util.Environment
 import org.apache.commons.lang.StringUtils
 
+import java.sql.Time
+
 /**
  * 
  * @author fabiomarini
@@ -136,8 +138,8 @@ class ConnectionService {
 
 		if(user && device) {
 			Device.withTransaction {
-				device.infos.timedCommands?.each { it.delete() }
-
+				device.infos.allTimedCommands?.each { it.delete() }
+				device.infos.delete()
 				device.delete()
 			}
 
@@ -245,10 +247,18 @@ class ConnectionService {
 			device.infos.gpio19Type = deviceParams.gpio19type
 			device.infos.gpio20Type = deviceParams.gpio20type
 
-			if(device.save()) {
-				updateTimedGpios(device, deviceParams)
+			Device.withTransaction {
+				if(device.validate() && device.infos.validate()) {
+					updateTimedGpios(device, deviceParams)
 
-				okUpdate = true
+					device.infos.save()
+					device.save()
+
+					okUpdate = true
+				}
+				else {
+					okUpdate = false
+				}
 			}
 		}
 
@@ -382,8 +392,8 @@ class ConnectionService {
 
 	private void updateTimedGpio(Device device, Map deviceParams, int gprioId) {
 		def sendOnAt  = deviceParams["dp_${device.id}_${gprioId}_send_on_at"]
-		def sendOffAt = deviceParams["dp_${device.id}_${gprioId}_send_off_at"]
 
+		def sendOffAt  = deviceParams["sl_${device.id}_${gprioId}_send_off_at"]
 		def repeatType = deviceParams["sl_${device.id}_${gprioId}_timer_repeat"]
 
 		def repeatOnMo = deviceParams["cb_${device.id}_${gprioId}_timer_repeat_mo"]
@@ -394,12 +404,11 @@ class ConnectionService {
 		def repeatOnSa = deviceParams["cb_${device.id}_${gprioId}_timer_repeat_sa"]
 		def repeatOnSu = deviceParams["cb_${device.id}_${gprioId}_timer_repeat_su"]
 
-		def endAt = deviceParams["dp_${device.id}_${gprioId}_end_at"]
-
-		TimedCommand timedCommandOn = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_ON)
+		TimedCommand timedCommandOn  = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_ON)
+		TimedCommand timedCommandOff = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_OFF)
 		if(sendOnAt && sendOnAt.size() > 0) {
 			if (timedCommandOn == null) {
-				timedCommandOn = new TimedCommand(gpioId: gprioId, type: TimedCommand.TYPE_SEND_ON, deviceInfos: device.infos)
+				timedCommandOn = new TimedCommand(gpioId: gprioId, deviceInfos: device.infos, type: TimedCommand.TYPE_SEND_ON)
 			}
 
 			timedCommandOn.executionTime		 = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOnAt)
@@ -413,41 +422,44 @@ class ConnectionService {
 			timedCommandOn.recurringOnSaturday	 = (repeatOnSa == 'on')
 			timedCommandOn.recurringOnSunday	 = (repeatOnSu == 'on')
 
-			if(endAt && endAt.size() > 0)
-				timedCommandOn.recurringEndTime	= (new Date()).parse('dd/MMM/yyyy hh:mm a', endAt)
-			else
-				timedCommandOn.recurringEndTime	= null
+			timedCommandOn.sendOffAfter 		 = sendOffAt
 
-			timedCommandOn.save()
+			if(timedCommandOn.sendOffAfter != SendOffValues.NONE) {
+				if (timedCommandOff == null) {
+					timedCommandOff = new TimedCommand(gpioId: gprioId, deviceInfos: device.infos, type: TimedCommand.TYPE_SEND_OFF)
+				}
+
+				Calendar executionTime = timedCommandOn.executionTime.toCalendar()
+				SendOffValues sendOffValue = sendOffAt
+
+				executionTime.add(sendOffValue.type, sendOffValue.value)
+
+				timedCommandOff.executionTime		 = executionTime.time
+				timedCommandOff.recurringType		 = timedCommandOn.recurringType
+				timedCommandOff.recurringOnMonday	 = timedCommandOn.recurringOnMonday
+				timedCommandOff.recurringOnTuesday	 = timedCommandOn.recurringOnTuesday
+				timedCommandOff.recurringOnWednesday = timedCommandOn.recurringOnWednesday
+				timedCommandOff.recurringOnThursday	 = timedCommandOn.recurringOnThursday
+				timedCommandOff.recurringOnFriday	 = timedCommandOn.recurringOnFriday
+				timedCommandOff.recurringOnSaturday	 = timedCommandOn.recurringOnSaturday
+				timedCommandOff.recurringOnSunday	 = timedCommandOn.recurringOnSunday
+
+				timedCommandOff.sendOffAfter 		 = SendOffValues.NONE
+
+				TimedCommand.withTransaction {
+					timedCommandOff.save()
+					timedCommandOn.save()
+				}
+			}
+			else {
+				TimedCommand.withTransaction {
+					timedCommandOff?.delete()
+					timedCommandOn.save()
+				}
+			}
 		}
 		else {
 			timedCommandOn?.delete()
-		}
-
-		TimedCommand timedCommandOff = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_OFF)
-		if(sendOffAt && sendOffAt.size() > 0) {
-			if (timedCommandOff == null) {
-				timedCommandOff = new TimedCommand(gpioId: gprioId, type: TimedCommand.TYPE_SEND_OFF, deviceInfos: device.infos)
-			}
-
-			timedCommandOff.executionTime		 = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOffAt)
-			timedCommandOff.recurringType		 = repeatType
-			timedCommandOff.recurringOnMonday	 = (repeatOnMo == 'on')
-			timedCommandOff.recurringOnTuesday	 = (repeatOnTu == 'on')
-			timedCommandOff.recurringOnWednesday = (repeatOnWe == 'on')
-			timedCommandOff.recurringOnThursday	 = (repeatOnTh == 'on')
-			timedCommandOff.recurringOnFriday	 = (repeatOnFr == 'on')
-			timedCommandOff.recurringOnSaturday	 = (repeatOnSa == 'on')
-			timedCommandOff.recurringOnSunday	 = (repeatOnSu == 'on')
-
-			if(endAt && endAt.size() > 0)
-				timedCommandOff.recurringEndTime = (new Date()).parse('dd/MMM/yyyy hh:mm a', endAt)
-			else
-				timedCommandOff.recurringEndTime = null
-
-			timedCommandOff.save()
-		}
-		else {
 			timedCommandOff?.delete()
 		}
 	}
@@ -460,7 +472,7 @@ class ConnectionService {
 		}
 
 		TimedCommand timedCommandOff = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_OFF)
-		if(timedCommandOff) {
+		if(timedCommandOff){
 			timedCommandOff.delete()
 		}
 	}

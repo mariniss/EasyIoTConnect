@@ -184,18 +184,8 @@ class DeviceInfos {
 	}
 
 
-	List<TimedCommand> getTimedCommands() {
+	List<TimedCommand> getAllTimedCommands() {
 		return TimedCommand.findAllByDeviceInfos(this)
-	}
-
-
-	TimedCommand getTimedCommand(int gpioId, String type) {
-		List<TimedCommand> timedCommands = timedCommands
-		if(timedCommands) {
-			return timedCommands.find { it.gpioId == gpioId && it.type == type }
-		}
-
-		return null
 	}
 
 
@@ -204,6 +194,17 @@ class DeviceInfos {
 				(TimedCommand.TYPE_SEND_ON) : getTimedCommand(gpioId, TimedCommand.TYPE_SEND_ON),
 				(TimedCommand.TYPE_SEND_OFF): getTimedCommand(gpioId, TimedCommand.TYPE_SEND_OFF)
 		]
+	}
+
+
+	TimedCommand getTimedCommand(int gpioId, String type) {
+		def query = TimedCommand.where {
+			gpioId == gpioId &&
+			type == type &&
+			deviceInfos == this
+		}
+
+		return query.get()
 	}
 
 
