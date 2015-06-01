@@ -170,6 +170,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/authenticationServer/**': 	  ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/userQuestions':                 ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/userQuestions/**':              ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/timedCommand':   	 	          ['ROLE_DEVEL', 'ROLE_ADMIN'],
+    '/timedCommand/**': 	          ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/quartz/list':                   ['ROLE_DEVEL', 'ROLE_ADMIN'],
     '/quartz/list/**':                ['ROLE_DEVEL', 'ROLE_ADMIN'],
 
