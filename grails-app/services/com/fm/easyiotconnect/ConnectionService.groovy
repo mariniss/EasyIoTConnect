@@ -415,10 +415,10 @@ class ConnectionService {
 
 			Date date = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOnAt)
 
-			Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
-			dateCalTZ.setTime(date)
+			//Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
+			//dateCalTZ.setTime(date)
 
-			timedCommandOn.executionTime		 = dateCalTZ.time
+			timedCommandOn.executionTime		 = date
 
 			timedCommandOn.recurringType		 = repeatType
 			timedCommandOn.recurringOnMonday	 = (repeatOnMo == 'on')
