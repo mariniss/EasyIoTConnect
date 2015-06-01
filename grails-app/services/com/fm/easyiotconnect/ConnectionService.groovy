@@ -404,6 +404,8 @@ class ConnectionService {
 		def repeatOnSa = deviceParams["cb_${device.id}_${gprioId}_timer_repeat_sa"]
 		def repeatOnSu = deviceParams["cb_${device.id}_${gprioId}_timer_repeat_su"]
 
+		def timeZoneName = deviceParams["timer_command_${device.id}_${gprioId}_timezone"]
+
 		TimedCommand timedCommandOn  = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_ON)
 		TimedCommand timedCommandOff = device.infos.getTimedCommand(gprioId, TimedCommand.TYPE_SEND_OFF)
 		if(sendOnAt && sendOnAt.size() > 0) {
@@ -411,7 +413,12 @@ class ConnectionService {
 				timedCommandOn = new TimedCommand(gpioId: gprioId, deviceInfos: device.infos, type: TimedCommand.TYPE_SEND_ON)
 			}
 
-			timedCommandOn.executionTime		 = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOnAt)
+			Date date = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOnAt)
+
+			Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
+			dateCalTZ.setTime(date)
+
+			timedCommandOn.executionTime		 = dateCalTZ.time
 
 			timedCommandOn.recurringType		 = repeatType
 			timedCommandOn.recurringOnMonday	 = (repeatOnMo == 'on')
@@ -423,6 +430,8 @@ class ConnectionService {
 			timedCommandOn.recurringOnSunday	 = (repeatOnSu == 'on')
 
 			timedCommandOn.sendOffAfter 		 = sendOffAt
+
+			timedCommandOn.timeZoneName			 = timeZoneName
 
 			if(timedCommandOn.sendOffAfter != SendOffValues.NONE) {
 				if (timedCommandOff == null) {
@@ -445,6 +454,8 @@ class ConnectionService {
 				timedCommandOff.recurringOnSunday	 = timedCommandOn.recurringOnSunday
 
 				timedCommandOff.sendOffAfter 		 = SendOffValues.NONE
+
+				timedCommandOff.timeZoneName		 = timedCommandOn.timeZoneName
 
 				TimedCommand.withTransaction {
 					timedCommandOff.save()

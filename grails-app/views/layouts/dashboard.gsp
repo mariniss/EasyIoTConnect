@@ -63,6 +63,8 @@
 	<asset:stylesheet src="bootstrap-datetimepicker.min.css"/>
 	<asset:javascript src="bootstrap-datetimepicker.js"/>
 	<asset:javascript src="bootstrap-datetimepicker.uk.js"/>
+
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jstimezonedetect/1.0.4/jstz.min.js"></script>
 </head>
 
 <body>

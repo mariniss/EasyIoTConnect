@@ -18,3 +18,15 @@ function collapseTimerSection(sectionId, onlyClose) {
 		}
 	}
 }
+
+
+/**
+ *
+ * @param intputId
+ */
+function setTimeZoneOn(inputId) {
+	var input = $('#'+inputId);
+
+	var tz = jstz.determine();
+	input.val(tz.name());
+}

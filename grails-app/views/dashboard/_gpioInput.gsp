@@ -37,7 +37,7 @@
     <div class="col-xs-6 controls">
         <label></label>
         <select class="form-control" id="gpio${gpioNumber}type" name="gpio${gpioNumber}type"
-                onchange="if(this.value == '${com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}'){ collapseTimerSection('timer_input_${deviceId}_${gpioNumber}', false); } else { collapseTimerSection('timer_input_${deviceId}_${gpioNumber}', true); $('#show_timer_${deviceId}_${gpioNumber}').addClass('hidden');}">
+                onchange="if(this.value == '${com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}'){ collapseTimerSection('timer_input_${deviceId}_${gpioNumber}', false); setTimeZoneOn('timer_command_${deviceId}_${gpioNumber}_timezone');} else { collapseTimerSection('timer_input_${deviceId}_${gpioNumber}', true); $('#show_timer_${deviceId}_${gpioNumber}').addClass('hidden');}">
             <option value="${com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_ON_OFF}"
                     ${type == com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_ON_OFF?'selected=selected':''}">
                 On - Off
@@ -77,7 +77,7 @@
                             </div>
                             <g:if test="${timerSendOn?.executionTime != null}">
                                 <script>
-                                    $("#dp_${deviceId}_${gpioNumber}_send_on_date").datetimepicker('update', new Date(${timerSendOn.executionTime.time}));
+                                    $("#dp_${deviceId}_${gpioNumber}_send_on_date").datetimepicker('update', new Date(${timerSendOn.executionTimeWithTZ.time}));
                                 </script>
                             </g:if>
                         </div>
@@ -138,6 +138,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <input type="hidden" id="timer_command_${deviceId}_${gpioNumber}_timezone" name="timer_command_${deviceId}_${gpioNumber}_timezone" value="${timerSendOn?.timeZoneName?:''}">
 
                     <a type="button" class="btn btn-success" href="#timer_input_${deviceId}_${gpioNumber}"
                         onclick="collapseTimerSection('timer_input_${deviceId}_${gpioNumber}'); if($('#gpio${gpioNumber}type').val() == '${com.fm.easyiotconnect.mq.DeviceInfos.GPIO_TYPE_TIMER}') {$('#show_timer_${deviceId}_${gpioNumber}').removeClass('hidden');} else {$('#show_timer_${deviceId}_${gpioNumber}').addClass('hidden');}">

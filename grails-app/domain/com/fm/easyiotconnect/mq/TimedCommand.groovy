@@ -26,6 +26,8 @@ class TimedCommand {
 
     SendOffValues sendOffAfter
 
+    String timeZoneName
+
     static constraints = {
         gpioId  (nullable: false, inList: 0..20)
         type    (nullable: false, blank: false, inList: [TYPE_SEND_ON, TYPE_SEND_OFF])
@@ -44,6 +46,16 @@ class TimedCommand {
         lastExecutionTime    (nullable: true)
 
         sendOffAfter         (nullable: false)
+
+        timeZoneName         (nullable: false)
+    }
+
+
+    Date getExecutionTimeWithTZ() {
+        Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
+        dateCalTZ.setTime(executionTime)
+
+        return dateCalTZ.time
     }
 }
 
@@ -76,7 +88,10 @@ public enum TimedRecurType {
 public enum SendOffValues {
     NONE('None', null, null),
     MINUTES_5('5 Minutes',    5, Calendar.MINUTE),
+    MINUTES_10('10 Minutes', 10, Calendar.MINUTE),
     MINUTES_15('15 Minutes', 15, Calendar.MINUTE),
+    MINUTES_20('20 Minutes', 20, Calendar.MINUTE),
+    MINUTES_25('25 Minutes', 25, Calendar.MINUTE),
     MINUTES_30('30 Minutes', 30, Calendar.MINUTE),
     MINUTES_45('45 Minutes', 45, Calendar.MINUTE),
     HOURLY('1 Hour',          1, Calendar.HOUR),
