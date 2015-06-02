@@ -5,6 +5,7 @@ import grails.util.Environment
 import org.apache.commons.lang.StringUtils
 
 import java.sql.Time
+import java.text.SimpleDateFormat
 
 /**
  * 
@@ -413,12 +414,10 @@ class ConnectionService {
 				timedCommandOn = new TimedCommand(gpioId: gprioId, deviceInfos: device.infos, type: TimedCommand.TYPE_SEND_ON)
 			}
 
-			Date date = (new Date()).parse('dd/MMM/yyyy hh:mm a', sendOnAt)
+			final SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy hh:mm a")
+			sdf.setTimeZone(TimeZone.getTimeZone(timeZoneName))
 
-			//Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
-			//dateCalTZ.setTime(date)
-
-			timedCommandOn.executionTime		 = date
+			timedCommandOn.executionTime		 = sdf.parse(sendOnAt)
 
 			timedCommandOn.recurringType		 = repeatType
 			timedCommandOn.recurringOnMonday	 = (repeatOnMo == 'on')

@@ -77,7 +77,7 @@
                             </div>
                             <g:if test="${timerSendOn?.executionTime != null}">
                                 <script>
-                                    $("#dp_${deviceId}_${gpioNumber}_send_on_date").datetimepicker('update', new Date(${timerSendOn.executionTimeWithTZ.time}));
+                                    $("#dp_${deviceId}_${gpioNumber}_send_on_date").datetimepicker('update', new Date(${timerSendOn.executionTime.time}));
                                 </script>
                             </g:if>
                         </div>

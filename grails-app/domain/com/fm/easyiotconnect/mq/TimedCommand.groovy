@@ -1,5 +1,7 @@
 package com.fm.easyiotconnect.mq
 
+import java.text.SimpleDateFormat
+
 
 class TimedCommand {
 
@@ -51,17 +53,11 @@ class TimedCommand {
     }
 
 
-    Date getExecutionTimeWithTZ() {
-        //Calendar dateCalTZ = Calendar.getInstance(TimeZone.getTimeZone(timeZoneName))
-        //dateCalTZ.setTime(executionTime)
-        //return dateCalTZ.time
+    String getExecutionTimeWithTZ() {
+        SimpleDateFormat sdfAmerica = new SimpleDateFormat("dd/MMM/yyyy hh:mm a")
+        sdfAmerica.setTimeZone(TimeZone.getTimeZone(timeZoneName))
 
-        TimeZone tz = TimeZone.getTimeZone(timeZoneName)
-
-        Long execution = executionTime.time
-        execution -= tz.rawOffset
-
-        return new Date(execution)
+        return sdfAmerica.format(executionTime)
     }
 }
 
